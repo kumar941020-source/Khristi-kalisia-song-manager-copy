@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Khristi Kalisia Worship Song Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- Sidebar Start -->
+<!-- ========================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-cross"></i>
+
+        <h2>Khristi<br>Kalisia</h2>
+
+    </div>
+
+    <ul>
+
+        <li class="active">
+
+            <i class="fa-solid fa-house"></i>
+
+            Dashboard
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-music"></i>
+
+            Fast Songs
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-music"></i>
+
+            Slow Songs
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Plan This Sunday
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Sunday History
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Statistics
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Sidebar End -->
+
+
+<!-- ========================= -->
+<!-- Main Start -->
+<!-- ========================= -->
+
+<div class="main">
+
+    <div class="top-header">
+
+        <div>
+
+            <h1>Khristi Kalisia</h1>
+
+            <h3>Worship Song Manager</h3>
+
+            <p>
+                Welcome! Manage your church worship songs easily.
+            </p>
+
+        </div>
+
+        <div class="date-box">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <h4>Today's Date</h4>
+
+            <h2 id="todayDate">
+                Loading...
+            </h2>
+
+        </div>
+
+    </div>
+    <!-- ========================= -->
+    <!-- Dashboard Cards -->
+    <!-- ========================= -->
+
+    <div class="dashboard-cards">
+
+        <!-- Fast Songs -->
+
+        <div class="card">
+
+            <div class="card-icon fast">
+
+                <i class="fa-solid fa-music"></i>
+
+            </div>
+
+            <h2>Fast Songs</h2>
+
+            <h1 id="fastCount">0</h1>
+
+            <p>Total Fast Worship Songs</p>
+        <a href="pages/fast-songs.html">
+            <button id="fastBtn">
+                Open List
+            </button>
+            </a>
+
+        </div>
+
+
+        <!-- Slow Songs -->
+
+        <div class="card">
+
+            <div class="card-icon slow">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </div>
+
+            <h2>Slow Songs</h2>
+
+            <h1 id="slowCount">0</h1>
+
+            <p>Total Slow Worship Songs</p>
+<a href="pages/slow-songs.html">
+            <button id="slowBtn">
+                Open List
+            </button>
+            </a>
+
+        </div>
+
+
+        <!-- Sunday Planner -->
+
+        <div class="card">
+
+            <div class="card-icon planner">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+            </div>
+
+            <h2>Sunday Planner</h2>
+
+            <h1>4 + 3</h1>
+
+            <p>
+                Select 4 Fast & 3 Slow Songs
+            </p>
+<a href="pages/planner.html">
+            <button id="plannerBtn">
+                Plan Sunday
+            </button>
+            </a>
+
+        </div>
+
+
+        <!-- Sunday History -->
+
+        <div class="card">
+
+            <div class="card-icon history">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+            <h2>Sunday History</h2>
+
+            <h1 id="historyCount">0</h1>
+
+            <p>
+                Previous Worship Lists
+            </p>
+        <a href="pages/history.html">
+            <button id="historyBtn">
+                View History
+            </button>
+            </a>
+
+        </div>
+
+    </div>
+    <!-- ========================= -->
+    <!-- Statistics Section -->
+    <!-- ========================= -->
+
+    <div class="statistics-section">
+
+        <div class="section-title">
+            <h2>Dashboard Statistics</h2>
+            <p>Overview of your worship song library</p>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-box">
+                <i class="fa-solid fa-list"></i>
+                <h3>Total Songs</h3>
+                <h1 id="totalSongs">0</h1>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-fire"></i>
+                <h3>Most Sung Song</h3>
+                <p id="mostSungSong">No Data</p>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-clock"></i>
+                <h3>Long Time Not Sung</h3>
+                <p id="longTimeSong">No Data</p>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Recently Sung</h3>
+                <p id="recentSong">No Data</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Quick Actions -->
+    <!-- ========================= -->
+
+    <div class="quick-actions">
+
+        <h2>Quick Actions</h2>
+
+        <div class="action-buttons">
+
+            <button id="addSongBtn">
+                ➕ Add New Song
+            </button>
+
+            <button id="planSundayBtn">
+                📅 Plan This Sunday
+            </button>
+
+            <button id="historyBtn">
+                📜 View History
+            </button>
+
+            <button id="reportBtn">
+                📊 View Reports
+            </button>
+
+        </div>
+
+    </div>
+    <!-- ========================= -->
+    <!-- Statistics Section -->
+    <!-- ========================= -->
+
+    <div class="statistics-section">
+
+        <div class="section-title">
+            <h2>Dashboard Statistics</h2>
+            <p>Overview of your worship song library</p>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-box">
+                <i class="fa-solid fa-list"></i>
+                <h3>Total Songs</h3>
+                <h1 id="totalSongs">0</h1>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-fire"></i>
+                <h3>Most Sung Song</h3>
+                <p id="mostSungSong">No Data</p>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-clock"></i>
+                <h3>Long Time Not Sung</h3>
+                <p id="longTimeSong">No Data</p>
+            </div>
+
+            <div class="stat-box">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Recently Sung</h3>
+                <p id="recentSong">No Data</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Quick Actions -->
+    <!-- ========================= -->
+
+    <div class="quick-actions">
+
+        <h2>Quick Actions</h2>
+
+        <div class="action-buttons">
+
+            <button id="addSongBtn">
+                ➕ Add New Song
+            </button>
+
+            <button id="planSundayBtn">
+                📅 Plan This Sunday
+            </button>
+
+            <button id="historyBtn">
+                📜 View History
+            </button>
+
+            <button id="reportBtn">
+                📊 View Reports
+            </button>
+
+        </div>
+
+    </div>
+    <div class="selected-section">
+
+    <h2>⭐ Selected Songs For This Sunday</h2>
+
+    <div id="selectedSongList">
+        No Song Selected
+    </div>
+
+</div>
+    <script src="script.js"></script>
+
+</body>
+</html>
+/* ==========================================
+   SCRIPT.JS - PART 2
+   Song Functions
+========================================== */
+
+// Save Data
+function saveData() {
+
+    localStorage.setItem("fastSongs", JSON.stringify(fastSongs));
+    localStorage.setItem("slowSongs", JSON.stringify(slowSongs));
+    localStorage.setItem("sundayHistory", JSON.stringify(sundayHistory));
+
+}
+
+// Add Song
+function addSong(songName, category, lastSung = "Never") {
+
+    songName = songName.trim();
+
+    if (songName === "") {
+        alert("Please enter a song name.");
+        return;
+    }
+
+    let song = {
+        name: songName,
+        lastSung: lastSung,
+        timesSung: 0
+    };
+
+    if (category === "fast") {
+
+        let exists = fastSongs.some(
+            s => s.name.toLowerCase() === songName.toLowerCase()
+        );
+
+        if (exists) {
+            alert("Fast song already exists!");
+            return;
+        }
+
+        fastSongs.push(song);
+
+    } else {
+
+        let exists = slowSongs.some(
+            s => s.name.toLowerCase() === songName.toLowerCase()
+        );
+
+        if (exists) {
+            alert("Slow song already exists!");
+            return;
+        }
+
+        slowSongs.push(song);
+
+    }
+
+    saveData();
+    updateDashboard();
+
+    console.log(songName + " added successfully.");
+
+}

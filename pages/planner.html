@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sunday Planner | Khristi Kalisia Worship Song Manager</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="main full-page">
+
+    <div class="top-header">
+
+        <div>
+
+            <h1>📅 Sunday Worship Planner</h1>
+
+            <p>
+                Plan your worship songs for this Sunday.
+            </p>
+
+        </div>
+
+        <a href="../index.html">
+            <button class="dashboard-btn">
+                ⬅ Dashboard
+            </button>
+        </a>
+
+    </div>
+
+    <div class="statistics-section">
+
+        <div class="section-title">
+
+            <h2>This Sunday's Worship List</h2>
+
+            <p>Select 4 Fast Songs and 3 Slow Songs</p>
+
+        </div>
+
+    </div>
+    <!-- ========================= -->
+<!-- Planner Summary -->
+<!-- ========================= -->
+
+<div class="stats-grid">
+
+    <div class="stat-box">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <h3>Fast Songs</h3>
+
+        <h1 id="fastSelectedCount">0 / 4</h1>
+
+    </div>
+
+    <div class="stat-box">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <h3>Slow Songs</h3>
+
+        <h1 id="slowSelectedCount">0 / 3</h1>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Selected Fast Songs -->
+<!-- ========================= -->
+
+<div class="selected-section">
+
+    <h2>⚡ Selected Fast Songs</h2>
+
+    <div id="selectedFastSongs">
+
+        No Fast Song Selected
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Selected Slow Songs -->
+<!-- ========================= -->
+
+<div class="selected-section">
+
+    <h2>💙 Selected Slow Songs</h2>
+
+    <div id="selectedSlowSongs">
+
+        No Slow Song Selected
+
+    </div>
+
+</div>
+<!-- ========================= -->
+<!-- Planner Actions -->
+<!-- ========================= -->
+
+<div class="quick-actions">
+
+    <h2>Planner Actions</h2>
+
+    <div class="action-buttons">
+
+        <button id="saveSundayPlanBtn">
+            💾 Save Sunday Plan
+        </button>
+
+        <button class="delete-btn" onclick="clearSelection()">
+            🗑 Clear Selection
+        </button>
+    <button class="complete-btn" onclick="confirmSundayService()">
+✅ Complete Sunday Service
+</button>
+    </div>
+
+</div>
+
+<script src="../script.js"></script>
+
+</div>
+
+</body>
+</html>
