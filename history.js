@@ -199,10 +199,14 @@ function viewHistory(index){
         "📅 " + history.date;
 
     document.getElementById("historyFastSongs").innerHTML =
-        history.fastSongs.map(song=>"🎵 "+song).join("<br>");
+    history.fastSongs
+        .map(song => "🎵 " + (typeof song === "object" ? song.name : song))
+        .join("<br>");
 
-    document.getElementById("historySlowSongs").innerHTML =
-        history.slowSongs.map(song=>"🎶 "+song).join("<br>");
+document.getElementById("historySlowSongs").innerHTML =
+    history.slowSongs
+        .map(song => "🎶 " + (typeof song === "object" ? song.name : song))
+        .join("<br>");
 console.log(history.fastSongs);
 console.log(history.slowSongs);
 }

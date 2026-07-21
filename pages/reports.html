@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reports | Khristi Kalisia Worship Song Manager</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="main full-page">
+
+    <div class="top-header">
+
+        <div>
+
+            <h1>📊 Worship Reports</h1>
+
+            <p>View overall worship statistics and reports.</p>
+
+        </div>
+
+        <a href="../index.html">
+            <button class="dashboard-btn">
+                ⬅ Dashboard
+            </button>
+        </a>
+
+    </div>
+
+    <div class="dashboard">
+
+        <div class="dash-card">
+            <h3>🎵 Total Songs</h3>
+            <p id="reportTotalSongs">0</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>⚡ Fast Songs</h3>
+            <p id="reportFastSongs">0</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>🐢 Slow Songs</h3>
+            <p id="reportSlowSongs">0</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>📅 Total Sundays</h3>
+            <p id="reportSundays">0</p>
+        </div>
+
+    </div>
+
+    <div class="statistics-section">
+
+        <div class="section-title">
+            <h2>Report Summary</h2>
+            <p>Overall project statistics.</p>
+        </div>
+
+        <div class="song-summary">
+
+            <div class="summary-card">
+                <h3>🏆 Most Sung Song</h3>
+                <h2 id="reportMostSung">No Data</h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../script.js"></script>
+<script src="reports.js"></script>
+
+</body>
+</html>

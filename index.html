@@ -48,63 +48,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <ul>
 
-        <li class="active">
+    <li onclick="goDashboard()">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </li>
 
-            <i class="fa-solid fa-house"></i>
+    <li onclick="goFastSongs()">
+        <i class="fa-solid fa-music"></i>
+        Fast Songs
+    </li>
 
-            Dashboard
+    <li onclick="goSlowSongs()">
+        <i class="fa-solid fa-music"></i>
+        Slow Songs
+    </li>
 
-        </li>
+    <li onclick="goPlanner()">
+        <i class="fa-solid fa-calendar-days"></i>
+        Plan This Sunday
+    </li>
 
-        <li>
+    <li onclick="goHistory()">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        Sunday History
+    </li>
 
-            <i class="fa-solid fa-music"></i>
+    <li onclick="goReports()">
+        <i class="fa-solid fa-chart-column"></i>
+        Statistics
+    </li>
 
-            Fast Songs
+    <li onclick="goSettings()">
+        <i class="fa-solid fa-gear"></i>
+        Settings
+    </li>
 
-        </li>
-
-        <li>
-
-            <i class="fa-solid fa-music"></i>
-
-            Slow Songs
-
-        </li>
-
-        <li>
-
-            <i class="fa-solid fa-calendar-days"></i>
-
-            Plan This Sunday
-
-        </li>
-
-        <li>
-
-            <i class="fa-solid fa-clock-rotate-left"></i>
-
-            Sunday History
-
-        </li>
-
-        <li>
-
-            <i class="fa-solid fa-chart-column"></i>
-
-            Statistics
-
-        </li>
-
-        <li>
-
-            <i class="fa-solid fa-gear"></i>
-
-            Settings
-
-        </li>
-
-    </ul>
+</ul>
 
 </div>
 
@@ -301,95 +280,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
         <div class="action-buttons">
 
-            <button id="addSongBtn">
+            <button id="dashboardAddSongBtn">
                 ➕ Add New Song
             </button>
 
             <button id="planSundayBtn">
                 📅 Plan This Sunday
             </button>
-
+          <a href="pages/history.html">
             <button id="historyBtn">
                 📜 View History
             </button>
-
+          </a>
+          <a href="pages/reports.html">
             <button id="reportBtn">
                 📊 View Reports
             </button>
+          </a>
 
         </div>
 
     </div>
-    <!-- ========================= -->
-    <!-- Statistics Section -->
-    <!-- ========================= -->
-
-    <div class="statistics-section">
-
-        <div class="section-title">
-            <h2>Dashboard Statistics</h2>
-            <p>Overview of your worship song library</p>
-        </div>
-
-        <div class="stats-grid">
-
-            <div class="stat-box">
-                <i class="fa-solid fa-list"></i>
-                <h3>Total Songs</h3>
-                <h1 id="totalSongs">0</h1>
-            </div>
-
-            <div class="stat-box">
-                <i class="fa-solid fa-fire"></i>
-                <h3>Most Sung Song</h3>
-                <p id="mostSungSong">No Data</p>
-            </div>
-
-            <div class="stat-box">
-                <i class="fa-solid fa-clock"></i>
-                <h3>Long Time Not Sung</h3>
-                <p id="longTimeSong">No Data</p>
-            </div>
-
-            <div class="stat-box">
-                <i class="fa-solid fa-calendar-check"></i>
-                <h3>Recently Sung</h3>
-                <p id="recentSong">No Data</p>
-            </div>
-
-        </div>
-
-    </div>
-
     <!-- ========================= -->
     <!-- Quick Actions -->
     <!-- ========================= -->
-
-    <div class="quick-actions">
-
-        <h2>Quick Actions</h2>
-
-        <div class="action-buttons">
-
-            <button id="addSongBtn">
-                ➕ Add New Song
-            </button>
-
-            <button id="planSundayBtn">
-                📅 Plan This Sunday
-            </button>
-
-            <button id="historyBtn">
-                📜 View History
-            </button>
-
-            <button id="reportBtn">
-                📊 View Reports
-            </button>
-
-        </div>
-
-    </div>
     <div class="selected-section">
 
     <h2>⭐ Selected Songs For This Sunday</h2>
@@ -403,67 +317,3 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </body>
 </html>
-/* ==========================================
-   SCRIPT.JS - PART 2
-   Song Functions
-========================================== */
-
-// Save Data
-function saveData() {
-
-    localStorage.setItem("fastSongs", JSON.stringify(fastSongs));
-    localStorage.setItem("slowSongs", JSON.stringify(slowSongs));
-    localStorage.setItem("sundayHistory", JSON.stringify(sundayHistory));
-
-}
-
-// Add Song
-function addSong(songName, category, lastSung = "Never") {
-
-    songName = songName.trim();
-
-    if (songName === "") {
-        alert("Please enter a song name.");
-        return;
-    }
-
-    let song = {
-        name: songName,
-        lastSung: lastSung,
-        timesSung: 0
-    };
-
-    if (category === "fast") {
-
-        let exists = fastSongs.some(
-            s => s.name.toLowerCase() === songName.toLowerCase()
-        );
-
-        if (exists) {
-            alert("Fast song already exists!");
-            return;
-        }
-
-        fastSongs.push(song);
-
-    } else {
-
-        let exists = slowSongs.some(
-            s => s.name.toLowerCase() === songName.toLowerCase()
-        );
-
-        if (exists) {
-            alert("Slow song already exists!");
-            return;
-        }
-
-        slowSongs.push(song);
-
-    }
-
-    saveData();
-    updateDashboard();
-
-    console.log(songName + " added successfully.");
-
-}

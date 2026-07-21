@@ -81,6 +81,17 @@ if(localStorage.getItem("sundayHistory")){
     fastSongs.length + slowSongs.length;
 
 }*/
+function parseDate(dateString){
+
+    if(!dateString || dateString === "Never"){
+        return new Date(0);
+    }
+
+    const parts = dateString.split("/");
+
+    return new Date(parts[2], parts[1]-1, parts[0]);
+
+}
 function updateDashboard(){
 
     const fast = document.getElementById("fastCount");
@@ -113,7 +124,91 @@ const slowTotal = document.getElementById("slowSongTotal");
 if(slowTotal){
     slowTotal.innerText = slowSongs.length;
 }
+// Most Sung Song
 
+const mostSung = document.getElementById("mostSungSong");
+
+if(mostSung){
+
+    let allSongs = [...fastSongs, ...slowSongs];
+
+    if(allSongs.length === 0){
+
+        mostSung.innerText = "No Data";
+
+    }else{
+
+        let topSong = allSongs[0];
+
+        allSongs.forEach(song => {
+
+            if((song.timesSung || 0) > (topSong.timesSung || 0)){
+                topSong = song;
+            }
+
+        });
+
+        mostSung.innerText =
+        topSong.name + " (" + (topSong.timesSung || 0) + " times)";
+
+    }
+
+}
+const longTimeSong = document.getElementById("longTimeSong");
+
+if(longTimeSong){
+
+    let allSongs = [...fastSongs, ...slowSongs];
+
+    if(allSongs.length === 0){
+
+        longTimeSong.innerText = "No Data";
+
+    }else{
+
+        let oldest = allSongs[0];
+
+        allSongs.forEach(song => {
+
+if(parseDate(song.lastSung) < parseDate(oldest.lastSung)){   
+                 oldest = song;
+            }
+
+        });
+
+        longTimeSong.innerText =
+        oldest.name + " (" + (oldest.lastSung || "Never") + ")";
+    }
+
+}
+const recentSong = document.getElementById("recentSong");
+
+if(recentSong){
+
+    let allSongs = [...fastSongs, ...slowSongs];
+
+    if(allSongs.length === 0){
+
+        recentSong.innerText = "No Data";
+
+    }else{
+
+        let latest = allSongs[0];
+
+        allSongs.forEach(song => {
+
+if(parseDate(song.lastSung) > parseDate(latest.lastSung)){             
+       latest = song;
+            }
+
+        });
+
+        recentSong.innerText =
+        latest.name + " (" + (latest.lastSung || "Never") + ")";
+
+    }
+
+}
 }
 function displayFastSongs(){
 
@@ -663,8 +758,10 @@ function displaySelectedSongs(){
         return;
     }
 
-    let selected = fastSongs.filter(song => song.selected);
-
+let selected = [
+    ...fastSongs.filter(song => song.selected),
+    ...slowSongs.filter(song => song.selected)
+];
     if(selected.length === 0){
 
         box.innerHTML = "No Song Selected";
@@ -700,34 +797,36 @@ function displaySelectedSongs(){
 }
 function markSelectedUsed(index){
 
-    let selectedSongs = fastSongs.filter(song => song.selected);
+    let selected = [
+        ...fastSongs.filter(song => song.selected),
+        ...slowSongs.filter(song => song.selected)
+    ];
 
-    let song = selectedSongs[index];
-
-
-    const realIndex = fastSongs.indexOf(song);
-
+    let song = selected[index];
 
     const today = new Date().toLocaleDateString("en-GB");
 
+    let fastIndex = fastSongs.indexOf(song);
 
-    fastSongs[realIndex].lastSung = today;
+    if(fastIndex !== -1){
+        fastSongs[fastIndex].lastSung = today;
+        fastSongs[fastIndex].timesSung++;
+        fastSongs[fastIndex].selected = false;
+    }
 
-    fastSongs[realIndex].timesSung++;
+    let slowIndex = slowSongs.indexOf(song);
 
-    fastSongs[realIndex].selected = false;
+    if(slowIndex !== -1){
+        slowSongs[slowIndex].lastSung = today;
+        slowSongs[slowIndex].timesSung++;
+        slowSongs[slowIndex].selected = false;
+    }
 
-
-    localStorage.setItem(
-        "fastSongs",
-        JSON.stringify(fastSongs)
-    );
-
+    saveData();
 
     displayFastSongs();
-
+    displaySlowSongs();
     displaySelectedSongs();
-
     updateDashboard();
 
 }
@@ -774,7 +873,7 @@ function displaySlowSongs(){
             <td>${song.lastSung || "Never"}</td>
 
             <td>${song.timesSung || 0}</td>
-
+j
             <td>
 
                 <button class="used-btn" onclick="markSlowSongUsed(${index})">
@@ -1191,4 +1290,69 @@ function confirmSundayService(){
 
     alert("Sunday Worship Saved Successfully!");
 
+}
+document.addEventListener("DOMContentLoaded", function(){
+
+    const dashboardAddSongBtn = document.getElementById("dashboardAddSongBtn");
+    const planSundayBtn = document.getElementById("planSundayBtn");
+    const historyBtn = document.getElementById("historyBtn");
+    const reportBtn = document.getElementById("reportBtn");
+
+    if(dashboardAddSongBtn){
+        dashboardAddSongBtn.onclick = function(){
+            window.location.href = "pages/fast-songs.html";
+        };
+    }
+
+    if(planSundayBtn){
+        planSundayBtn.onclick = function(){
+            window.location.href = "pages/planner.html";
+        };
+    }
+
+    if(historyBtn){
+        historyBtn.onclick = function(){
+            window.location.href = "pages/history.html";
+        };
+    }
+if(reportBtn){
+    reportBtn.onclick = function(){
+        window.location.href = "pages/reports.html";
+    };
+}
+
+});
+const planSundayBtn = document.getElementById("planSundayBtn");
+
+if(planSundayBtn){
+    planSundayBtn.onclick = function(){
+        window.location.href = "pages/planner.html";
+    };
+}
+function goDashboard(){
+    window.location.href = "../index.html";
+}
+
+function goFastSongs(){
+    window.location.href = "pages/fast-songs.html";
+}
+
+function goSlowSongs(){
+    window.location.href = "pages/slow-songs.html";
+}
+
+function goPlanner(){
+    window.location.href = "pages/planner.html";
+}
+
+function goHistory(){
+    window.location.href = "pages/history.html";
+}
+
+function goReports(){
+    window.location.href = "pages/reports.html";
+}
+
+function goSettings(){
+    window.location.href = "pages/settings.html";
 }
