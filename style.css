@@ -1,12 +1,8 @@
 /* ==========================================
-   Khristi Kalisia Worship Song Manager
-   STYLE.CSS (Version 2) - Part 1
+   KHRISTI KALISIA WORSHIP SONG MANAGER
+   MAIN STYLE CSS
 ========================================== */
 
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* Reset */
 
 *{
     margin:0;
@@ -15,133 +11,112 @@
     font-family:'Poppins',sans-serif;
 }
 
-/* Body */
+
 
 body{
 
-    display:flex;
-
-    background:#f4f7fc;
-
+    background:#f5f7fb;
     color:#333;
-
-    min-height:100vh;
 
 }
 
-/* Sidebar */
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
 
 .sidebar{
 
-    width:260px;
-
-    background:linear-gradient(180deg,#4B0082,#6A0DAD);
-
-    color:#fff;
-
     position:fixed;
-
     left:0;
-
     top:0;
 
+    width:250px;
     height:100vh;
 
-    padding:30px 20px;
+    background:#1e293b;
+
+    padding:25px 15px;
+
+    color:white;
 
 }
 
-/* Logo */
 
-.logo{
+
+.sidebar h2{
 
     text-align:center;
 
-    margin-bottom:40px;
+    margin-bottom:30px;
+
+    font-size:22px;
 
 }
 
-.logo i{
 
-    font-size:42px;
 
-    margin-bottom:10px;
+.sidebar a{
 
-}
+    display:block;
 
-.logo h2{
+    color:white;
 
-    font-size:26px;
+    text-decoration:none;
 
-    font-weight:600;
+    padding:14px 15px;
 
-    line-height:1.4;
+    margin:8px 0;
 
-}
+    border-radius:10px;
 
-/* Sidebar Menu */
-
-.sidebar ul{
-
-    list-style:none;
+    transition:0.3s;
 
 }
 
-.sidebar ul li{
 
-    padding:15px;
 
-    margin-bottom:12px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    font-size:16px;
-
-}
-
-.sidebar ul li i{
+.sidebar a i{
 
     margin-right:12px;
 
 }
 
-.sidebar ul li:hover{
 
-    background:rgba(255,255,255,.18);
 
-}
+.sidebar a:hover{
 
-.sidebar ul .active{
-
-    background:#ffffff;
-
-    color:#4B0082;
-
-    font-weight:600;
+    background:#334155;
 
 }
 
-/* Main */
+
+
+
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
 
 .main{
 
-    margin-left:260px;
-
-    width:calc(100% - 260px);
+    margin-left:250px;
 
     padding:30px;
 
 }
+
+
+
+
+
 /* ==========================================
-   STYLE.CSS (Version 2) - Part 2
-   Header & Date Box
+   HEADER
 ========================================== */
 
-/* Top Header */
 
 .top-header{
 
@@ -151,415 +126,185 @@ body{
 
     align-items:center;
 
-    gap:25px;
-
-    margin-bottom:35px;
+    margin-bottom:30px;
 
 }
 
-/* Welcome Area */
+
 
 .top-header h1{
 
-    font-size:34px;
-
-    color:#4B0082;
-
-    font-weight:700;
-
-}
-
-.top-header h3{
-
-    color:#666;
-
-    margin-top:8px;
-
-    font-weight:500;
-
-}
-
-.top-header p{
-
-    margin-top:10px;
-
-    color:#888;
-
-    font-size:15px;
-
-}
-
-/* Date Card */
-
-.date-box{
-
-    width:260px;
-
-    background:#ffffff;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    text-align:center;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-/* Date Icon */
-
-.date-box i{
-
-    font-size:34px;
-
-    color:#4B0082;
-
-    margin-bottom:15px;
-
-}
-
-/* Date Heading */
-
-.date-box h4{
-
-    color:#666;
-
-    margin-bottom:12px;
-
-    font-weight:500;
-
-}
-
-/* Date */
-
-.date-box h2{
-
-    color:#4B0082;
-
-    font-size:22px;
-
-    font-weight:700;
-
-}
-
-/* Small Hover Effect */
-
-.date-box:hover{
-
-    transform:translateY(-5px);
-
-    transition:.3s;
-
-    box-shadow:0 18px 35px rgba(0,0,0,.12);
-
-}
-/* ==========================================
-   STYLE.CSS (Version 2) - Part 3
-   Dashboard Cards
-========================================== */
-
-.dashboard-cards{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
-    gap:25px;
-
-    margin-bottom:40px;
-
-}
-
-/* Card */
-
-.card{
-
-    background:#ffffff;
-
-    border-radius:20px;
-
-    padding:25px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-    transition:all .35s ease;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 18px 35px rgba(0,0,0,.15);
-
-}
-
-/* Top Border Animation */
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:6px;
-
-    background:#4B0082;
-
-}
-
-/* Card Icon */
-
-.card-icon{
-
-    width:70px;
-
-    height:70px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-bottom:20px;
-
     font-size:28px;
 
-    color:#fff;
+    color:#1e293b;
 
 }
 
-/* Different Colors */
 
-.fast{
 
-    background:#4CAF50;
+#todayDate{
 
-}
+    background:white;
 
-.slow{
-
-    background:#2196F3;
-
-}
-
-.planner{
-
-    background:#FF9800;
-
-}
-
-.history{
-
-    background:#9C27B0;
-
-}
-
-/* Card Text */
-
-.card h2{
-
-    color:#4B0082;
-
-    font-size:22px;
-
-    margin-bottom:10px;
-
-}
-
-.card h1{
-
-    font-size:42px;
-
-    color:#222;
-
-    margin-bottom:10px;
-
-}
-
-.card p{
-
-    color:#777;
-
-    margin-bottom:20px;
-
-    line-height:1.5;
-
-}
-
-/* Card Button */
-
-.card button{
-
-    width:100%;
-
-    border:none;
-
-    background:#4B0082;
-
-    color:#fff;
-
-    padding:12px;
+    padding:10px 18px;
 
     border-radius:10px;
 
-    font-size:15px;
-
-    cursor:pointer;
-
-    transition:.3s;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
 
 }
 
-.card button:hover{
 
-    background:#6A0DAD;
 
-}
+
+
 /* ==========================================
-   STYLE.CSS (Version 2) - Part 4
-   Statistics, Quick Actions & Responsive
+   DASHBOARD CARDS
 ========================================== */
 
-/* Statistics Section */
 
-.statistics-section{
-
-    margin-top:10px;
-
-}
-
-.section-title{
-
-    margin-bottom:20px;
-
-}
-
-.section-title h2{
-
-    color:#4B0082;
-
-    font-size:28px;
-
-}
-
-.section-title p{
-
-    color:#777;
-
-    margin-top:5px;
-
-}
-
-/* Stats Grid */
-
-.stats-grid{
+.cards{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(4,1fr);
 
     gap:20px;
 
-    margin-bottom:40px;
-
 }
 
-/* Stat Box */
 
-.stat-box{
 
-    background:#ffffff;
+.card{
 
-    padding:22px;
-
-    border-radius:18px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-.stat-box:hover{
-
-    transform:translateY(-6px);
-
-}
-
-.stat-box i{
-
-    font-size:30px;
-
-    color:#4B0082;
-
-    margin-bottom:15px;
-
-}
-
-.stat-box h3{
-
-    color:#555;
-
-    margin-bottom:12px;
-
-}
-
-.stat-box h1{
-
-    color:#4B0082;
-
-    font-size:36px;
-
-}
-
-.stat-box p{
-
-    color:#777;
-
-}
-
-/* Quick Actions */
-
-.quick-actions{
-
-    background:#ffffff;
+    background:white;
 
     padding:25px;
 
-    border-radius:20px;
+    border-radius:15px;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    text-align:center;
 
-    margin-top:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
 
 }
 
-.quick-actions h2{
 
-    color:#4B0082;
+
+.card i{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+
+    color:#2563eb;
+
+}
+
+
+
+.card h3{
+
+    font-size:17px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.card p{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+
+
+
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+
+.section{
+
+    background:white;
+
+    margin-top:30px;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+.section h2{
 
     margin-bottom:20px;
 
+    color:#1e293b;
+
 }
 
-/* Buttons */
 
-.action-buttons{
+
+
+
+/* ==========================================
+   SELECTED SONGS
+========================================== */
+
+
+#selectedSongs{
+
+    padding:15px;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+    min-height:60px;
+
+}
+
+
+
+
+
+.song-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:12px;
+
+    margin:8px 0;
+
+    background:#f1f5f9;
+
+    border-radius:8px;
+
+}
+
+
+
+
+
+/* ==========================================
+   QUICK BUTTONS
+========================================== */
+
+
+.quick-buttons{
 
     display:flex;
 
@@ -569,684 +314,720 @@ body{
 
 }
 
-.action-buttons button{
 
-    flex:1;
 
-    min-width:200px;
+.quick-buttons a{
+
+    text-decoration:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    transition:0.3s;
+
+}
+
+
+
+.quick-buttons a:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+
+
+/* ==========================================
+   STATISTICS
+========================================== */
+
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.stats div{
+
+    background:#f8fafc;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+
+
+.stats h4{
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+/* ==========================================
+   TABLE DESIGN
+========================================== */
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+}
+
+
+
+table th{
+
+    background:#1e293b;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+
+
+table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+
+
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+
+button{
 
     border:none;
 
-    padding:14px;
-
-    border-radius:12px;
-
-    background:#4B0082;
-
-    color:#fff;
-
-    font-size:15px;
-
     cursor:pointer;
 
-    transition:.3s;
+    padding:8px 15px;
+
+    border-radius:8px;
 
 }
 
-.action-buttons button:hover{
 
-    background:#6A0DAD;
 
-    transform:translateY(-3px);
+.btn-primary{
+
+    background:#2563eb;
+
+    color:white;
 
 }
 
-/* Footer */
 
-.footer{
 
-    margin-top:50px;
+.btn-danger{
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+
+
+.btn-success{
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+
+
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+
+@media(max-width:900px){
+
+
+.sidebar{
+
+    width:70px;
+
+    padding:15px 5px;
+
+}
+
+
+
+.sidebar h2{
+
+    font-size:0;
+
+}
+
+
+
+.sidebar a{
 
     text-align:center;
 
-    color:#777;
+}
 
-    padding:25px 0;
 
-    border-top:1px solid #ddd;
+
+.sidebar a i{
+
+    margin:0;
+
+    font-size:20px;
 
 }
 
-.footer p{
 
-    margin:6px 0;
+
+.main{
+
+    margin-left:70px;
+
+    padding:15px;
 
 }
 
-/* Responsive */
 
-@media(max-width:992px){
+
+.cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+
+
+.stats{
+
+    grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+
 
 .top-header{
 
     flex-direction:column;
 
-    align-items:flex-start;
+    gap:15px;
 
 }
 
-.date-box{
+
+
+.quick-buttons a{
 
     width:100%;
-
-}
-
-}
-
-@media(max-width:768px){
-
-.sidebar{
-
-    width:80px;
-
-    padding:20px 10px;
-
-}
-
-.logo h2{
-
-    display:none;
-
-}
-
-.sidebar ul li{
-
-    font-size:0;
 
     text-align:center;
 
 }
 
-.sidebar ul li i{
 
-    font-size:22px;
-
-    margin:0;
 
 }
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin:20px 0;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+    border-left:6px solid #2e8b57;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#444;
+}
+
+.card p{
+    font-size:32px;
+    font-weight:bold;
+    color:#2e8b57;
+}
+.section{
+    background:#fff;
+    padding:25px;
+    margin-top:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.section h2{
+    color:#2e8b57;
+    margin-bottom:15px;
+}
+
+.section h3{
+    font-size:28px;
+    color:#333;
+}
+.main{
+    margin-left:250px;
+    padding:30px;
+    background:#f5f7fa;
+    min-height:100vh;
+}
+.top-header{
+    background:#2e8b57;
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.top-header h1{
+    margin:0;
+}
+@media(max-width:768px){
 
 .main{
-
-    margin-left:80px;
-
-    width:calc(100% - 80px);
-
-    padding:20px;
-
+    margin-left:0;
+    padding:15px;
 }
 
-.action-buttons{
-
-    flex-direction:column;
-
+.cards{
+    grid-template-columns:1fr;
 }
 
 }
-/* ==========================================
-   FAST SONGS PAGE
-========================================== */
 
-.song-toolbar{
+/* ==========================
+   FAST SONG PAGE UPGRADE
+========================== */
+
+.section{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.section h2{
+    color:#2E8B57;
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+input[type="text"],
+input[type="date"]{
+    width:100%;
+    max-width:320px;
+    padding:12px 15px;
+    margin:8px 10px 15px 0;
+    border:1px solid #dcdcdc;
+    border-radius:10px;
+    font-size:15px;
+    transition:.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus{
+    outline:none;
+    border-color:#2E8B57;
+    box-shadow:0 0 8px rgba(46,139,87,.25);
+}
+
+.btn-primary{
+    border-radius:10px;
+    padding:12px 22px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+thead{
+    background:#2E8B57;
+    color:#fff;
+}
+
+th{
+    padding:15px;
+    text-align:left;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #ececec;
+}
+
+tbody tr{
+    transition:.3s;
+}
+
+tbody tr:hover{
+    background:#f4fff8;
+}
+
+.btn-success,
+.btn-danger,
+.btn-primary{
+    margin:2px;
+}
+
+@media(max-width:768px){
+
+table{
+    font-size:13px;
+}
+
+th,
+td{
+    padding:10px;
+}
+
+input[type="text"],
+input[type="date"]{
+    max-width:100%;
+}
+
+}
+.visitor .admin-only{
+    display:none !important;
+}
+button:active{
+    transform: scale(0.96);
+}
+button:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+.top-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:20px;
-    margin:25px 0;
-    flex-wrap:wrap;
-}
-
-.song-toolbar input{
-    flex:1;
-    min-width:260px;
-    padding:14px 18px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-    outline:none;
-    transition:.3s;
-}
-
-.song-toolbar input:focus{
-    border-color:#4f46e5;
-    box-shadow:0 0 8px rgba(79,70,229,.2);
-}
-
-.song-toolbar button{
-    background:#4f46e5;
-    color:#fff;
-    border:none;
-    padding:14px 22px;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.song-toolbar button:hover{
-    background:#3730a3;
-}
-
-.song-summary{
-    margin:20px 0;
-}
-
-.summary-card{
-    background:#fff;
+    background:#111827;
+    padding:15px 25px;
     border-radius:12px;
-    padding:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-    width:220px;
 }
 
-.summary-card h3{
-    color:#555;
-    margin-bottom:10px;
-}
-
-.summary-card h1{
-    color:#4f46e5;
-    font-size:38px;
-}
-/* ==========================================
-   FAST SONGS TABLE
-========================================== */
-
-.song-table{
-    margin-top:30px;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-    overflow:hidden;
-}
-
-.song-table table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.song-table thead{
-    background:#4f46e5;
+.top-header h1{
     color:#fff;
+    margin:0;
 }
 
-.song-table th{
-    padding:16px;
-    text-align:left;
-    font-size:15px;
+#todayDate{
+    color:#fff;
+    font-size:16px;
     font-weight:600;
+    margin-left:auto;
+    margin-right:20px;
 }
 
-.song-table td{
-    padding:15px;
-    border-bottom:1px solid #eee;
-}
-
-.song-table tbody tr{
-    transition:.3s;
-}
-
-.song-table tbody tr:hover{
-    background:#f5f7ff;
-}
-
-.song-table tbody tr:last-child td{
-    border-bottom:none;
-}
-
-/* Action Buttons */
-
-.edit-btn{
-
-    background:#16a34a;
-    color:#fff;
+#loginBtnHeader,
+#logoutBtn{
+    padding:10px 18px;
     border:none;
-    padding:8px 14px;
     border-radius:8px;
+    font-weight:600;
+    text-decoration:none;
     cursor:pointer;
-    margin-right:8px;
-    transition:.3s;
-
 }
 
-.edit-btn:hover{
-
-    background:#15803d;
-
-}
-
-.delete-btn{
-
-    background:#dc2626;
-    color:#fff;
-    border:none;
-    padding:8px 14px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.3s;
-
-}
-
-.delete-btn:hover{
-
-    background:#b91c1c;
-
-}
-
-/* Mobile Responsive */
-
-@media(max-width:768px){
-
-.song-toolbar{
-
-flex-direction:column;
-
-}
-
-.song-toolbar input{
-
-width:100%;
-
-}
-
-.song-toolbar button{
-
-width:100%;
-
-}
-
-.song-table{
-
-overflow-x:auto;
-
-}
-
-table{
-
-min-width:750px;
-
-}
-
-}
-/* ===========================
-   SONG MODAL
-=========================== */
-
-.song-modal{
-    display:none;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.55);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-}
-
-.modal-content{
-    width:420px;
-    background:#fff;
-    border-radius:15px;
-    padding:25px;
-    animation:popup .25s ease;
-}
-
-@keyframes popup{
-
-from{
-transform:scale(.8);
-opacity:0;
-}
-
-to{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
-.modal-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.close-modal{
-font-size:30px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.modal-body label{
-display:block;
-margin-top:15px;
-margin-bottom:6px;
-font-weight:600;
-}
-
-.modal-body input{
-width:100%;
-padding:12px;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:15px;
-margin-bottom:10px;
-}
-
-.modal-body button{
-width:100%;
-padding:14px;
-margin-top:15px;
-background:#4f46e5;
-color:white;
-border:none;
-border-radius:10px;
-font-size:16px;
-cursor:pointer;
-}
-
-.modal-body button:hover{
-background:#3730a3;
-}
-.edit-btn{
-    background:#3498db;
-    color:white;
-    border:none;
-    padding:8px 14px;
-    border-radius:6px;
-    cursor:pointer;
-    margin-right:8px;
-}
-
-.edit-btn:hover{
-    background:#2980b9;
-}
-/* Sort Dropdown */
-
-#sortSongs{
-
-    padding:10px 15px;
-
-    border:1px solid #ddd;
-
-    border-radius:8px;
-
-    background:#fff;
-
-    font-size:15px;
-
-    font-family:'Poppins',sans-serif;
-
-    cursor:pointer;
-
-    outline:none;
-
-    transition:.3s;
-
-}
-
-#sortSongs:hover{
-
-    border-color:#2e8b57;
-
-}
-
-#sortSongs:focus{
-
-    border-color:#2e8b57;
-
-    box-shadow:0 0 5px rgba(46,139,87,.3);
-
-}
-/* Used Button */
-
-.used-btn{
-
-    background:#28a745;
-
-    color:#fff;
-
-    border:none;
-
-    padding:8px 14px;
-
-    border-radius:6px;
-
-    cursor:pointer;
-
-    font-size:14px;
-
-    font-weight:500;
-
-    transition:.3s;
-
-    margin-right:6px;
-
-}
-
-.used-btn:hover{
-
-    background:#218838;
-
-}
-.select-btn{
+#loginBtnHeader{
     background:#2563eb;
     color:#fff;
-    border:none;
-    padding:8px 16px;
-    border-radius:6px;
-    font-size:14px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all .3s ease;
-    min-width:80px;
-    display:inline-block;
-    text-align:center;
 }
 
-.select-btn:hover{
-    background:#1d4ed8;
-    transform:translateY(-1px);
+#logoutBtn{
+    background:#dc2626;
+    color:#fff;
 }
-
-.select-btn:active{
-    transform:scale(.98);
-}
-
-.select-btn:focus{
-    outline:none;
-    box-shadow:0 0 0 3px rgba(37,99,235,.25);
-}
-.dashboard-btn{
-
-    padding: 10px 18px;
-
-    background: #2e7d32;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 8px;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-.dashboard-btn:hover{
-
-    background: #1b5e20;
-
-    transform: scale(1.05);
-
-}
-.full-page{
-
-    margin-left: 0;
-
-    width: 100%;
-
-    padding: 30px 40px;
-
-}
-.history-details{
-
-    margin-top:30px;
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:12px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
-
-.details-section{
-
-    margin-top:20px;
-
-}
-
-.details-section h3{
-
-    margin-bottom:10px;
-
-    color:#2c3e50;
-
-}
-
-.details-section div{
-
-    line-height:2;
-
-}
-.clear-btn {
-    background-color: #e53935;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 15px 0;
-    transition: 0.3s;
-}
-
-.clear-btn:hover {
-    background-color: #b71c1c;
-    transform: scale(1.05);
-}
-
-.clear-btn:active {
-    transform: scale(0.95);
-}
-.selected-card button{
-
-    margin-top: 12px;
-    padding: 10px 18px;
-
-    background: #2e7d32;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: 0.3s;
-
-}
-
-.selected-card button:hover{
-
-    background: #1b5e20;
-    transform: translateY(-2px);
-
-}
-
-.selected-card button:active{
-
-    transform: scale(0.98);
-
-}
-.settings-container{
-    display:flex;
-    justify-content:center;
-    margin-top:40px;
-}
-
-
-.setting-card{
-    width:90%;
-    max-width:450px;
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-}
-
-
-.setting-card h2{
-    text-align:center;
-    color:#2e7d32;
-}
-
-
-.setting-item{
+.top-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px;
-    margin:12px 0;
-    background:#f2f2f2;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+#todayDate{
+    font-size:16px;
+    font-weight:600;
+    color:#fff;
+    background:#1f2937;
+    padding:10px 18px;
     border-radius:10px;
-    font-size:16px;
 }
 
+.header-buttons{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+/* ==========================================
+MOBILE RESPONSIVE
+========================================== */
 
-.setting-item input{
-    width:20px;
-    height:20px;
+@media screen and (max-width:768px){
+
+body{
+display:block;
+margin:0;
+padding:0;
+overflow-x:hidden;
+font-size:15px;
 }
 
+/* Sidebar */
 
-.save-btn{
-    width:100%;
-    padding:12px;
-    margin-top:20px;
-    background:#2e7d32;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
+.sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+padding:15px;
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:10px;
+
 }
 
+.sidebar h2{
 
-.save-btn:hover{
-    background:#1b5e20;
+width:100%;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.sidebar a{
+
+padding:10px 15px;
+
+border-radius:8px;
+
+font-size:14px;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:0;
+
+width:100%;
+
+padding:15px;
+
+box-sizing:border-box;
+
+}
+
+/* Header */
+
+.top-header h1{
+
+font-size:24px;
+
+text-align:center;
+
+}
+
+/* Sections */
+
+.section{
+
+padding:15px;
+
+margin-bottom:20px;
+
+}
+
+/* Inputs */
+
+input,
+textarea,
+select{
+
+width:100%;
+
+margin-bottom:10px;
+
+font-size:16px;
+
+box-sizing:border-box;
+
+}
+
+/* Buttons */
+
+button{
+
+width:100%;
+
+margin-top:8px;
+
+font-size:16px;
+
+}
+
+/* Table */
+
+table{
+
+display:block;
+
+width:100%;
+
+overflow-x:auto;
+
+white-space:nowrap;
+
+}
+
+th,
+td{
+
+padding:10px;
+
+font-size:14px;
+
+}
+
+/* Song Item */
+
+.song-item{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.song-item button{
+
+width:100%;
+
+}
+
+/* Statistics Cards */
+
+.card,
+.dashboard-card{
+
+width:100%;
+
+margin-bottom:15px;
+
+}
+
+/* Lyrics Popup */
+
+.lyrics-box{
+
+width:98%;
+
+height:95vh;
+
+padding:15px;
+
+}
+
+#lyricsText{
+
+font-size:16px;
+
+height:100%;
+
+}
+
 }

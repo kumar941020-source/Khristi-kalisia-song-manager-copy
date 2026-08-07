@@ -4,87 +4,220 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reports | Khristi Kalisia Worship Song Manager</title>
+
+<title>
+Reports | Khristi Kalisia
+</title>
+
 
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
+
 <body>
 
-<div class="main full-page">
 
-    <div class="top-header">
+<div class="sidebar">
 
-        <div>
 
-            <h1>📊 Worship Reports</h1>
+<h2>
+✝ Khristi Kalisia
+</h2>
 
-            <p>View overall worship statistics and reports.</p>
 
-        </div>
+<a href="../index.html">
+Dashboard
+</a>
 
-        <a href="../index.html">
-            <button class="dashboard-btn">
-                ⬅ Dashboard
-            </button>
-        </a>
 
-    </div>
+<a href="fast-songs.html">
+Fast Songs
+</a>
 
-    <div class="dashboard">
 
-        <div class="dash-card">
-            <h3>🎵 Total Songs</h3>
-            <p id="reportTotalSongs">0</p>
-        </div>
+<a href="slow-songs.html">
+Slow Songs
+</a>
 
-        <div class="dash-card">
-            <h3>⚡ Fast Songs</h3>
-            <p id="reportFastSongs">0</p>
-        </div>
 
-        <div class="dash-card">
-            <h3>🐢 Slow Songs</h3>
-            <p id="reportSlowSongs">0</p>
-        </div>
+<a href="planner.html">
+Sunday Planner
+</a>
 
-        <div class="dash-card">
-            <h3>📅 Total Sundays</h3>
-            <p id="reportSundays">0</p>
-        </div>
 
-    </div>
+<a href="history.html">
+History
+</a>
 
-    <div class="statistics-section">
 
-        <div class="section-title">
-            <h2>Report Summary</h2>
-            <p>Overall project statistics.</p>
-        </div>
+<a href="reports.html">
+Reports
+</a>
 
-        <div class="song-summary">
 
-            <div class="summary-card">
-                <h3>🏆 Most Sung Song</h3>
-                <h2 id="reportMostSung">No Data</h2>
-            </div>
+<a href="settings.html">
+Settings
+</a>
 
-        </div>
-
-    </div>
 
 </div>
 
-<script src="../script.js"></script>
-<script src="reports.js"></script>
+
+
+
+
+<div class="main">
+
+
+<div class="top-header">
+
+<h1>
+Worship Reports
+</h1>
+
+
+</div>
+
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h3>
+Total Songs
+</h3>
+
+<p id="totalSongs">
+0
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Fast Songs
+</h3>
+
+<p id="reportFast">
+0
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Slow Songs
+</h3>
+
+<p id="reportSlow">
+0
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Sunday Plans
+</h3>
+
+<p id="totalPlans">
+0
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+Most Played Song
+</h2>
+
+
+<h3 id="reportMostPlayed">
+-
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+Total Usage
+
+</h2>
+
+
+<h3 id="totalUsage">
+0
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script type="module" src="../script1.js"></script>
+
+<script type="module" src="../js/reports.js"></script>
+
 
 </body>
+
 </html>

@@ -4,44 +4,64 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Settings | Khristi Kalisia Worship Song Manager</title>
+
+<title>
+Settings | Khristi Kalisia
+</title>
+
 
 <link rel="stylesheet" href="../style.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 
 <body>
 
-<div class="main full-page">
+
+<div class="sidebar">
 
 
-<div class="top-header">
-
-<div>
-
-<h1>
-⚙ Settings
-</h1>
-
-<p>
-Manage your worship song manager settings.
-</p>
-
-</div>
+<h2>
+✝ Khristi Kalisia
+</h2>
 
 
 <a href="../index.html">
+Dashboard
+</a>
 
-<button class="dashboard-btn">
-⬅ Dashboard
-</button>
 
+<a href="fast-songs.html">
+Fast Songs
+</a>
+
+
+<a href="slow-songs.html">
+Slow Songs
+</a>
+
+
+<a href="planner.html">
+Sunday Planner
+</a>
+
+
+<a href="history.html">
+History
+</a>
+
+
+<a href="reports.html">
+Reports
+</a>
+
+
+<a href="settings.html">
+Settings
 </a>
 
 
@@ -49,40 +69,47 @@ Manage your worship song manager settings.
 
 
 
-<div class="settings-container">
 
 
-<div class="settings-card">
 
-<i class="fa-solid fa-church"></i>
+<div class="main">
+
+
+<div class="top-header">
+
+<h1>
+Settings
+</h1>
+
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
 
 <h2>
-Church Information
+Application Information
 </h2>
 
-<label>
-Church Name
-</label>
 
-<input 
-type="text"
-id="churchName"
-placeholder="Khristi Kalisia">
+<p>
+✝ Khristi Kalisia Worship Song Manager
+</p>
 
 
-<label>
-Pastor Name
-</label>
-
-<input
-type="text"
-id="pastorName"
-placeholder="Enter Pastor Name">
+<p>
+Version : 1.0
+</p>
 
 
-<button id="saveChurchBtn">
-💾 Save Information
-</button>
+<p>
+Church Worship Management System
+</p>
 
 
 </div>
@@ -91,23 +118,40 @@ placeholder="Enter Pastor Name">
 
 
 
-<div class="settings-card">
 
-<i class="fa-solid fa-database"></i>
+
+
+<div class="section">
+
 
 <h2>
 Data Management
 </h2>
 
 
-<button id="backupBtn">
+
+<button 
+class="btn-primary"
+onclick="backupData()">
+
 ⬇ Backup Data
+
 </button>
 
 
-<button id="clearDataBtn">
+
+
+
+<button
+
+class="btn-danger"
+
+onclick="clearAllData()">
+
 🗑 Clear All Data
+
 </button>
+
 
 
 </div>
@@ -116,35 +160,60 @@ Data Management
 
 
 
-<div class="settings-card">
 
-<i class="fa-solid fa-circle-info"></i>
+
+
+<div class="section">
+
 
 <h2>
-About Application
+Future Features
 </h2>
 
 
-<p>
-Khristi Kalisia Worship Song Manager
-</p>
+<ul>
 
-<p>
-Version 1.0
-</p>
+<li>
+Firebase Cloud Database
+</li>
+
+
+<li>
+Admin & Public View
+</li>
+
+
+<li>
+Choir Member Management
+</li>
+
+
+<li>
+Attendance System
+</li>
+
+
+</ul>
 
 
 </div>
 
 
+
+
+
 </div>
 
 
-</div>
 
 
 
-<script src="../script.js"></script>
+
+<script type="module" src="../script1.js"></script>
+
+<script src="../js/settings.js"></script>
+
+
 
 </body>
 

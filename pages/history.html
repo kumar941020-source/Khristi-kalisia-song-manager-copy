@@ -4,186 +4,130 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sunday History | Khristi Kalisia Worship Song Manager</title>
+
+<title>
+Sunday History | Khristi Kalisia
+</title>
+
 
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
+
 <body>
 
-<div class="main full-page">
+
+
+<div class="sidebar">
+
+
+<h2>
+✝ Khristi Kalisia
+</h2>
+
+
+<a href="../index.html">
+Dashboard
+</a>
+
+
+<a href="fast-songs.html">
+Fast Songs
+</a>
+
+
+<a href="slow-songs.html">
+Slow Songs
+</a>
+
+
+<a href="planner.html">
+Sunday Planner
+</a>
+
+
+<a href="history.html">
+History
+</a>
+
+
+<a href="reports.html">
+Reports
+</a>
+
+
+<a href="settings.html">
+Settings
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="main">
+
 
 <div class="top-header">
 
-<div>
 
-<h1>📜 Sunday Worship History</h1>
+<h1>
+Sunday Worship History
+</h1>
 
-<p>View all completed Sunday worship services.</p>
-
-</div>
-
-<a href="../index.html">
-<button class="dashboard-btn">
-⬅ Dashboard
-</button>
-</a>
-
-</div>
-
-<div class="dashboard">
-
-    <div class="dash-card">
-        <h3>🎵 Total Songs</h3>
-        <p id="totalSongs">0</p>
-    </div>
-
-    <div class="dash-card">
-        <h3>⚡ Fast Songs</h3>
-        <p id="fastCount">0</p>
-    </div>
-
-    <div class="dash-card">
-        <h3>🐢 Slow Songs</h3>
-        <p id="slowCount">0</p>
-    </div>
-
-    <div class="dash-card">
-        <h3>📅 Sundays</h3>
-        <p id="totalDays">0</p>
-    </div>
-    <div class="dash-card">
-    <h3>🏆 Most Played Song</h3>
-    <p id="mostPlayed">No Data</p>
-</div>
-
-</div>
-<div class="statistics-section">
-
-<div class="section-title">
-
-<h2>Sunday Service History</h2>
-
-<p>All previous worship plans are stored here.</p>
-
-</div>
 
 </div>
 
 
-<div class="song-summary">
 
-<div class="summary-card">
 
-<h3>Total Sundays</h3>
 
-<h1 id="historyCountCard">0</h1>
 
-</div>
 
-</div>
+<div class="section">
 
-<div class="song-toolbar">
 
-    <input
-        type="text"
-        id="searchHistory"
-        placeholder="🔍 Search by Date or Song...">
+<h2>
+Previous Sunday Plans
+</h2>
 
-</div>
-<div class="song-table">
 
-<table>
+<div id="historyContainer">
 
-<thead>
-
-<tr>
-
-<th>S.No</th>
-
-<th>Date</th>
-
-<th>Fast Songs</th>
-
-<th>Slow Songs</th>
-
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="historyTable">
-
-<tr>
-
-<td colspan="5" style="text-align:center;padding:25px;">
-No Sunday History Found
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-<!-- ==========================================
-     History Details Card
-========================================== -->
-
-<div id="historyDetails" class="history-details" style="display:none;">
-
-    <h2>📜 Sunday Service Details</h2>
-
-    <h3 id="historyDate"></h3>
-
-    <div class="details-section">
-
-        <h3>🎵 Fast Songs</h3>
-
-        <div id="historyFastSongs"></div>
-
-    </div>
-
-    <div class="details-section">
-
-        <h3>🎶 Slow Songs</h3>
-
-        <div id="historySlowSongs"></div>
-
-    </div>
-
-</div>
 
 </div>
 
 
-<div style="margin-top:20px;">
+</div>
 
-<button class="clear-btn"
-onclick="clearHistory()">
 
-🗑 Clear All History
 
-</button>
+
 
 </div>
 
-</div>
 
-<script src="../script.js"></script>
-<script src="../history.js"></script>
+
+
+
+
+
+<script type="module" src="../script1.js"></script>
+<script type="module" src="../js/history.js"></script>
+<script type="module" src="../js/admin.js"></script>
 
 </body>
+
+
 </html>

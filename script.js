@@ -6,6 +6,15 @@
 // ==========================================
 // Today's Date
 // ==========================================
+import {
+  db,
+  ref,
+  set,
+  get,
+  push,
+  update,
+  remove
+} from "./firebase.js";
 function showTodayDate() {
 
     const today = new Date();
@@ -302,6 +311,36 @@ function saveData() {
 }
 
 // Add Song
+async function loadFastSongs() {
+
+    try {
+
+        const snapshot = await get(ref(db, "fastSongs"));
+
+        if (snapshot.exists()) {
+
+            const data = snapshot.val();
+
+            fastSongs = Object.values(data);
+
+            displayFastSongs();
+            updateDashboard();
+
+        } else {
+
+            fastSongs = [];
+            displayFastSongs();
+            updateDashboard();
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 function addSong(songName, category, lastSung = "Never") {
 
     songName = songName.trim();
@@ -329,8 +368,16 @@ function addSong(songName, category, lastSung = "Never") {
             return;
         }
 
-        fastSongs.push(song);
+const songRef = push(ref(db, "fastSongs"));
 
+set(songRef, song)
+.then(() => {
+    alert("Fast Song Added Successfully!");
+})
+.catch((error) => {
+    console.error(error);
+    alert("Error: " + error.message);
+});
     } else {
 
         let exists = slowSongs.some(
@@ -346,7 +393,7 @@ function addSong(songName, category, lastSung = "Never") {
 
     }
 
-    saveData();
+    //saveData();
     updateDashboard();
 
     console.log(songName + " added successfully.");
@@ -906,7 +953,6 @@ j
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", function(){
-
 const addSlowSongBtn = document.getElementById("addSlowSongBtn");
 const songModal = document.getElementById("songModal");
 const closeModal = document.getElementById("closeModal");
@@ -1356,3 +1402,4 @@ function goReports(){
 function goSettings(){
     window.location.href = "pages/settings.html";
 }
+loadFastSongs();

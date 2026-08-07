@@ -3,150 +3,209 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sunday Planner | Khristi Kalisia Worship Song Manager</title>
+<title>
+Sunday Planner | Khristi Kalisia
+</title>
 
-    <link rel="stylesheet" href="../style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
+
 <body>
 
-<div class="main full-page">
 
-    <div class="top-header">
+<div class="sidebar">
 
-        <div>
 
-            <h1>📅 Sunday Worship Planner</h1>
+<h2>
+✝ Khristi Kalisia
+</h2>
 
-            <p>
-                Plan your worship songs for this Sunday.
-            </p>
 
-        </div>
+<a href="../index.html">
+Dashboard
+</a>
 
-        <a href="../index.html">
-            <button class="dashboard-btn">
-                ⬅ Dashboard
-            </button>
-        </a>
 
-    </div>
+<a href="fast-songs.html">
+Fast Songs
+</a>
 
-    <div class="statistics-section">
 
-        <div class="section-title">
+<a href="slow-songs.html">
+Slow Songs
+</a>
 
-            <h2>This Sunday's Worship List</h2>
 
-            <p>Select 4 Fast Songs and 3 Slow Songs</p>
+<a href="planner.html">
+Sunday Planner
+</a>
 
-        </div>
 
-    </div>
-    <!-- ========================= -->
-<!-- Planner Summary -->
-<!-- ========================= -->
+<a href="history.html">
+History
+</a>
 
-<div class="stats-grid">
 
-    <div class="stat-box">
+<a href="reports.html">
+Reports
+</a>
 
-        <i class="fa-solid fa-bolt"></i>
 
-        <h3>Fast Songs</h3>
+<a href="settings.html">
+Settings
+</a>
 
-        <h1 id="fastSelectedCount">0 / 4</h1>
-
-    </div>
-
-    <div class="stat-box">
-
-        <i class="fa-solid fa-heart"></i>
-
-        <h3>Slow Songs</h3>
-
-        <h1 id="slowSelectedCount">0 / 3</h1>
-
-    </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- Selected Fast Songs -->
-<!-- ========================= -->
 
-<div class="selected-section">
 
-    <h2>⚡ Selected Fast Songs</h2>
 
-    <div id="selectedFastSongs">
 
-        No Fast Song Selected
+<div class="main">
 
-    </div>
+
+<div class="top-header">
+
+<h1>
+Sunday Worship Planner
+</h1>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+🔥 Selected Fast Songs (4)
+</h2>
+
+
+<div id="plannerFastSongs">
 
 </div>
 
-<!-- ========================= -->
-<!-- Selected Slow Songs -->
-<!-- ========================= -->
-
-<div class="selected-section">
-
-    <h2>💙 Selected Slow Songs</h2>
-
-    <div id="selectedSlowSongs">
-
-        No Slow Song Selected
-
-    </div>
 
 </div>
-<!-- ========================= -->
-<!-- Planner Actions -->
-<!-- ========================= -->
 
-<div class="quick-actions">
 
-    <h2>Planner Actions</h2>
 
-    <div class="action-buttons">
 
-        <button id="saveSundayPlanBtn">
-            💾 Save Sunday Plan
-        </button>
 
-        <button class="delete-btn" onclick="clearSelection()">
-            🗑 Clear Selection
-        </button>
-    <button class="complete-btn" onclick="confirmSundayService()">
-✅ Complete Sunday Service
+
+
+
+<div class="section">
+
+
+<h2>
+❤️ Selected Slow Songs (3)
+</h2>
+
+
+<div id="plannerSlowSongs">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="section admin-only">
+
+
+<button 
+class="btn-primary admin-only"
+onclick="savePlan()">
+
+Save Sunday Plan
+
 </button>
-    </div>
+
+
+
+<button
+class="btn-danger admin-only"
+onclick="clearPlan()">
+
+Clear Selection
+
+</button>
+
 
 </div>
 
-<script src="../script.js"></script>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="module" src="../script1.js"></script>
+
+<script type="module" src="../js/planner.js"></script>
+<script type="module" src="../js/admin.js"></script>
+<!-- ==========================================
+LYRICS MODAL
+========================================== -->
+
+<div id="lyricsModal" class="lyrics-modal">
+
+    <div class="lyrics-box">
+
+        <h2 id="lyricsSongName">
+            Song Lyrics
+        </h2>
+
+        <textarea
+            id="lyricsText"
+            readonly>
+        </textarea>
+
+        <br><br>
+
+        <button
+            class="btn-danger"
+            onclick="closeLyrics()">
+
+            Close
+
+        </button>
+
+    </div>
 
 </div>
 
 </body>
+
 </html>

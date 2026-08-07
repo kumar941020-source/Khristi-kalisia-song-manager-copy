@@ -3,170 +3,245 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Slow Songs | Khristi Kalisia Worship Song Manager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../style.css">
+<title>
+Slow Songs | Khristi Kalisia
+</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 
 </head>
 
+
 <body>
 
-<div class="main full-page">
 
-    <div class="top-header">
+<div class="sidebar">
 
-        <div>
+<h2>
+✝ Khristi Kalisia
+</h2>
 
-            <h1>🎵 Slow Worship Songs</h1>
 
-            <p>
-                Manage all slow worship songs used in church.
-            </p>
+<a href="../index.html">
+Dashboard
+</a>
 
-        </div>
 
-        <a href="../index.html">
-            <button class="dashboard-btn">⬅ Dashboard</button>
-        </a>
+<a href="fast-songs.html">
+Fast Songs
+</a>
 
-    </div>
 
-    <div class="statistics-section">
+<a href="slow-songs.html">
+Slow Songs
+</a>
 
-        <div class="section-title">
 
-            <h2>Slow Songs Library</h2>
+<a href="planner.html">
+Sunday Planner
+</a>
 
-            <p>Add, search, edit and manage slow worship songs.</p>
 
-        </div>
+<a href="history.html">
+History
+</a>
 
-    </div>
 
-    <!-- ========================= -->
-    <!-- Search & Add Section -->
-    <!-- ========================= -->
+<a href="reports.html">
+Reports
+</a>
 
-    <div class="song-toolbar">
 
-        <input
-            type="text"
-            id="searchSlowSong"
-            placeholder="🔍 Search Slow Song...">
+<a href="settings.html">
+Settings
+</a>
 
-        <select id="sortSlowSongs">
-            <option value="default">Sort</option>
-            <option value="az">A - Z</option>
-            <option value="za">Z - A</option>
-        </select>
-
-        <button type="button" id="addSlowSongBtn">
-            ➕ Add New Song
-        </button>
-
-    </div>
-    <!-- ========================= -->
-<!-- Total Songs Card -->
-<!-- ========================= -->
-
-<div class="song-summary">
-
-    <div class="summary-card">
-
-        <h3>Total Slow Songs</h3>
-
-        <h1 id="slowSongTotal">0</h1>
-
-    </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- Songs Table -->
-<!-- ========================= -->
 
-<div class="song-table">
 
-    <table>
 
-        <thead>
 
-            <tr>
+<div class="main">
 
-                <th>S.No</th>
 
-                <th>Song Name</th>
+<div class="top-header">
 
-                <th>Last Sung</th>
-
-                <th>Times Sung</th>
-
-                <th>Action</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody id="slowSongTable">
-
-            <tr>
-
-                <td colspan="5" style="text-align:center; padding:25px;">
-                    No Slow Songs Added Yet
-                </td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
+<h1>
+Slow Songs
+</h1>
 
 </div>
-<!-- ==========================================
-     Add Slow Song Modal
-========================================== -->
 
-<div id="songModal" class="song-modal">
 
-    <div class="modal-content">
 
-        <div class="modal-header">
 
-            <h2>➕ Add Slow Worship Song</h2>
 
-            <span class="close-modal" id="closeModal">&times;</span>
 
-        </div>
+<div class="section admin-only">
 
-        <div class="modal-body">
 
-            <label>Song Name</label>
+<h2>
+Add New Slow Song
+</h2>
 
-            <input
-                type="text"
-                id="songName"
-                placeholder="Enter song name">
 
-            <label>Last Sung Date</label>
 
-            <input
-                type="date"
-                id="lastSungDate">
+<input 
+type="text"
+id="slowSongName"
+placeholder="Enter song name"
+>
 
-            <button id="saveSlowSongBtn">
-                💾 Save Song
+
+
+<input
+type="date"
+id="slowSongDate"
+>
+
+
+
+<button 
+class="btn-primary admin-only"
+onclick="addSlow()">
+
+Add Song
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+Slow Song List
+</h2>
+
+
+
+
+<input 
+type="text"
+placeholder="Search Song"
+onkeyup="searchSlow(this.value)"
+>
+
+
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Song Name
+</th>
+
+
+<th>
+Last Sung
+</th>
+
+
+<th>
+Times Sung
+</th>
+
+
+<th>
+Action
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="slowSongTable">
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="module" src="../script1.js"></script>
+
+<script type="module" src="../js/slow-songs.js"></script>
+<script type="module" src="../js/admin.js"></script>
+
+<!-- ==========================
+     LYRICS MODAL
+========================== -->
+
+<div id="lyricsModal" class="lyrics-modal">
+
+    <div class="lyrics-box">
+
+        <span class="close-lyrics" onclick="closeLyrics()">&times;</span>
+
+        <h2>🎵 Song Lyrics</h2>
+
+        <h3 id="lyricsSongName">Song Name</h3>
+
+        <textarea
+            id="lyricsText"
+            rows="15"
+            placeholder="Write song lyrics here...">
+        </textarea>
+
+        <div class="lyrics-buttons">
+
+            <button class="btn-primary admin-only"
+                onclick="saveLyrics()">
+                💾 Save Lyrics
+            </button>
+
+            <button class="btn-danger"
+                onclick="closeLyrics()">
+                Close
             </button>
 
         </div>
@@ -175,9 +250,6 @@
 
 </div>
 
-</div>
-
-<script src="../script.js"></script>
-
 </body>
+
 </html>
