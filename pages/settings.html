@@ -121,7 +121,7 @@ Church Worship Management System
 
 
 
-<div class="section">
+<div class="section admin-only">
 
 
 <h2>
@@ -131,7 +131,7 @@ Data Management
 
 
 <button 
-class="btn-primary"
+class="btn-primary admin-only"
 onclick="backupData()">
 
 ⬇ Backup Data
@@ -144,7 +144,7 @@ onclick="backupData()">
 
 <button
 
-class="btn-danger"
+class="btn-danger admin-only"
 
 onclick="clearAllData()">
 
@@ -173,14 +173,7 @@ Future Features
 
 <ul>
 
-<li>
-Firebase Cloud Database
-</li>
 
-
-<li>
-Admin & Public View
-</li>
 
 
 <li>
@@ -212,6 +205,8 @@ Attendance System
 <script type="module" src="../script1.js"></script>
 
 <script src="../js/settings.js"></script>
+<script type="module" src="../js/admin.js"></script>
+
 
 
 
