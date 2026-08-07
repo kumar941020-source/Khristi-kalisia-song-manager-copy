@@ -24,6 +24,7 @@ export let fastSongs = [];
 export let slowSongs = [];
 
 let sundayHistory = [];
+export let choirs = [];
 
 // ==========================================
 // SAVE DATA FUNCTION
@@ -44,13 +45,20 @@ async function saveData() {
     sundayHistory.forEach(item => {
         historyObject[item.id] = item;
     });
+    const choirObject = {};
+
+choirs.forEach(choir => {
+
+    choirObject[choir.id] = choir;
+
+});
 
     await set(ref(db, "fastSongs"), fastObject);
 
     await set(ref(db, "slowSongs"), slowObject);
 
     await set(ref(db, "sundayHistory"), historyObject);
-
+    await set(ref(db,"choirs"),choirObject);
     console.log("✅ Data Saved Successfully");
 
 }
@@ -63,7 +71,7 @@ async function loadFirebaseData() {
     fastSongs = [];
     slowSongs = [];
     sundayHistory = [];
-
+    choirs = [];
     // FAST SONGS
     const fastSnapshot = await get(ref(db, "fastSongs"));
 
@@ -86,6 +94,18 @@ async function loadFirebaseData() {
     }
 
     console.log("✅ Firebase Data Loaded");
+
+    const choirSnapshot =
+await get(ref(db,"choirs"));
+
+if(choirSnapshot.exists()){
+
+    choirs =
+    Object.values(
+        choirSnapshot.val()
+    );
+
+}
 }
 
 // ==========================================
@@ -112,6 +132,9 @@ async function initializeApp() {
     if (typeof displaySlowSongs === "function") {
         window.displaySlowSongs();
     }
+    if (typeof window.displayChoirs === "function") {
+    window.displayChoirs();
+}
 
     if (typeof displaySelectedSongs === "function") {
              displaySelectedSongs();
@@ -983,7 +1006,95 @@ export async function saveSlowSongLyrics(songId, lyrics) {
     await saveData();
 
 }
+export async function addChoir(name, leader) {
 
+    let choir = {
+
+        id: Date.now().toString(),
+
+        name: name,
+
+        leader: leader,
+
+        members: []
+
+    };
+
+    choirs.push(choir);
+
+    await saveData();
+
+    if (typeof window.displayChoirs === "function") {
+        window.displayChoirs();
+    }
+
+}
+export async function deleteChoir(id) {
+
+    choirs = choirs.filter(choir => choir.id != id);
+
+    await saveData();
+
+    if (typeof window.displayChoirs === "function") {
+        window.displayChoirs();
+    }
+
+}
+export async function editChoir(id){
+
+    let choir =
+    choirs.find(
+        c=>c.id==id
+    );
+
+    if(!choir) return;
+
+    let name =
+    prompt(
+        "Choir Name",
+        choir.name
+    );
+
+    if(!name) return;
+
+    let leader =
+    prompt(
+        "Leader Name",
+        choir.leader
+    );
+
+    if(!leader) return;
+
+    choir.name=name;
+
+    choir.leader=leader;
+
+    await saveData();
+if (typeof window.displayChoirs === "function") {
+    window.displayChoirs();
+}
+}
+
+// ==========================================
+// UPDATE CHOIR MEMBERS
+// ==========================================
+
+export async function updateChoirMembers(id, members) {
+
+    const choir = choirs.find(c => c.id == id);
+
+    if (!choir) return;
+
+    choir.members = members || [];
+
+    await saveData();
+
+    if (typeof window.displayChoirs === "function") {
+        window.displayChoirs();
+    }
+
+    console.log("✅ Choir Members Saved Successfully");
+}
 // ==========================================
 // INITIAL LOAD
 // ==========================================

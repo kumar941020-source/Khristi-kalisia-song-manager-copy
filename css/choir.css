@@ -1,0 +1,69 @@
+/* ==========================================
+   CHOIR MEMBERS MODAL
+========================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+
+    margin: 10px 0;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+#memberList {
+    margin-top: 20px;
+}
+
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    margin-bottom: 8px;
+
+    background: #f3f3f3;
+
+    border-radius: 8px;
+}
+/* ==========================================
+   CHOIR CARDS
+========================================== */
+

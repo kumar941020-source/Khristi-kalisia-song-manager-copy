@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Choir Management
+</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/choir.css">
+
+
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>✝ Khristi Kalisia</h2>
+
+<a href="../index.html">Dashboard</a>
+
+<a href="fast-songs.html">Fast Songs</a>
+
+<a href="slow-songs.html">Slow Songs</a>
+
+<a href="planner.html">Sunday Planner</a>
+
+<a href="history.html">History</a>
+
+<a href="choir.html">🎤 Choir</a>
+
+
+<a href="reports.html">Reports</a>
+
+<a href="settings.html">Settings</a>
+
+</div>
+
+<div class="main">
+
+<div class="top-header">
+
+<h1>
+🎤 Choir Management
+</h1>
+
+</div>
+
+<div class="section admin-only">
+
+<h2>Create New Choir</h2>
+
+<input
+type="text"
+id="choirName"
+placeholder="Choir Name">
+
+<input
+type="text"
+id="leaderName"
+placeholder="Leader Name">
+
+<button
+class="btn-primary admin-only"
+onclick="addChoir()">
+
+➕ Add Choir
+
+</button>
+
+</div>
+
+<div class="section">
+
+<h2>Choir List</h2>
+
+<div id="choirContainer">
+
+</div>
+
+</div>
+
+</div>
+<!-- ==========================================
+     MEMBERS MODAL
+========================================== -->
+
+<div id="memberModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>
+            👥 Members
+        </h2>
+
+        <h3 id="memberChoirName">
+            Choir
+        </h3>
+      <div class="admin-only">
+        <input
+            type="text"
+            id="memberName"
+            placeholder="Enter member name"
+        >
+      </div>
+        <button
+            class="btn-primary admin-only"
+            onclick="addMember()">
+
+            ➕ Add Member
+
+        </button>
+
+        <div id="memberList"></div>
+
+        <button
+            class="btn-danger"
+            onclick="closeMembers()">
+
+            ✖ Close
+
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="../script1.js"></script>
+
+<script type="module" src="../js/choir.js"></script>
+
+<script type="module" src="../js/admin.js"></script>
+
+</body>
+
+</html>
