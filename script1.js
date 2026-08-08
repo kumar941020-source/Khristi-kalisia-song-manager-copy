@@ -1076,6 +1076,25 @@ if (typeof window.displayChoirs === "function") {
 }
 
 // ==========================================
+// UPDATE CHOIR LEADER
+// ==========================================
+
+export async function updateChoirLeader(id, newLeader) {
+
+    const choir = choirs.find(c => c.id == id);
+
+    if (!choir) return;
+
+    choir.leader = newLeader;
+
+    await saveData();
+
+    if (typeof window.displayChoirs === "function") {
+        window.displayChoirs();
+    }
+
+}
+// ==========================================
 // UPDATE CHOIR MEMBERS
 // ==========================================
 

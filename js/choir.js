@@ -12,7 +12,8 @@ import {
     editChoir,
 
     deleteChoir,
-    updateChoirMembers
+    updateChoirMembers,
+    updateChoirLeader
 
 } from "../script1.js";
 // ==========================================
@@ -88,14 +89,16 @@ function displayChoirs() {
         <h3>
         🎤 ${choir.name}
         </h3>
-
         <p>
+    👤 Leader :
+    <b>${choir.leader || "Not Assigned"}</b>
 
-        👤 Leader :
-
-        <b>${choir.leader}</b>
-
-        </p>
+    <button
+        class="btn-primary admin-only"
+        onclick="editLeader('${choir.id}')">
+        ✏ Edit Leader
+    </button>
+</p>
 
         <p>
 
@@ -260,6 +263,41 @@ async function saveChoirMembers() {
     );
 
 }
+
+// ==========================================
+// UPDATE CHOIR LEADER
+// ==========================================
+
+// ==========================================
+// EDIT LEADER
+// ==========================================
+
+async function editLeader(id) {
+
+    const choir = choirs.find(c => c.id == id);
+
+    if (!choir) return;
+
+    const newLeader = prompt(
+        "Enter new leader name:",
+        choir.leader || ""
+    );
+
+    if (newLeader === null) return;
+
+    const leader = newLeader.trim();
+
+    if (leader === "") {
+        alert("Leader name cannot be empty");
+        return;
+    }
+
+    await updateChoirLeader(id, leader);
+
+    alert("✅ Leader updated successfully");
+}
+
+window.editLeader = editLeader;
 
 window.openMembers = openMembers;
 window.closeMembers = closeMembers;
