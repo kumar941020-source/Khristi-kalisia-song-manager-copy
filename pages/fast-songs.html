@@ -4,83 +4,67 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 Fast Songs | Khristi Kalisiya
 </title>
 
-
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../css/dashboard.css">
 
 
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
-
 <body>
 
-
 <div class="sidebar">
-
 
 <h2>
 ✝ Khristi Kalisiya
 </h2>
 
-
 <a href="../index.html">
 Dashboard
 </a>
-
 
 <a href="fast-songs.html">
 Fast Songs
 </a>
 
-
 <a href="slow-songs.html">
 Slow Songs
 </a>
 
-
 <a href="planner.html">
 Sunday Planner
 </a>
-
 
 <a href="history.html">
 History
 </a>
 
 <a href="choir.html">
-    🎤 Choir
+🎤 Choir
 </a>
-
+<div class="admin-only">
 <a href="reports.html">
 Reports
 </a>
-
+</div>
 
 <a href="settings.html">
 Settings
 </a>
 
-
-
 </div>
 
 
-
-
-
 <div class="main">
-
 
 <div class="top-header">
 
@@ -88,39 +72,31 @@ Settings
 Fast Songs
 </h1>
 
-
 </div>
 
 
-
-
+<!-- ==========================================
+     ADD SONG
+========================================== -->
 
 <div class="section admin-only">
-
 
 <h2>
 Add New Fast Song
 </h2>
 
-
-
-<input 
+<input
 type="text"
 id="fastSongName"
 placeholder="Enter song name"
 >
-
-
 
 <input
 type="date"
 id="fastSongDate"
 >
 
-
-
-
-<button 
+<button
 class="btn-primary admin-only"
 onclick="addFast()">
 
@@ -128,140 +104,80 @@ Add Song
 
 </button>
 
-
-
 </div>
 
 
-
-
-
+<!-- ==========================================
+     SONG LIST
+========================================== -->
 
 <div class="section">
-
 
 <h2>
 Fast Song List
 </h2>
 
-
-
-<input 
+<input
 type="text"
 placeholder="Search Song"
 onkeyup="searchFast(this.value)"
 >
 
+<!-- Songs yahan cards ke form me aayenge -->
 
+<div id="fastSongTable"></div>
 
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>
-Song Name
-</th>
-
-
-<th>
-Last Sung
-</th>
-
-
-<th>
-Times Sung
-</th>
-
-
-<th>
-Action
-</th>
-
-
-</tr>
-
-</thead>
-
-
-
-<tbody id="fastSongTable">
-
-
-</tbody>
-
-
-
-</table>
-
-
+</div>
 
 </div>
 
 
-
-
-</div>
-
-
-
-
-
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-
-<!-- Firebase Config -->
-
-
-<!-- Main Script -->
-<script type="module" src="/script1.js"></script>
-
-
-<!-- Fast Songs Page Script -->
-<script type="module" src="../js/fast-songs.js"></script>
-<script type="module" src="../js/admin.js"></script>
-
-<script type="module" src="/script1.js"></script>
-
-<script type="module" src="../js/fast-songs.js"></script>
-<script type="module" src="../js/admin.js"></script>
-
-<!-- ==========================
+<!-- ==========================================
      LYRICS MODAL
-========================== -->
+========================================== -->
 
 <div id="lyricsModal" class="lyrics-modal">
 
     <div class="lyrics-box">
 
-        <span class="close-lyrics" onclick="closeLyrics()">&times;</span>
+        <span
+        class="close-lyrics"
+        onclick="closeLyrics()">
 
-        <h2>🎵 Song Lyrics</h2>
+        &times;
 
-        <h3 id="lyricsSongName">Song Name</h3>
+        </span>
+
+        <h2>
+        🎵 Song Lyrics
+        </h2>
+
+        <h3 id="lyricsSongName">
+        Song Name
+        </h3>
 
         <textarea
-            id="lyricsText"
-            rows="15"
-            placeholder="Write song lyrics here...">
+        id="lyricsText"
+        rows="15"
+        placeholder="Write song lyrics here...">
         </textarea>
 
         <div class="lyrics-buttons">
 
-            <button class="btn-primary admin-only"
-                onclick="saveLyrics()">
-                💾 Save Lyrics
+            <button
+            class="btn-primary admin-only"
+            onclick="saveLyrics()">
+
+            💾 Save Lyrics
+
             </button>
 
-            <button class="btn-danger"
-                onclick="closeLyrics()">
-                Close
+            <button
+            class="btn-danger"
+            onclick="closeLyrics()">
+
+            Close
+
             </button>
 
         </div>
@@ -270,8 +186,17 @@ Action
 
 </div>
 
-</body>
-</body>
 
+<!-- ==========================================
+     SCRIPTS
+========================================== -->
+
+<script type="module" src="../script1.js"></script>
+
+<script type="module" src="../js/fast-songs.js"></script>
+
+<script type="module" src="../js/admin.js"></script>
+
+</body>
 
 </html>

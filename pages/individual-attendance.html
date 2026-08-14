@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Individual Attendance</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/attendance.css">
+<link rel="stylesheet" href="../css/individual-attendence.css">
+
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<div class="sidebar">
+
+    <h2>✝ Khristi Kalisia</h2>
+
+    <a href="../index.html">
+        Dashboard
+    </a>
+
+    <a href="fast-songs.html">
+        Fast Songs
+    </a>
+
+    <a href="slow-songs.html">
+        Slow Songs
+    </a>
+
+    <a href="planner.html">
+        Sunday Planner
+    </a>
+
+    <a href="choir.html">
+        🎤 Choir
+    </a>
+
+    <a href="attendance.html" class="active">
+        📋 Attendance
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="reports.html">
+        Reports
+    </a>
+
+    <a href="settings.html" class="admin-only">
+        Settings
+    </a>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<div class="main">
+
+    <div class="top-header">
+
+        <h1>
+            👤 Individual Attendance
+        </h1>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <div class="section">
+                <button
+            class="btn-primary"
+            onclick="location.href='attendence.html'">
+
+            ← Back to Attendance
+
+        </button>
+
+
+
+    </div>
+
+
+    <!-- MEMBER LIST -->
+
+    <div class="section">
+
+        <div class="attendance-list-header">
+
+            <h2>
+                👥 Choir Members
+            </h2>
+
+        </div>
+
+
+        <div id="individualMembers">
+
+            Loading members...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================-->
+ <!-- ==========================================
+     INDIVIDUAL ATTENDANCE MODAL
+========================================== -->
+
+<div
+    id="individualAttendanceModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="individual-popup-header">
+
+            <div>
+                <span class="popup-icon">📊</span>
+
+                <div>
+                    <h2>
+                        Individual Attendance
+                    </h2>
+
+                    <h3 id="individualMemberName">
+                        Member
+                    </h3>
+                </div>
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeIndividualAttendance()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div id="individualCycleData">
+
+            Loading attendance...
+
+        </div>
+
+
+        <div class="individual-popup-footer">
+
+            <button
+                class="individual-close-btn"
+                onclick="closeIndividualAttendance()">
+
+                ✕ Close
+
+            </button>
+j
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script type="module"
+        src="../script1.js"></script>
+
+<script type="module"
+        src="../js/individual-attendance.js"></script>
+
+
+
+
+<script type="module"
+        src="../js/admin.js"></script>
+
+</body>
+
+</html>

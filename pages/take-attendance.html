@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Take Attendance</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Attendance CSS -->
+    <link rel="stylesheet" href="../css/attendance.css">
+
+    <!-- Take Attendance CSS -->
+    <link rel="stylesheet" href="../css/take-attendence.css">
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <h2>✝ Khristi Kalisia</h2>
+
+    <a href="../index.html">
+        Dashboard
+    </a>
+
+    <a href="fast-songs.html">
+        Fast Songs
+    </a>
+
+    <a href="slow-songs.html">
+        Slow Songs
+    </a>
+
+    <a href="planner.html">
+        Sunday Planner
+    </a>
+
+    <a href="choir.html">
+        🎤 Choir
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="reports.html">
+        Reports
+    </a>
+
+    <a href="settings.html" class="admin-only">
+        Settings
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div class="top-header">
+
+        <h1>
+            📝 Take Attendance
+        </h1>
+
+    </div>
+
+
+    <!-- =================================================
+         BACK BUTTON
+    ================================================== -->
+
+    <div class="section">
+
+        <button
+            class="btn-primary"
+            onclick="location.href='attendence.html'">
+
+            ← Back to Attendance
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         CURRENT CYCLE
+    ================================================== -->
+
+    <div class="section">
+
+        <div class="take-header">
+
+            <div>
+
+                <h2>
+                    📊 Current Attendance Cycle
+                </h2>
+
+                <p>
+                    Attendance Cycle:
+                    <strong id="cycleName">
+                        Cycle 1
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CYCLE SUMMARY -->
+
+        <div class="attendance-summary">
+
+
+            <!-- ZOOM -->
+
+            <div class="attendance-card zoom-card">
+
+                <div class="attendance-card-icon">
+                    💻
+                </div>
+
+                <div class="attendance-card-info">
+
+                    <span>
+                        Zoom
+                    </span>
+
+                    <strong id="zoomCount">
+                        0 / 30
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- SATURDAY -->
+
+            <div class="attendance-card saturday-card">
+
+                <div class="attendance-card-icon">
+                    🎵
+                </div>
+
+                <div class="attendance-card-info">
+
+                    <span>
+                        Saturday Practice
+                    </span>
+
+                    <strong id="saturdayCount">
+                        0 / 4
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUNDAY -->
+
+            <div class="attendance-card sunday-card">
+
+                <div class="attendance-card-icon">
+                    ⛪
+                </div>
+
+                <div class="attendance-card-info">
+
+                    <span>
+                        Sunday Practice
+                    </span>
+
+                    <strong id="sundayCount">
+                        0 / 4
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+        <div class="section cycle-actions">
+
+        <button
+            type="button"
+            class="btn-primary cycle-btn"
+            onclick="startNewCycle()">
+
+            🔄
+            Start New Cycle
+
+        </button>
+
+    </div>
+
+
+
+
+
+    <!-- =================================================
+         ATTENDANCE TYPE
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>
+            Attendance Type
+        </h2>
+
+
+        <div class="attendance-types">
+
+            <button
+                type="button"
+                class="attendance-type active"
+                data-type="zoom"
+                onclick="selectAttendanceType('zoom')">
+
+                💻
+                <span>
+                    Zoom
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="attendance-type"
+                data-type="saturday"
+                onclick="selectAttendanceType('saturday')">
+
+                🎵
+                <span>
+                    Saturday Practice
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="attendance-type"
+                data-type="sunday"
+                onclick="selectAttendanceType('sunday')">
+
+                ⛪
+                <span>
+                    Sunday Practice
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CYCLE ACTION
+    ================================================== -->
+
+    <!-- =================================================
+         DATE
+    ================================================== -->
+
+    <div class="section">
+
+        <div class="attendance-date-box">
+
+            <label for="attendanceDate">
+
+                📅 Attendance Date
+
+            </label>
+
+
+            <input
+                type="date"
+                id="attendanceDate">
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MEMBERS
+    ================================================== -->
+
+    <div class="section">
+
+
+        <div class="attendance-list-header">
+
+            <div>
+
+                <h2 id="attendanceTitle">
+
+                    💻 Zoom Attendance
+
+                </h2>
+
+                <p class="attendance-subtitle">
+
+                    Select members who are present.
+
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-primary"
+                onclick="selectAllMembers()">
+
+                ☑
+                Select All
+
+            </button>
+
+        </div>
+
+
+        <!-- MEMBER LIST -->
+
+        <div id="attendanceMembers">
+
+            Loading members...
+
+        </div>
+
+
+        <!-- SAVE -->
+
+        <div class="save-attendance-container">
+
+            <button
+                type="button"
+                class="btn-primary save-attendance-btn"
+                onclick="saveAttendance()">
+
+                💾
+                Save Attendance
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MEMBER ATTENDANCE MODAL
+===================================================== -->
+
+<div
+    id="memberAttendanceModal"
+    class="modal">
+
+
+    <div class="modal-content member-attendance-modal">
+
+
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            class="modal-close"
+            onclick="closeMemberAttendance()">
+
+            ✕
+
+        </button>
+
+
+        <!-- HEADER -->
+
+        <div class="member-modal-header">
+
+            <div class="member-modal-icon">
+
+                👤
+
+            </div>
+
+
+            <div>
+
+                <span class="modal-small-title">
+
+                    Individual Attendance
+
+                </span>
+
+
+                <h2 id="attendanceMemberName">
+
+                    Member
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ATTENDANCE SUMMARY
+        ================================================== -->
+
+        <div class="member-attendance-graph">
+
+
+            <!-- ZOOM -->
+
+            <div class="graph-attendance-card">
+
+                <div class="graph-card-header">
+
+                    <span class="graph-icon">
+                        💻
+                    </span>
+
+                    <span>
+                        Zoom
+                    </span>
+
+                </div>
+
+
+                <div class="graph-value-row">
+
+                    <strong id="memberZoomPercentage">
+                        0%
+                    </strong>
+
+                    <span id="memberZoomCount">
+                        0 / 0
+                    </span>
+
+                </div>
+
+
+                <div class="attendance-progress">
+
+                    <div
+                        id="memberZoomProgress"
+                        class="attendance-progress-fill zoom-progress"
+                        style="width:0%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+                    Attendance
+                </small>
+
+            </div>
+
+
+            <!-- SATURDAY -->
+
+            <div class="graph-attendance-card">
+
+                <div class="graph-card-header">
+
+                    <span class="graph-icon">
+                        🎵
+                    </span>
+
+                    <span>
+                        Saturday
+                    </span>
+
+                </div>
+
+
+                <div class="graph-value-row">
+
+                    <strong id="memberSaturdayPercentage">
+                        0%
+                    </strong>
+
+                    <span id="memberSaturdayCount">
+                        0 / 0
+                    </span>
+
+                </div>
+
+
+                <div class="attendance-progress">
+
+                    <div
+                        id="memberSaturdayProgress"
+                        class="attendance-progress-fill saturday-progress"
+                        style="width:0%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+                    Attendance
+                </small>
+
+            </div>
+
+
+            <!-- SUNDAY -->
+
+            <div class="graph-attendance-card">
+
+                <div class="graph-card-header">
+
+                    <span class="graph-icon">
+                        ⛪
+                    </span>
+
+                    <span>
+                        Sunday
+                    </span>
+
+                </div>
+
+
+                <div class="graph-value-row">
+
+                    <strong id="memberSundayPercentage">
+                        0%
+                    </strong>
+
+                    <span id="memberSundayCount">
+                        0 / 0
+                    </span>
+
+                </div>
+
+
+                <div class="attendance-progress">
+
+                    <div
+                        id="memberSundayProgress"
+                        class="attendance-progress-fill sunday-progress"
+                        style="width:0%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+                    Attendance
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DONUT CHART
+        ================================================== -->
+
+        <div class="member-chart-section">
+
+
+            <h3>
+                📊 Attendance Overview
+            </h3>
+
+
+            <div class="donut-chart-wrapper">
+
+
+                <!-- DONUT -->
+
+                <div
+                    id="memberDonutChart"
+                    class="donut-chart"
+                >
+
+                    <div class="donut-center">
+
+                        <strong id="donutPercentage">
+
+                            0%
+
+                        </strong>
+
+                        <span>
+
+                            Present
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LEGEND -->
+
+                <div class="donut-legend">
+
+
+                    <!-- PRESENT -->
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot present-dot">
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Present
+                            </strong>
+
+                            <span id="donutPresent">
+
+                                0 (0%)
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ABSENT -->
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot absent-dot">
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Absent
+                            </strong>
+
+                            <span id="donutAbsent">
+
+                                0 (0%)
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             OVERALL ATTENDANCE
+        ================================================== -->
+
+        <div class="overall-attendance">
+
+
+            <div class="overall-title">
+
+                📈
+
+                <span>
+                    Overall Attendance
+                </span>
+
+            </div>
+
+
+            <div
+                id="memberOverallPercentage"
+                class="overall-percentage">
+
+                0%
+
+            </div>
+
+
+            <div
+                id="memberOverallCount"
+                class="overall-count">
+
+                0 / 0 Present
+
+            </div>
+
+
+            <div class="overall-progress">
+
+                <div
+                    id="memberOverallProgress"
+                    class="overall-progress-fill"
+                    style="width:0%">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="btn-danger modal-close-btn"
+            onclick="closeMemberAttendance()">
+
+            ✕
+
+            Close
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="../script1.js">
+</script>
+
+
+<script
+    type="module"
+    src="../js/take-attendance.js">
+</script>
+
+
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
+
+
+</body>
+
+</html>

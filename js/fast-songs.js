@@ -1,6 +1,7 @@
 // ==========================================
 // FAST SONG PAGE
 // ==========================================
+
 import {
     fastSongs,
     addFastSong,
@@ -10,231 +11,603 @@ import {
     deleteFastSong,
     saveSongLyrics
 } from "../script1.js";
+
+
 let currentSongId = "";
-function displayFastSongs() {
 
-    let table = document.getElementById("fastSongTable");
 
-    if (!table) return;
+// ==========================================
+// SORT SONGS
+// OLDEST LAST-SUNG FIRST
+// ==========================================
 
-    table.innerHTML = "";
+function getSortedSongs(songs) {
 
-    fastSongs.forEach(song => {
+    return [...songs].sort((a, b) => {
 
-        let row = document.createElement("tr");
+        // Never sung songs first
+        if (!a.lastSung && !b.lastSung) {
+            return 0;
+        }
 
-        row.innerHTML = `
+        if (!a.lastSung) {
+            return -1;
+        }
 
-        <td>
-            ${song.name}
-            ${song.selected ? " ⭐" : ""}
-        </td>
+        if (!b.lastSung) {
+            return 1;
+        }
 
-        <td>
-            ${song.lastSung || "-"}
-        </td>
 
-        <td>
-            ${song.timesSung || 0}
-        </td>
+        function parseDate(date) {
 
-        <td>
+            const parts =
+                date.split("/");
 
-            <button
-                class="btn-success admin-only"
-                onclick="markFastSongUsed('${song.id}')">
-                ✔ Used
-            </button>
+            if (parts.length !== 3) {
+                return 0;
+            }
 
-            <button
-                class="btn-primary admin-only"
-                onclick="selectFastSong('${song.id}')">
-                ⭐ Select
-            </button>
+            return new Date(
+                parts[2],
+                parts[1] - 1,
+                parts[0]
+            ).getTime();
 
-            <button
-                class="btn-primary admin-only"
-                onclick="editFastSong('${song.id}')">
-                ✏ Edit
-            </button>
+        }
 
-            <button
-                class="btn-danger admin-only"
-                onclick="deleteFastSong('${song.id}')">
-                🗑 Delete
-            </button>
-            <button
-class="btn-primary"
-onclick="openLyrics('${song.id}')">
 
-📖 Lyrics
-
-</button>
-
-        </td>
-
-        `;
-
-        table.appendChild(row);
+        return (
+            parseDate(a.lastSung) -
+            parseDate(b.lastSung)
+        );
 
     });
 
 }
 
 
+// ==========================================
+// CREATE SONG CARD
+// ==========================================
 
-function addFast() {
+function createSongCard(song) {
 
-    let name = document.getElementById("fastSongName").value.trim();
+    const card =
+        document.createElement("div");
 
-    let date = document.getElementById("fastSongDate").value;
 
-    if (name === "") {
+    card.className =
+        "attendance-record-card";
 
-        alert("Enter song name");
+
+    // ======================================
+    // SONG HEADER
+    // ======================================
+
+    const songHeader =
+        document.createElement("div");
+
+
+    songHeader.className =
+        "song-card-header";
+
+
+    songHeader.innerHTML = `
+
+        <h3>
+
+            🎵 ${song.name}
+
+            ${song.selected ? " ⭐" : ""}
+
+        </h3>
+
+        <span class="song-arrow">
+            ▼
+        </span>
+
+    `;
+
+
+    // ======================================
+    // INNER DETAILS
+    // ======================================
+
+    const details =
+        document.createElement("div");
+
+
+    details.className =
+        "song-card-details";
+
+
+    details.style.display =
+        "none";
+
+
+    details.innerHTML = `
+
+        <div class="attendance-record">
+
+            <div>
+
+                <p>
+
+                    📅 Last Sung:
+
+                    <b>
+                        ${song.lastSung || "-"}
+                    </b>
+
+                </p>
+
+
+                <p>
+
+                    🎵 Times Sung:
+
+                    <b>
+                        ${song.timesSung || 0}
+                    </b>
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 ACTION BUTTONS
+            ================================== -->
+
+            <div class="attendance-record-stats">
+
+
+                <button
+                    class="btn-success admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        markFastSongUsed('${song.id}');
+                    ">
+
+                    ✔ Used
+
+                </button>
+
+
+                <button
+                    class="btn-primary admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        selectFastSong('${song.id}');
+                    ">
+
+                    ⭐ Select
+
+                </button>
+
+
+                <button
+                    class="btn-primary"
+                    onclick="
+                        event.stopPropagation();
+                        openLyrics('${song.id}');
+                    ">
+
+                    📖 Lyrics
+
+                </button>
+
+
+                <button
+                    class="btn-primary admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        editFastSong('${song.id}');
+                    ">
+
+                    ✏ Edit
+
+                </button>
+
+
+                <button
+                    class="btn-danger admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        deleteFastSong('${song.id}');
+                    ">
+
+                    🗑 Delete
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    // ======================================
+    // CLICK SONG TO OPEN / CLOSE
+    // ======================================
+
+    songHeader.addEventListener(
+        "click",
+        function () {
+
+            const isOpen =
+                details.style.display !== "none";
+
+
+            // Close all other songs
+            document
+                .querySelectorAll(
+                    ".song-card-details"
+                )
+                .forEach(otherDetails => {
+
+                    otherDetails.style.display =
+                        "none";
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    ".song-arrow"
+                )
+                .forEach(arrow => {
+
+                    arrow.innerText =
+                        "▼";
+
+                });
+
+
+            // Open clicked song
+            if (!isOpen) {
+
+                details.style.display =
+                    "block";
+
+
+                const arrow =
+                    songHeader.querySelector(
+                        ".song-arrow"
+                    );
+
+
+                if (arrow) {
+
+                    arrow.innerText =
+                        "▲";
+
+                }
+
+            }
+
+        }
+    );
+
+
+    card.appendChild(
+        songHeader
+    );
+
+
+    card.appendChild(
+        details
+    );
+
+
+    return card;
+
+}
+
+
+// ==========================================
+// DISPLAY FAST SONGS
+// ==========================================
+
+function displayFastSongs() {
+
+    const box =
+        document.getElementById(
+            "fastSongTable"
+        );
+
+
+    if (!box) return;
+
+
+    box.innerHTML = "";
+
+
+    const sortedSongs =
+        getSortedSongs(
+            fastSongs
+        );
+
+
+    sortedSongs.forEach(song => {
+
+        box.appendChild(
+            createSongCard(song)
+        );
+
+    });
+
+
+    applyAdminPermission();
+
+}
+
+
+// ==========================================
+// SEARCH FAST SONG
+// ==========================================
+
+function searchFast(value) {
+
+    const box =
+        document.getElementById(
+            "fastSongTable"
+        );
+
+
+    if (!box) return;
+
+
+    const search =
+        value
+            .toLowerCase()
+            .trim();
+
+
+    const filteredSongs =
+        fastSongs.filter(song => {
+
+            return (
+                song.name || ""
+            )
+            .toLowerCase()
+            .includes(search);
+
+        });
+
+
+    box.innerHTML = "";
+
+
+    const sortedSongs =
+        getSortedSongs(
+            filteredSongs
+        );
+
+
+    sortedSongs.forEach(song => {
+
+        box.appendChild(
+            createSongCard(song)
+        );
+
+    });
+
+
+    applyAdminPermission();
+
+}
+
+
+// ==========================================
+// ADMIN / VISITOR PERMISSION
+// ==========================================
+
+function applyAdminPermission() {
+
+    if (
+        document.body.classList.contains(
+            "visitor"
+        )
+    ) {
+
+        document
+            .querySelectorAll(
+                ".admin-only"
+            )
+            .forEach(element => {
+
+                element.style.display =
+                    "none";
+
+            });
+
+    }
+
+}
+
+
+// ==========================================
+// ADD FAST SONG
+// ==========================================
+
+async function addFast() {
+
+    const name =
+        document
+            .getElementById(
+                "fastSongName"
+            )
+            .value
+            .trim();
+
+
+    const date =
+        document
+            .getElementById(
+                "fastSongDate"
+            )
+            .value;
+
+
+    if (!name) {
+
+        alert(
+            "Enter song name"
+        );
 
         return;
 
     }
 
-    addFastSong(name, date);
 
-    document.getElementById("fastSongName").value = "";
-
-    document.getElementById("fastSongDate").value = "";
-
-}
+    await addFastSong(
+        name,
+        date
+    );
 
 
-
-function searchFast(value) {
-
-    let table = document.getElementById("fastSongTable");
-
-    if (!table) return;
-
-    let search = value.toLowerCase();
-
-    table.innerHTML = "";
-
-    fastSongs
-        .filter(song =>
-            song.name.toLowerCase().includes(search)
+    document
+        .getElementById(
+            "fastSongName"
         )
-        .forEach(song => {
+        .value = "";
 
-            let row = document.createElement("tr");
 
-            row.innerHTML = `
-
-            <td>${song.name}</td>
-
-            <td>${song.lastSung || "-"}</td>
-
-            <td>${song.timesSung || 0}</td>
-
-            <td>
-
-    <button
-        class="btn-success admin-only"
-        onclick="markFastSongUsed('${song.id}')">
-        ✔ Used
-    </button>
-
-    <button
-        class="btn-primary admin-only"
-        onclick="selectFastSong('${song.id}')">
-        ⭐ Select
-    </button>
-
-    <button
-        class="btn-primary"
-        onclick="openLyrics('${song.id}')">
-        📖 Lyrics
-    </button>
-
-    <button
-        class="btn-primary admin-only"
-        onclick="editFastSong('${song.id}')">
-        ✏ Edit
-    </button>
-
-    <button
-        class="btn-danger admin-only"
-        onclick="deleteFastSong('${song.id}')">
-        🗑 Delete
-    </button>
-
-</td>
-
-            `;
-
-            table.appendChild(row);
-
-        });
+    document
+        .getElementById(
+            "fastSongDate"
+        )
+        .value = "";
 
 }
 
-// DOMContentLoaded yahan zarurat nahi hai.
-// initializeApp() script1.js se displayFastSongs() ko call karega.
-// ==========================
-// LYRICS MODAL
-// ==========================
+
+// ==========================================
+// OPEN LYRICS
+// ==========================================
 
 function openLyrics(songId) {
 
-    currentSongId = songId;
+    currentSongId =
+        songId;
 
-    const modal =
-    document.getElementById("lyricsModal");
-
-    const text =
-    document.getElementById("lyricsText");
-
-    const title =
-    document.getElementById("lyricsSongName");
 
     const song =
-    fastSongs.find(s => s.id === songId);
+        fastSongs.find(
+            song =>
+                song.id === songId
+        );
 
-    if(!song) return;
 
-    title.innerText = song.name;
+    if (!song) return;
 
-    text.value = song.lyrics || "";
 
-    modal.style.display = "flex";
+    document
+        .getElementById(
+            "lyricsSongName"
+        )
+        .innerText =
+            song.name;
+
+
+    document
+        .getElementById(
+            "lyricsText"
+        )
+        .value =
+            song.lyrics || "";
+
+
+    document
+        .getElementById(
+            "lyricsModal"
+        )
+        .style.display =
+            "flex";
 
 }
 
-function closeLyrics(){
 
-    document.getElementById(
-        "lyricsModal"
-    ).style.display = "none";
+// ==========================================
+// CLOSE LYRICS
+// ==========================================
+
+function closeLyrics() {
+
+    document
+        .getElementById(
+            "lyricsModal"
+        )
+        .style.display =
+            "none";
 
 }
+
+
+// ==========================================
+// SAVE LYRICS
+// ==========================================
 
 async function saveLyrics() {
 
     const lyrics =
-    document.getElementById("lyricsText").value;
+        document
+            .getElementById(
+                "lyricsText"
+            )
+            .value;
 
-    await saveSongLyrics(currentSongId, lyrics);
 
-    alert("Lyrics Saved Successfully ✅");
+    await saveSongLyrics(
+        currentSongId,
+        lyrics
+    );
+
+
+    alert(
+        "Lyrics Saved Successfully ✅"
+    );
+
 
     closeLyrics();
 
 }
 
-window.openLyrics = openLyrics;
-window.closeLyrics = closeLyrics;
-window.saveLyrics = saveLyrics;
-window.addFast = addFast;
-window.searchFast = searchFast;
-window.markFastSongUsed = markFastSongUsed;
-window.selectFastSong = selectFastSong;
-window.editFastSong = editFastSong;
-window.deleteFastSong = deleteFastSong;
-window.displayFastSongs = displayFastSongs;
+
+// ==========================================
+// WINDOW FUNCTIONS
+// ==========================================
+
+window.displayFastSongs =
+    displayFastSongs;
+
+window.searchFast =
+    searchFast;
+
+window.addFast =
+    addFast;
+
+window.openLyrics =
+    openLyrics;
+
+window.closeLyrics =
+    closeLyrics;
+
+window.saveLyrics =
+    saveLyrics;
+
+window.markFastSongUsed =
+    markFastSongUsed;
+
+window.selectFastSong =
+    selectFastSong;
+
+window.editFastSong =
+    editFastSong;
+
+window.deleteFastSong =
+    deleteFastSong;

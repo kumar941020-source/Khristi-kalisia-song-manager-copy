@@ -4,230 +4,153 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Slow Songs | Khristi Kalisiya
-</title>
-
+<title>Slow Songs | Khristi Kalisiya</title>
 
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../css/dashboard.css">
 
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
-
 <body>
-
 
 <div class="sidebar">
 
-<h2>
-✝ Khristi Kalisiya
-</h2>
+    <h2>✝ Khristi Kalisiya</h2>
 
+    <a href="../index.html">
+        Dashboard
+    </a>
 
-<a href="../index.html">
-Dashboard
-</a>
+    <a href="fast-songs.html">
+        Songs
+    </a>
 
+    <a href="planner.html">
+        Sunday Planner
+    </a>
 
-<a href="fast-songs.html">
-Fast Songs
-</a>
+    <a href="history.html">
+        History
+    </a>
 
-
-<a href="slow-songs.html">
-Slow Songs
-</a>
-
-
-<a href="planner.html">
-Sunday Planner
-</a>
-
-
-<a href="history.html">
-History
-</a>
-
-<a href="choir.html">
-    🎤 Choir
-</a>
-
-<a href="reports.html">
-Reports
-</a>
-
-
-<a href="settings.html">
-Settings
-</a>
-
-
+    <a href="choir.html">
+        🎤 Choir
+    </a>
+<div class="admin-only">
+    <a href="reports.html">
+        Reports
+    </a>
 </div>
 
+    <a href="settings.html">
+        Settings
+    </a>
 
-
+</div>
 
 
 <div class="main">
 
+    <div class="top-header">
 
-<div class="top-header">
+        <h1>
+            Slow Songs
+        </h1>
 
-<h1>
-Slow Songs
-</h1>
+    </div>
+
+
+    <!-- ==================================
+         ADD SONG
+    ================================== -->
+
+    <div class="section admin-only">
+
+        <h2>
+            Add New Slow Song
+        </h2>
+
+        <input
+            type="text"
+            id="slowSongName"
+            placeholder="Enter song name"
+        >
+
+        <input
+            type="date"
+            id="slowSongDate"
+        >
+
+        <button
+            class="btn-primary admin-only"
+            onclick="addSlow()">
+
+            Add Song
+
+        </button>
+
+    </div>
+
+
+    <!-- ==================================
+         SONG LIST
+    ================================== -->
+
+    <div class="section">
+
+        <h2>
+            Slow Song List
+        </h2>
+
+
+        <input
+            type="text"
+            placeholder="Search Song"
+            oninput="searchSlow(this.value)"
+        >
+
+
+        <div id="slowSongTable">
+
+            <!-- Songs will appear here -->
+
+        </div>
+
+    </div>
 
 </div>
 
 
-
-
-
-
-<div class="section admin-only">
-
-
-<h2>
-Add New Slow Song
-</h2>
-
-
-
-<input 
-type="text"
-id="slowSongName"
-placeholder="Enter song name"
->
-
-
-
-<input
-type="date"
-id="slowSongDate"
->
-
-
-
-<button 
-class="btn-primary admin-only"
-onclick="addSlow()">
-
-Add Song
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>
-Slow Song List
-</h2>
-
-
-
-
-<input 
-type="text"
-placeholder="Search Song"
-onkeyup="searchSlow(this.value)"
->
-
-
-
-
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>
-Song Name
-</th>
-
-
-<th>
-Last Sung
-</th>
-
-
-<th>
-Times Sung
-</th>
-
-
-<th>
-Action
-</th>
-
-
-</tr>
-
-
-</thead>
-
-
-
-<tbody id="slowSongTable">
-
-</tbody>
-
-
-
-</table>
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<script type="module" src="../script1.js"></script>
-
-<script type="module" src="../js/slow-songs.js"></script>
-<script type="module" src="../js/admin.js"></script>
-
-<!-- ==========================
+<!-- ==========================================
      LYRICS MODAL
-========================== -->
+========================================== -->
 
 <div id="lyricsModal" class="lyrics-modal">
 
     <div class="lyrics-box">
 
-        <span class="close-lyrics" onclick="closeLyrics()">&times;</span>
+        <span
+            class="close-lyrics"
+            onclick="closeLyrics()">
 
-        <h2>🎵 Song Lyrics</h2>
+            &times;
 
-        <h3 id="lyricsSongName">Song Name</h3>
+        </span>
+
+
+        <h2>
+            🎵 Song Lyrics
+        </h2>
+
+
+        <h3 id="lyricsSongName">
+            Song Name
+        </h3>
+
 
         <textarea
             id="lyricsText"
@@ -235,16 +158,24 @@ Action
             placeholder="Write song lyrics here...">
         </textarea>
 
+
         <div class="lyrics-buttons">
 
-            <button class="btn-primary admin-only"
+            <button
+                class="btn-primary admin-only"
                 onclick="saveLyrics()">
+
                 💾 Save Lyrics
+
             </button>
 
-            <button class="btn-danger"
+
+            <button
+                class="btn-danger"
                 onclick="closeLyrics()">
+
                 Close
+
             </button>
 
         </div>
@@ -252,6 +183,22 @@ Action
     </div>
 
 </div>
+
+
+<script
+    type="module"
+    src="../script1.js">
+</script>
+
+<script
+    type="module"
+    src="../js/slow-songs.js">
+</script>
+
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
 
 </body>
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Attendance Cycle History</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/attendance.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<div class="sidebar">
+
+    <h2>✝ Khristi Kalisia</h2>
+
+    <a href="../index.html">
+        Dashboard
+    </a>
+
+    <a href="fast-songs.html">
+        Fast Songs
+    </a>
+
+    <a href="slow-songs.html">
+        Slow Songs
+    </a>
+
+    <a href="planner.html">
+        Sunday Planner
+    </a>
+
+    <a href="choir.html">
+        🎤 Choir
+    </a>
+
+    <a href="attendance.html" class="active">
+        📋 Attendance
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="reports.html">
+        Reports
+    </a>
+
+    <a href="settings.html" class="admin-only">
+        Settings
+    </a>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<div class="main">
+
+    <div class="top-header">
+
+        <h1>
+            📚 Attendance Cycle History
+        </h1>
+
+    </div>
+
+
+    <!-- BACK BUTTON -->
+
+    <div class="section">
+
+        <button
+            class="btn-primary"
+            onclick="location.href='attendence.html'">
+
+            ← Back to Attendance
+
+        </button>
+
+    </div>
+
+
+    <!-- CYCLE HISTORY -->
+
+    <div class="section">
+
+        <div class="attendance-list-header">
+
+            <h2>
+                📚 Completed Cycles
+            </h2>
+
+        </div>
+
+
+        <div id="attendanceCycleHistory">
+
+            Loading cycle history...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script type="module"
+        src="../script1.js"></script>
+
+<script type="module"
+        src="../js/attendance.js"></script>
+
+<script type="module"
+        src="../js/admin.js"></script>
+
+</body>
+
+</html>

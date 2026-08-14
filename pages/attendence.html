@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Choir Attendance</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../css/attendance.css">
+
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<div class="sidebar">
+
+    <h2>✝ Khristi Kalisia</h2>
+
+    <a href="../index.html">
+        Dashboard
+    </a>
+
+    <a href="songs.html">
+        Songs
+    </a>
+
+    <a href="planner.html">
+        Sunday Planner
+    </a>
+
+    <a href="choir.html">
+        🎤 Choir
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="reports.html">
+        Reports
+    </a>
+
+    <a href="settings.html" class="admin-only">
+        Settings
+    </a>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<div class="main">
+
+    <!-- TOP HEADER -->
+
+    <div class="top-header">
+
+        <h1>
+            📋 Choir Attendance
+        </h1>
+
+    </div>
+
+
+    <!-- ======================================
+         ATTENDANCE MANAGEMENT
+    ======================================= -->
+
+    <div class="section">
+
+        <h2>
+            📋 Attendance Management
+        </h2>
+
+        <p>
+            Choose what you want to manage.
+        </p>
+
+
+        <div class="attendance-menu">
+
+
+            <!-- =================================
+                 TAKE ATTENDANCE
+            ================================== -->
+
+            <div class="attendance-menu-card admin-only">
+
+                <div class="attendance-menu-icon">
+                    📝
+                </div>
+
+
+                <div class="attendance-menu-content">
+
+                    <h3>
+                        Take Attendance
+                    </h3>
+
+                    <p>
+                        Mark choir members
+                        present or absent.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary admin-only"
+                        onclick="openAttendancePage()">
+
+                        📝 Take Attendance
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 ATTENDANCE RECORDS
+            ================================== -->
+
+            <div class="attendance-menu-card">
+
+                <div class="attendance-menu-icon">
+                    📅
+                </div>
+
+
+                <div class="attendance-menu-content">
+
+                    <h3>
+                        Attendance Records
+                    </h3>
+
+                    <p>
+                        View and edit
+                        daily attendance.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="openAttendanceRecords()">
+
+                        📅 View Records
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 CYCLE HISTORY
+            ================================== -->
+
+            <div class="attendance-menu-card">
+
+                <div class="attendance-menu-icon">
+                    📚
+                </div>
+
+
+                <div class="attendance-menu-content">
+
+                    <h3>
+                        Attendance Cycle History
+                    </h3>
+
+                    <p>
+                        View completed
+                        attendance cycles.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="openCycleHistory()">
+
+                        📚 View Cycle History
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 INDIVIDUAL ATTENDANCE
+            ================================== -->
+
+            <div class="attendance-menu-card">
+
+                <div class="attendance-menu-icon">
+                    👤
+                </div>
+
+
+                <div class="attendance-menu-content">
+
+                    <h3>
+                        Individual Attendance
+                    </h3>
+
+                    <p>
+                        View each member's
+                        attendance cycle-wise.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="openIndividualAttendance()">
+
+                        👤 View Individual Attendance
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script
+    type="module"
+    src="../script1.js">
+</script>
+
+
+<script
+    type="module"
+    src="../js/attendance.js">
+</script>
+
+
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
+
+</body>
+
+</html>

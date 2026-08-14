@@ -1,0 +1,3380 @@
+/* ==========================================
+   TAKE ATTENDANCE - PREMIUM RESPONSIVE UI
+========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* ==========================================
+   MAIN ATTENDANCE CONTAINER
+========================================== */
+
+.attendance-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+
+/* ==========================================
+   TEAM SECTION
+========================================== */
+
+.attendance-team {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 22px;
+
+    border: 1px solid #e8ecf3;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+
+/* TEAM TITLE */
+
+.attendance-team h2 {
+    margin: 0 0 14px 2px;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    color: #202938;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ==========================================
+   MEMBER ROW
+========================================== */
+
+.attendance-member {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    margin-bottom: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e9edf3;
+
+    border-radius: 14px;
+
+    transition: 0.2s ease;
+}
+
+
+.attendance-member:hover {
+    background: #f1f5fb;
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   MEMBER INFORMATION
+========================================== */
+
+.member-info {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+    flex: 1;
+}
+
+
+.member-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef4ff;
+
+    font-size: 19px;
+
+    flex-shrink: 0;
+}
+
+
+.member-details {
+    min-width: 0;
+}
+
+
+.member-details h3 {
+    margin: 0;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #202938;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.member-details p {
+    margin: 2px 0 0;
+
+    font-size: 12px;
+
+    color: #7b8494;
+}
+
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+.attendance-checkbox {
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+
+    accent-color: #2563eb;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   ATTENDANCE BUTTON
+========================================== */
+
+.attendance-btn {
+    border: none;
+
+    min-width: 105px;
+    height: 44px;
+
+    padding: 0 16px;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1688e8
+    );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.22);
+
+    transition: all 0.2s ease;
+
+    flex-shrink: 0;
+}
+
+
+.attendance-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(37, 99, 235, 0.28);
+}
+
+
+.attendance-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================
+   SAVE ATTENDANCE BUTTON
+========================================== */
+
+.save-attendance-btn {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 16px rgba(37, 99, 235, 0.22);
+
+    transition: 0.2s ease;
+}
+
+
+.save-attendance-btn:hover {
+    transform: translateY(-1px);
+}
+
+
+.save-attendance-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .attendance-container {
+        padding: 8px;
+    }
+
+
+    .attendance-team {
+        padding: 12px;
+
+        border-radius: 16px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .attendance-team h2 {
+        font-size: 19px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .attendance-member {
+        padding: 11px 9px;
+
+        gap: 8px;
+
+        border-radius: 12px;
+    }
+
+
+    .member-icon {
+        width: 36px;
+        height: 36px;
+
+        font-size: 17px;
+    }
+
+
+    .member-details h3 {
+        font-size: 14px;
+    }
+
+
+    .member-details p {
+        font-size: 11px;
+    }
+
+
+    .attendance-checkbox {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .attendance-btn {
+        min-width: 92px;
+
+        height: 40px;
+
+        padding: 0 10px;
+
+        border-radius: 10px;
+
+        font-size: 12px;
+    }
+
+
+    .save-attendance-btn {
+        min-height: 48px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 380px) {
+
+    .attendance-member {
+        gap: 6px;
+    }
+
+
+    .member-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .member-details h3 {
+        font-size: 13px;
+    }
+
+
+    .member-details p {
+        font-size: 10px;
+    }
+
+
+    .attendance-btn {
+        min-width: 82px;
+
+        height: 38px;
+
+        padding: 0 8px;
+
+        font-size: 11px;
+    }
+
+}
+/* ==========================================
+   CHOIR / WORSHIP TEAM HEADER
+========================================== */
+
+.choir-team-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 18px 0 12px;
+    padding: 10px 14px;
+
+    border-bottom: 1px solid #e1e5ec;
+}
+
+.choir-team-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eef4ff;
+    color: #2563eb;
+
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.choir-team-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    color: #263449;
+    letter-spacing: -0.2px;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .choir-team-header {
+        gap: 10px;
+
+        margin: 16px 4px 10px;
+        padding: 9px 10px;
+    }
+
+    .choir-team-icon {
+        width: 32px;
+        height: 32px;
+
+        border-radius: 9px;
+
+        font-size: 20px;
+    }
+
+    .choir-team-header h2 {
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+}
+/* ==========================================
+   TAKE ATTENDANCE PAGE
+========================================== */
+
+.take-empty {
+    text-align: center;
+    padding: 45px 20px;
+    border-radius: 18px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+}
+
+.take-empty-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.take-empty h3 {
+    margin: 8px 0;
+}
+
+.take-empty p {
+    color: #64748b;
+}
+
+
+/* ==========================================
+   CHOIR HEADING
+========================================== */
+
+.take-choir-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin: 25px 0 10px;
+
+    padding: 11px 15px;
+
+    border-radius: 12px;
+
+    background: #f1f5f9;
+
+    color: #334155;
+
+    font-weight: 700;
+
+    border-left: 4px solid #16a34a;
+}
+
+
+/* ==========================================
+   MEMBER ROW
+========================================== */
+
+.take-member-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px 16px;
+
+    margin-bottom: 9px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.take-member-row:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.07);
+
+    border-color: #cbd5e1;
+
+}
+
+
+/* ==========================================
+   MEMBER INFO
+========================================== */
+
+.take-member-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+
+}
+
+
+.take-member-avatar {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ecfdf5;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+
+}
+
+
+.take-member-name {
+
+    font-weight: 700;
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+}
+
+
+.take-member-choir {
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   MEMBER ACTIONS
+========================================== */
+
+.take-member-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+.take-check {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #475569;
+
+}
+
+
+.take-check input {
+
+    width: 18px;
+
+    height: 18px;
+
+    accent-color: #16a34a;
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.take-view-btn {
+
+    border: none;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.take-view-btn:hover {
+
+    background: #dbeafe;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ==========================================
+   ATTENDANCE TYPE BUTTONS
+========================================== */
+
+.attendance-types {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+
+.attendance-type {
+
+    border: 1px solid #dbe2ea;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    padding: 11px 17px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+
+}
+
+
+.attendance-type:hover {
+
+    border-color: #86efac;
+
+}
+
+
+.attendance-type.active {
+
+    background: #16a34a;
+
+    border-color: #16a34a;
+
+    color: white;
+
+    box-shadow:
+        0 5px 14px rgba(22, 163, 74, 0.22);
+
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+#memberAttendanceModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(15, 23, 42, 0.58);
+
+    backdrop-filter:
+        blur(5px);
+
+}
+
+
+#memberAttendanceModal.take-modal-open {
+
+    display: flex;
+
+}
+
+
+.take-attendance-modal {
+
+    width: min(850px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation:
+        takeModalIn 0.22s ease;
+
+}
+
+
+@keyframes takeModalIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
+   MODAL HEADER
+========================================== */
+
+.take-modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.take-modal-header h2 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #0f172a;
+
+}
+
+
+.take-modal-header p {
+
+    margin: 6px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+.take-close-x {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+.take-close-x:hover {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+/* ==========================================
+   GRAPH GRID
+========================================== */
+
+.take-graphs {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+}
+
+
+/* ==========================================
+   GRAPH CARD
+========================================== */
+
+.take-graph-card {
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+}
+
+
+.take-graph-title {
+
+    font-weight: 700;
+
+    color: #334155;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ==========================================
+   DONUT
+========================================== */
+
+.take-donut {
+
+    --present: 0%;
+
+    width: 145px;
+
+    height: 145px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background:
+
+        conic-gradient(
+
+            #16a34a
+            0
+            var(--present),
+
+            #ef4444
+            var(--present)
+            100%
+
+        );
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.take-donut::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 102px;
+
+    height: 102px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+}
+
+
+.take-donut-center {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.take-graph-percent {
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+    line-height: 1;
+
+}
+
+
+.take-graph-status {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   GRAPH DETAILS
+========================================== */
+
+.take-graph-details {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 8px;
+
+}
+
+
+.take-present-count,
+
+.take-absent-count {
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.take-present-count {
+
+    color: #15803d;
+
+    background: #dcfce7;
+
+}
+
+
+.take-absent-count {
+
+    color: #dc2626;
+
+    background: #fee2e2;
+
+}
+
+
+.take-total-count {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   OVERALL
+========================================== */
+
+.take-overall-card {
+
+    margin-top: 18px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #f8fafc
+        );
+
+    border: 1px solid #bbf7d0;
+
+    text-align: center;
+
+}
+
+
+.take-overall-card h3 {
+
+    margin: 0 0 15px;
+
+    color: #166534;
+
+}
+
+
+.take-overall-donut {
+
+    width: 170px;
+
+    height: 170px;
+
+}
+
+
+.take-overall-donut::after {
+
+    width: 120px;
+
+    height: 120px;
+
+}
+
+
+.take-overall-donut
+.take-graph-percent {
+
+    font-size: 34px;
+
+}
+
+
+/* ==========================================
+   MODAL FOOTER
+========================================== */
+
+.take-modal-footer {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+}
+
+
+.take-modal-close {
+
+    border: none;
+
+    background: #0f172a;
+
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+}
+
+
+.take-modal-close:hover {
+
+    background: #1e293b;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .take-member-row {
+
+        align-items: flex-start;
+
+    }
+
+
+    .take-member-actions {
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 8px;
+
+    }
+
+
+    .take-view-btn span {
+
+        display: none;
+
+    }
+
+
+    .take-graphs {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .take-attendance-modal {
+
+        padding: 18px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .take-donut {
+
+        width: 135px;
+
+        height: 135px;
+
+    }
+
+
+    .take-donut::after {
+
+        width: 95px;
+
+        height: 95px;
+
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 420px) {
+
+    .take-member-row {
+
+        padding: 11px;
+
+    }
+
+
+    .take-member-name {
+
+        font-size: 14px;
+
+    }
+
+
+    .take-member-choir {
+
+        font-size: 11px;
+
+    }
+
+
+    .take-check span {
+
+        display: none;
+
+    }
+
+
+    .take-modal-header h2 {
+
+        font-size: 18px;
+
+    }
+
+}
+.donut-chart {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #22c55e 0% 0%,
+        #ef4444 0% 100%
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.donut-chart::before {
+    content: "";
+    position: absolute;
+
+    width: 135px;
+    height: 135px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+.donut-center {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.donut-center strong {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.donut-center span {
+    font-size: 14px;
+    color: #666;
+}
+/* =========================================================
+   MEMBER ATTENDANCE POPUP - PROFESSIONAL LAYOUT
+========================================================= */
+
+.member-attendance-modal {
+
+    width: min(720px, 94vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.member-modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    text-align: left;
+
+    margin-bottom: 24px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+
+.member-modal-icon {
+
+    width: 54px;
+
+    height: 54px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef2ff;
+
+    font-size: 27px;
+
+}
+
+
+.member-modal-header h2 {
+
+    margin: 3px 0 0;
+
+    font-size: 23px;
+
+    color: #1f2937;
+
+}
+
+
+.modal-small-title {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+}
+
+
+/* =========================================================
+   THREE ATTENDANCE CARDS
+========================================================= */
+
+.member-attendance-graph {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.graph-attendance-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 17px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.graph-card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+    margin-bottom: 12px;
+
+}
+
+
+.graph-icon {
+
+    font-size: 19px;
+
+}
+
+
+.graph-value-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.graph-value-row strong {
+
+    font-size: 21px;
+
+    color: #2563eb;
+
+}
+
+
+.graph-value-row span {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.attendance-progress {
+
+    width: 100%;
+
+    height: 8px;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 7px;
+
+}
+
+
+.attendance-progress-fill {
+
+    height: 100%;
+
+    width: 0;
+
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+
+}
+
+
+.zoom-progress {
+
+    background: #2563eb;
+
+}
+
+
+.saturday-progress {
+
+    background: #7c3aed;
+
+}
+
+
+.sunday-progress {
+
+    background: #0891b2;
+
+}
+
+
+.graph-attendance-card small {
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   ATTENDANCE OVERVIEW
+========================================================= */
+
+.member-chart-section {
+
+    width: 100%;
+
+    margin: 10px 0 25px;
+
+    padding: 24px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+}
+
+
+.member-chart-section h3 {
+
+    margin: 0 0 22px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    color: #374151;
+
+}
+
+
+/* =========================================================
+   DONUT + LEGEND
+========================================================= */
+
+.donut-chart-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.donut-chart {
+
+    --present: 0%;
+
+    width: 190px;
+
+    height: 190px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #22c55e 0% var(--present),
+            #ef4444 var(--present) 100%
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    margin: 0 auto 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+
+}
+
+
+/* =========================================================
+   DONUT INNER WHITE CIRCLE
+========================================================= */
+
+.donut-chart::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 118px;
+
+    height: 118px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+}
+
+
+.donut-center {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.donut-center strong {
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    color: #1f2937;
+
+}
+
+
+.donut-center span {
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.donut-legend {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 30px;
+
+    width: 100%;
+
+    max-width: 430px;
+
+}
+
+
+.legend-item {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 12px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+}
+
+
+.legend-dot {
+
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+}
+
+
+.present-dot {
+
+    background: #22c55e;
+
+}
+
+
+.absent-dot {
+
+    background: #ef4444;
+
+}
+
+
+.legend-item div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.legend-item strong {
+
+    font-size: 13px;
+
+    color: #374151;
+
+}
+
+
+.legend-item span:not(.legend-dot) {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+}
+
+
+/* =========================================================
+   OVERALL ATTENDANCE
+========================================================= */
+
+.overall-attendance {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 22px;
+
+    margin-top: 5px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.04);
+
+}
+
+
+.overall-title {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #4b5563;
+
+}
+
+
+.overall-percentage {
+
+    margin-top: 8px;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+
+}
+
+
+.overall-count {
+
+    margin-top: 4px;
+
+    font-size: 14px;
+
+    color: #6b7280;
+
+}
+
+
+.overall-progress {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    height: 9px;
+
+    margin: 15px auto 0;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.overall-progress-fill {
+
+    width: 0;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #2563eb;
+
+    transition: width 0.4s ease;
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.modal-close-btn {
+
+    display: block;
+
+    margin: 22px auto 0;
+
+    min-width: 110px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .member-attendance-modal {
+
+        width: 94vw;
+
+        padding: 20px;
+
+    }
+
+
+    .member-attendance-graph {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+    }
+
+
+    .graph-attendance-card {
+
+        padding: 14px;
+
+    }
+
+
+    .donut-chart {
+
+        width: 170px;
+
+        height: 170px;
+
+    }
+
+
+    .donut-chart::after {
+
+        width: 105px;
+
+        height: 105px;
+
+    }
+
+
+    .donut-legend {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        max-width: 100%;
+
+    }
+
+
+    .legend-item {
+
+        justify-content: flex-start;
+
+    }
+
+}
+/* ==========================================
+   TAKE ATTENDANCE - MEMBER LIST
+========================================== */
+
+#attendanceMembers {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+
+/* ==========================================
+   CHOIR HEADER
+========================================== */
+
+.take-choir-heading {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 28px 0 12px;
+    padding: 14px 18px;
+
+    background: linear-gradient(
+        135deg,
+        #eef4ff,
+        #f8fbff
+    );
+
+    border-left: 5px solid #2563eb;
+    border-radius: 14px;
+
+    color: #1e3a8a;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 14px rgba(37, 99, 235, 0.08);
+
+}
+
+
+/* ==========================================
+   MEMBER CARD
+========================================== */
+
+.take-member-row {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+    padding: 14px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7ebf3;
+    border-radius: 16px;
+
+    box-shadow:
+        0 3px 12px rgba(15, 23, 42, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* Hover */
+
+.take-member-row:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 7px 20px rgba(37, 99, 235, 0.12);
+
+}
+
+
+/* ==========================================
+   MEMBER INFORMATION
+========================================== */
+
+.take-member-info {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+
+/* Avatar */
+
+.take-member-avatar {
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #dbeafe,
+        #eff6ff
+    );
+
+    color: #2563eb;
+
+    font-size: 20px;
+
+    border: 1px solid #bfdbfe;
+
+}
+
+
+/* Member name */
+
+.take-member-name {
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #172033;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+
+/* Choir name */
+
+.take-member-choir {
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #8993a5;
+
+}
+
+
+/* ==========================================
+   RIGHT SIDE ACTIONS
+========================================== */
+
+.take-member-actions {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   PRESENT CHECKBOX
+========================================== */
+
+.take-check {
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #475569;
+
+    transition: 0.2s ease;
+
+}
+
+
+/* Checkbox */
+
+.take-check input {
+
+    width: 18px;
+    height: 18px;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+
+}
+
+
+/* Checked label */
+
+.take-check:has(input:checked) {
+
+    background: #eff6ff;
+
+    border-color: #93c5fd;
+
+    color: #2563eb;
+
+}
+
+
+/* ==========================================
+   VIEW ATTENDANCE BUTTON
+========================================== */
+
+.take-view-btn,
+.member-view-btn {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.take-view-btn:hover,
+.member-view-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 16px rgba(37, 99, 235, 0.30);
+
+}
+
+
+.take-view-btn:active,
+.member-view-btn:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.take-empty {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+}
+
+
+.take-empty-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.take-empty h3 {
+
+    margin: 0;
+
+    color: #1e293b;
+
+}
+
+
+.take-empty p {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #attendanceMembers {
+
+        margin: 15px auto;
+
+    }
+
+
+    .take-choir-heading {
+
+        margin-top: 20px;
+
+        padding: 12px 14px;
+
+        font-size: 17px;
+
+    }
+
+
+    .take-member-row {
+
+        padding: 12px;
+
+        border-radius: 14px;
+
+        gap: 8px;
+
+    }
+
+
+    .take-member-info {
+
+        gap: 9px;
+
+        min-width: 0;
+
+    }
+
+
+    .take-member-avatar {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+
+    }
+
+
+    .take-member-name {
+
+        max-width: 125px;
+
+        font-size: 14px;
+
+    }
+
+
+    .take-member-choir {
+
+        font-size: 11px;
+
+    }
+
+
+    .take-member-actions {
+
+        gap: 7px;
+
+    }
+
+
+    .take-check {
+
+        padding: 7px 8px;
+
+        font-size: 11px;
+
+    }
+
+
+    .take-check input {
+
+        width: 17px;
+        height: 17px;
+
+    }
+
+
+    .take-view-btn,
+    .member-view-btn {
+
+        width: 38px;
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+
+    .take-check span {
+
+        display: none;
+
+    }
+
+
+    .take-member-name {
+
+        max-width: 105px;
+
+    }
+
+}
+/* ==========================================
+   CURRENT ATTENDANCE CYCLE - CLEAN UI
+========================================== */
+
+.take-header {
+    margin-bottom: 24px;
+}
+
+.take-header h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.take-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+
+/* SUMMARY GRID */
+
+.attendance-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+
+/* ATTENDANCE CARD */
+
+.attendance-card {
+    min-height: 105px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.attendance-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+
+/* ICON */
+
+.attendance-card-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 24px;
+
+    background: #eff6ff;
+}
+
+
+/* TEXT */
+
+.attendance-card-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+}
+
+
+.attendance-card-info span {
+    font-size: 14px;
+
+    color: #64748b;
+
+    font-weight: 600;
+}
+
+
+.attendance-card-info strong {
+    font-size: 22px;
+
+    color: #1e293b;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   CARD COLORS
+========================================== */
+
+.zoom-card {
+    border-left: 4px solid #2563eb;
+}
+
+.zoom-card .attendance-card-icon {
+    background: #eff6ff;
+}
+
+
+.saturday-card {
+    border-left: 4px solid #7c3aed;
+}
+
+.saturday-card .attendance-card-icon {
+    background: #f5f3ff;
+}
+
+
+.sunday-card {
+    border-left: 4px solid #0891b2;
+}
+
+.sunday-card .attendance-card-icon {
+    background: #ecfeff;
+}
+
+
+/* ==========================================
+   START NEW CYCLE BUTTON
+========================================== */
+
+.cycle-actions {
+    margin-top: 20px;
+}
+
+.cycle-btn {
+    width: 100%;
+
+    min-height: 50px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .attendance-summary {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+
+    .attendance-card {
+        min-height: 85px;
+
+        padding: 16px;
+    }
+
+
+    .attendance-card-icon {
+        width: 46px;
+        height: 46px;
+
+        font-size: 21px;
+    }
+
+
+    .attendance-card-info strong {
+        font-size: 20px;
+    }
+
+}
+/* ==========================================
+   CURRENT CYCLE - CLEAN SUMMARY
+========================================== */
+
+.attendance-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+
+/* ==========================================
+   ATTENDANCE CARD
+========================================== */
+
+.attendance-card {
+    width: 100%;
+    min-height: 105px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px 22px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.06);
+
+    position: relative;
+}
+
+
+/* ==========================================
+   LEFT ICON
+========================================== */
+
+.attendance-card-icon {
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 27px;
+
+    background: #eff6ff;
+}
+
+
+/* ==========================================
+   CARD INFORMATION
+========================================== */
+
+.attendance-card-info {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+/* Name */
+
+.attendance-card-info span {
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #374151;
+
+    line-height: 1.3;
+}
+
+
+/* Count */
+
+.attendance-card-info strong {
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #172554;
+
+    white-space: nowrap;
+
+    margin-left: auto;
+}
+
+
+/* ==========================================
+   ZOOM
+========================================== */
+
+.zoom-card {
+    border-left: 5px solid #2563eb;
+}
+
+.zoom-card .attendance-card-icon {
+    background: #eff6ff;
+}
+
+
+/* ==========================================
+   SATURDAY
+========================================== */
+
+.saturday-card {
+    border-left: 5px solid #7c3aed;
+}
+
+.saturday-card .attendance-card-icon {
+    background: #f5f3ff;
+}
+
+
+/* ==========================================
+   SUNDAY
+========================================== */
+
+.sunday-card {
+    border-left: 5px solid #0891b2;
+}
+
+.sunday-card .attendance-card-icon {
+    background: #ecfeff;
+}
+
+
+/* ==========================================
+   CYCLE ACTION BUTTON
+========================================== */
+
+.cycle-actions {
+    margin-top: 20px;
+}
+
+.cycle-btn {
+    width: 100%;
+    min-height: 52px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .attendance-card {
+        min-height: 92px;
+
+        padding: 14px 16px;
+
+        gap: 13px;
+    }
+
+
+    .attendance-card-icon {
+        width: 48px;
+        height: 48px;
+
+        min-width: 48px;
+
+        font-size: 23px;
+
+        border-radius: 13px;
+    }
+
+
+    .attendance-card-info span {
+        font-size: 15px;
+    }
+
+
+    .attendance-card-info strong {
+        font-size: 20px;
+    }
+
+}
+/* ==========================================
+   CURRENT ATTENDANCE SUMMARY
+========================================== */
+
+.attendance-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+
+/* ==========================================
+   ATTENDANCE CARD
+========================================== */
+
+.attendance-card {
+    width: 100%;
+    min-height: 110px;
+
+    display: grid;
+    grid-template-columns: 70px 1fr 110px;
+    align-items: center;
+
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ==========================================
+   ICON
+========================================== */
+
+.attendance-card-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    border-radius: 14px;
+
+    background: #eef5ff;
+}
+
+
+/* ==========================================
+   CARD INFORMATION
+========================================== */
+
+.attendance-card-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 5px;
+}
+
+
+.attendance-card-info span {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #334155;
+}
+
+
+.attendance-card-info strong {
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+
+/* ==========================================
+   COLORS
+========================================== */
+
+.zoom-card {
+    border-left: 5px solid #2563eb;
+}
+
+.saturday-card {
+    border-left: 5px solid #7c3aed;
+}
+
+.sunday-card {
+    border-left: 5px solid #0891b2;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .attendance-card {
+
+        grid-template-columns:
+            55px
+            1fr
+            85px;
+
+        padding: 16px;
+
+        min-height: 95px;
+
+    }
+
+
+    .attendance-card-icon {
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 21px;
+
+    }
+
+
+    .attendance-card-info span {
+
+        font-size: 14px;
+
+    }
+
+
+    .attendance-card-info strong {
+
+        font-size: 20px;
+
+    }
+
+}
+/* ==========================================
+   CURRENT CYCLE - CLEAN ATTENDANCE CARDS
+========================================== */
+
+.attendance-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+
+/* CARD */
+
+.attendance-card {
+    position: relative;
+
+    width: 100%;
+    min-height: 145px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px 16px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+
+    overflow: hidden;
+}
+
+
+/* LEFT ACCENT */
+
+.attendance-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    border-radius: 18px 0 0 18px;
+}
+
+
+.zoom-card::before {
+    background: #2563eb;
+}
+
+.saturday-card::before {
+    background: #7c3aed;
+}
+
+.sunday-card::before {
+    background: #0891b2;
+}
+
+
+/* ICON */
+
+.attendance-card-icon {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    font-size: 27px;
+
+    margin-bottom: 10px;
+
+    background: #eff6ff;
+}
+
+
+/* DIFFERENT ICON BACKGROUNDS */
+
+.saturday-card .attendance-card-icon {
+    background: #f3e8ff;
+}
+
+.sunday-card .attendance-card-icon {
+    background: #ecfeff;
+}
+
+
+/* TEXT AREA */
+
+.attendance-card-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+}
+
+
+/* NAME */
+
+.attendance-name {
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #1e293b;
+
+    line-height: 1.2;
+}
+
+
+/* NUMBER */
+
+.attendance-card-info strong {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #2563eb;
+
+    line-height: 1;
+}
+
+
+.saturday-card .attendance-card-info strong {
+    color: #7c3aed;
+}
+
+
+.sunday-card .attendance-card-info strong {
+    color: #0891b2;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .attendance-summary {
+        gap: 12px;
+    }
+
+    .attendance-card {
+
+        min-height: 135px;
+
+        padding: 18px 14px;
+
+        border-radius: 16px;
+    }
+
+    .attendance-card-icon {
+
+        width: 48px;
+        height: 48px;
+
+        font-size: 24px;
+
+        margin-bottom: 9px;
+    }
+
+    .attendance-name {
+
+        font-size: 16px;
+    }
+
+    .attendance-card-info strong {
+
+        font-size: 23px;
+    }
+
+}
+/* ==========================================
+   CYCLE SUMMARY CARD ALIGNMENT
+========================================== */
+
+.attendance-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.attendance-card {
+    width: 100%;
+    min-height: 125px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+
+/* Icon + name + number ko vertical center */
+
+.attendance-card-icon {
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attendance-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    width: 100%;
+}
+
+
+/* Name */
+
+.attendance-card-info span {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+
+/* 1 / 4, 6 / 30 */
+
+.attendance-card-info strong {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 6px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .attendance-card {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .attendance-card-info {
+        align-items: center;
+        text-align: center;
+    }
+
+}

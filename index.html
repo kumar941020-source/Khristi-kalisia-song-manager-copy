@@ -13,9 +13,8 @@ Khristi Kalisiya Worship Song Manager
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/dashboard.css">
 
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -25,286 +24,278 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 <body>
 
 
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
 <div class="sidebar">
 
-<h2>
-✝ Khristi Kalisiya
-</h2>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
 
 
-<a href="index.html">
-<i class="fa-solid fa-house"></i>
-Dashboard
-</a>
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
 
 
-<a href="pages/fast-songs.html">
-<i class="fa-solid fa-music"></i>
-Fast Songs
-</a>
+    <!-- SONGS -->
+
+    <a href="pages/songs.html">
+        <i class="fa-solid fa-music"></i>
+        Songs
+    </a>
 
 
-<a href="pages/slow-songs.html">
-<i class="fa-solid fa-heart"></i>
-Slow Songs
-</a>
+    <a href="pages/planner.html">
+        <i class="fa-solid fa-calendar"></i>
+        Sunday Planner
+    </a>
 
 
-<a href="pages/planner.html">
-<i class="fa-solid fa-calendar"></i>
-Sunday Planner
-</a>
+    <a href="pages/history.html">
+        <i class="fa-solid fa-clock"></i>
+        History
+    </a>
 
 
-<a href="pages/history.html">
-<i class="fa-solid fa-clock"></i>
-History
-</a>
+    <a href="pages/choir.html">
+        🎤 Choir
+    </a>
 
-<a href="pages/choir.html">
-    🎤 Choir
-</a>
-
-<a href="pages/reports.html">
-<i class="fa-solid fa-chart-line"></i>
-Reports
-</a>
+     <div class="admin-only">
+    <a href="pages/reports.html">
+        <i class="fa-solid fa-chart-line"></i>
+        Reports
+    </a>
+     </div>
 
 
-<a href="pages/settings.html">
-<i class="fa-solid fa-gear"></i>
-Settings
-</a>
-
+    <a href="pages/settings.html">
+        <i class="fa-solid fa-gear"></i>
+        Settings
+    </a>
 
 </div>
 
 
 
+<!-- ==========================================
+     MAIN
+========================================== -->
 
 <div class="main">
 
 
-<div class="top-header">
+    <!-- HEADER -->
 
-<h1>
-Worship Management Dashboard
-</h1>
-<div class="header-right">
+    <div class="top-header">
 
-<a href="login.html" id="loginBtnHeader" class="btn-primary">
-    Admin Login
-</a>
-<button id="logoutBtn" class="btn-danger">
-    Logout
-</button>
-</div>
-</div>
+        <h1>
+            Worship Management Dashboard
+        </h1>
 
 
+        <div class="header-right">
 
+            <a
+                href="login.html"
+                id="loginBtnHeader"
+                class="btn-primary">
 
-<div class="cards">
+                Admin Login
 
+            </a>
 
-<div class="card">
 
-<i class="fa-solid fa-bolt"></i>
+            <button
+                id="logoutBtn"
+                class="btn-danger">
 
-<h3>
-Fast Songs
-</h3>
+                Logout
 
-<p id="fastCount">
-0
-</p>
+            </button>
 
-</div>
+        </div>
 
+    </div>
 
 
-<div class="card">
 
-<i class="fa-solid fa-heart"></i>
+    <!-- ==========================================
+         MAIN DASHBOARD CARDS
+    =========================================== -->
 
-<h3>
-Slow Songs
-</h3>
+    <div class="cards">
 
-<p id="slowCount">
-0
-</p>
 
-</div>
+        <!-- SONGS -->
 
+        <div
+            class="card"
+            onclick="location.href='pages/songs.html'">
 
+            <i class="fa-solid fa-music"></i>
 
+            <h3>
+                Songs
+            </h3>
 
-<div class="card">
+            <p>
+                🎵
+            </p>
 
-<i class="fa-solid fa-calendar-days"></i>
+        </div>
 
-<h3>
-Sunday Planner
-</h3>
 
-<p>
-4 + 3
-</p>
 
-</div>
+        <!-- SUNDAY PLANNER -->
 
+        <div
+            class="card"
+            onclick="location.href='pages/planner.html'">
 
+            <i class="fa-solid fa-calendar-days"></i>
 
+            <h3>
+                Sunday Planner
+            </h3>
 
+            <p>
+                4 + 3
+            </p>
 
-<div class="card">
+        </div>
 
-<i class="fa-solid fa-history"></i>
 
-<h3>
-History
-</h3>
 
-<p id="historyCount">
-0
-</p>
+        <!-- HISTORY -->
 
-</div>
+        <div
+            class="card"
+            onclick="location.href='pages/history.html'">
 
+            <i class="fa-solid fa-history"></i>
 
-</div>
+            <h3>
+                History
+            </h3>
 
+            <p id="historyCount">
+                0
+            </p>
 
+        </div>
 
 
 
-<div class="section">
+        <!-- CHOIR -->
 
+        <div
+            class="card"
+            onclick="location.href='pages/choir.html'">
 
-<h2>
-⭐ Selected Songs For This Sunday
-</h2>
+            <i class="fa-solid fa-users"></i>
 
+            <h3>
+                Choir
+            </h3>
 
-<div id="selectedSongs">
+            <p>
+                🎤
+            </p>
 
-No songs selected
+        </div>
 
-</div>
 
+    </div>
 
-</div>
 
 
+    <!-- ==========================================
+         SELECTED SONGS
+    =========================================== -->
 
+    <div class="section">
 
+        <h2>
+            ⭐ Selected Songs For This Sunday
+        </h2>
 
-<div class="section">
 
+        <div id="selectedSongs">
 
-<h2>
-Quick Actions
-</h2>
+            No songs selected
 
+        </div>
 
-<div class="quick-buttons">
+    </div>
 
 
-<a href="pages/fast-songs.html">
-Add Fast Song
-</a>
 
+    <!-- ==========================================
+         QUICK ACTIONS
+    =========================================== -->
 
-<a href="pages/slow-songs.html">
-Add Slow Song
-</a>
+    <div class="section">
 
+        <h2>
+            Quick Actions
+        </h2>
 
-<a href="pages/planner.html">
-Plan Sunday
-</a>
 
+        <div class="quick-buttons">
 
-<a href="pages/history.html">
-View History
-</a>
 
+            <a href="pages/songs.html">
+                🎵 Manage Songs
+            </a>
 
-</div>
 
+            <a href="pages/planner.html">
+                📅 Plan Sunday
+            </a>
 
-</div>
 
+            <a href="pages/history.html">
+                🕒 View History
+            </a>
 
 
+            <a href="pages/choir.html">
+                🎤 Manage Choir
+            </a>
 
 
-<div class="section">
+        </div>
 
+    </div>
 
-<h2>
-Song Statistics
-</h2>
 
 
-<div class="stats">
+    <!-- ==========================================
+         SONG STATISTICS
+    =========================================== -->
 
 
-<div>
-<h4>
-Most Played Song
-</h4>
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
 
-<p id="mostPlayed">
--
-</p>
-
-</div>
-
-
-
-<div>
-
-<h4>
-Recently Sung
-</h4>
-
-<p id="recentSong">
--
-</p>
-
-</div>
-
-
-
-<div>
-
-<h4>
-Long Time Not Sung
-</h4>
-
-<p id="oldSong">
--
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-</div>
 <script src="js/clock.js"></script>
-<script type="module" src="firebase.js"></script>
-<script type="module" src="script1.js"></script>
-<script type="module" src="js/admin.js"></script>
+
+<script type="module"
+src="firebase.js"></script>
+
+<script type="module"
+src="script1.js"></script>
+
+<script type="module"
+src="js/admin.js"></script>
+
+
 </body>
 
 </html>

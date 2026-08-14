@@ -1,0 +1,2108 @@
+/* ==========================================
+   INDIVIDUAL ATTENDANCE
+========================================== */
+
+.individual-attendance-section {
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+
+/* ==========================================
+   MEMBER CARD
+========================================== */
+
+.individual-member-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.individual-member-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+
+/* ==========================================
+   MEMBER INFORMATION
+========================================== */
+
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    min-width: 0;
+}
+
+
+.member-avatar {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #eef4ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+
+    flex-shrink: 0;
+}
+
+
+.member-details {
+    min-width: 0;
+}
+
+
+.member-details h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #1f2937;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.member-details p {
+    margin: 4px 0 0;
+
+    font-size: 13px;
+
+    color: #6b7280;
+}
+
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.view-attendance-btn {
+    border: none;
+
+    background: #1683e8;
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+
+.view-attendance-btn:hover {
+    background: #096dcc;
+}
+
+
+.view-attendance-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================
+   PARTITION
+========================================== */
+
+.individual-member-card + .individual-member-card {
+    position: relative;
+}
+
+
+/* ==========================================
+   MOBILE
+==========================================*/
+@media (max-width: 600px) {
+
+    .individual-member-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+
+        padding: 16px;
+        margin-bottom: 12px;
+
+        border-radius: 14px;
+    }
+
+    .member-info {
+        width: 100%;
+    }
+
+    .member-details h3 {
+        font-size: 16px;
+    }
+
+    .member-details p {
+        font-size: 12px;
+    }
+
+    .view-attendance-btn {
+        width: 100%;
+        padding: 11px;
+
+        font-size: 14px;
+        border-radius: 10px;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL MOBILE
+========================================== */
+
+@media (max-width: 400px) {
+
+    .individual-member-card {
+
+        padding: 13px 12px;
+    }
+
+
+    .member-info {
+
+        gap: 9px;
+    }
+
+
+    .member-avatar {
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+    }
+
+
+    .member-details h3 {
+
+        max-width: 120px;
+
+        font-size: 14px;
+    }
+
+
+    .view-attendance-btn {
+
+        padding: 9px 11px;
+
+        font-size: 12px;
+    }
+
+}
+/* ==========================================
+   INDIVIDUAL ATTENDANCE POPUP
+========================================== */
+
+.attendance-modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(8px);
+
+    z-index: 9999;
+}
+
+
+/* ==========================================
+   MAIN POPUP
+========================================== */
+
+.attendance-modal-content {
+    width: min(440px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation: attendancePopup 0.25s ease;
+}
+
+
+@keyframes attendancePopup {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.attendance-modal-header {
+
+    padding: 22px 22px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172554,
+            #2563eb
+        );
+
+    color: white;
+
+    border-radius: 24px 24px 0 0;
+
+    position: relative;
+}
+
+
+.attendance-modal-header h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+}
+
+
+.attendance-modal-header .member-name {
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+
+.attendance-modal-header .cycle-name {
+
+    display: inline-block;
+
+    margin-top: 7px;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.16);
+
+    font-size: 12px;
+
+}
+
+
+/* CLOSE BUTTON */
+
+.attendance-close {
+
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   STATISTICS GRID
+========================================== */
+
+.attendance-stat-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    padding: 18px;
+}
+
+
+/* ==========================================
+   STAT CARD
+========================================== */
+
+.attendance-stat-card {
+
+    padding: 17px 12px;
+
+    text-align: center;
+
+    border-radius: 17px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    transition: 0.2s ease;
+}
+
+
+.attendance-stat-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
+
+}
+
+
+/* ICON + TITLE */
+
+.attendance-stat-title {
+
+    font-size: 14px;
+
+    color: #475569;
+
+    margin-bottom: 9px;
+
+}
+
+
+/* NUMBER */
+
+.attendance-stat-number {
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    color: #172554;
+
+    line-height: 1.1;
+
+}
+
+
+/* PERCENTAGE */
+
+.attendance-stat-percent {
+
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   OVERALL CARD
+========================================== */
+
+.attendance-overall {
+
+    grid-column: span 2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #eef2ff
+        );
+
+    border: 1px solid #bfdbfe;
+
+}
+
+
+.attendance-overall .attendance-stat-number {
+
+    font-size: 36px;
+
+    color: #1d4ed8;
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.attendance-modal-footer {
+
+    padding: 0 18px 18px;
+
+}
+
+
+.attendance-modal-footer button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #172554;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .attendance-modal {
+
+        padding: 12px;
+
+        align-items: flex-end;
+
+    }
+
+
+    .attendance-modal-content {
+
+        width: 100%;
+
+        max-height: 88vh;
+
+        border-radius: 22px 22px 18px 18px;
+
+    }
+
+
+    .attendance-modal-header {
+
+        padding: 20px;
+
+        border-radius: 22px 22px 0 0;
+
+    }
+
+
+    .attendance-modal-header h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .attendance-modal-header .member-name {
+
+        font-size: 17px;
+
+    }
+
+
+    .attendance-stat-grid {
+
+        gap: 10px;
+
+        padding: 14px;
+
+    }
+
+
+    .attendance-stat-card {
+
+        padding: 15px 8px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .attendance-stat-number {
+
+        font-size: 24px;
+
+    }
+
+
+    .attendance-overall .attendance-stat-number {
+
+        font-size: 32px;
+
+    }
+
+}
+/* ==========================================
+   INDIVIDUAL ATTENDANCE POPUP
+========================================== */
+
+#individualAttendanceModal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.68);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    z-index: 9999;
+}
+
+
+/* ==========================================
+   POPUP BOX
+========================================== */
+
+#individualAttendanceModal .modal-content {
+
+    width: min(460px, 100%);
+
+    max-height: 88vh;
+    overflow-y: auto;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    border: 1px solid rgba(255,255,255,0.8);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.28);
+
+    animation: attendancePopupOpen 0.25s ease;
+}
+
+
+@keyframes attendancePopupOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   POPUP TITLE
+========================================== */
+
+#individualAttendanceModal .modal-content > h2 {
+
+    margin: 0;
+
+    padding: 20px 22px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172554,
+            #2563eb
+        );
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    border-radius: 24px 24px 0 0;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* ==========================================
+   MEMBER NAME
+========================================== */
+
+#individualMemberName {
+
+    margin: 0;
+
+    padding: 18px 22px 4px;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: #172554;
+}
+
+
+/* ==========================================
+   CYCLE DATA
+========================================== */
+
+#individualCycleData {
+
+    padding: 14px 18px 18px;
+}
+
+
+/* ==========================================
+   CYCLE CARD
+========================================== */
+
+#individualCycleData > div {
+
+    margin-bottom: 14px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 15px rgba(15,23,42,0.05);
+}
+
+
+/* ==========================================
+   CYCLE HEADING
+========================================== */
+
+#individualCycleData h3 {
+
+    margin: 0 0 16px;
+
+    color: #172554;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   ATTENDANCE STATISTICS
+========================================== */
+
+#individualCycleData p {
+
+    margin: 10px 0;
+
+    color: #475569;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   STATISTIC BOXES
+========================================== */
+
+#individualCycleData .attendance-stat-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+#individualCycleData .attendance-stat-card {
+
+    padding: 15px 10px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.04);
+}
+
+
+#individualCycleData .attendance-stat-card h4 {
+
+    margin: 0 0 7px;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: #64748b;
+}
+
+
+#individualCycleData .attendance-stat-card strong {
+
+    display: block;
+
+    font-size: 23px;
+
+    color: #172554;
+}
+
+
+/* ==========================================
+   OVERALL ATTENDANCE
+========================================== */
+
+#individualCycleData .attendance-overall {
+
+    grid-column: span 2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #eef2ff
+        );
+
+    border: 1px solid #bfdbfe;
+}
+
+
+#individualCycleData .attendance-overall strong {
+
+    font-size: 32px;
+
+    color: #2563eb;
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+========================================== */
+
+#individualAttendanceModal
+.modal-content
+> .btn-danger {
+
+    display: block;
+
+    width: calc(100% - 36px);
+
+    margin: 0 18px 18px;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #172554;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+#individualAttendanceModal
+.modal-content
+> .btn-danger:hover {
+
+    background: #0f172a;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #individualAttendanceModal {
+
+        align-items: flex-end;
+
+        padding: 10px;
+
+    }
+
+
+    #individualAttendanceModal
+    .modal-content {
+
+        width: 100%;
+
+        max-height: 90vh;
+
+        border-radius: 22px 22px 16px 16px;
+
+    }
+
+
+    #individualAttendanceModal
+    .modal-content > h2 {
+
+        padding: 18px;
+
+        font-size: 19px;
+
+        border-radius: 22px 22px 0 0;
+
+    }
+
+
+    #individualMemberName {
+
+        padding: 16px 18px 4px;
+
+        font-size: 18px;
+
+    }
+
+
+    #individualCycleData {
+
+        padding: 12px 14px 16px;
+
+    }
+
+
+    #individualCycleData > div {
+
+        padding: 15px;
+
+        border-radius: 16px;
+
+    }
+
+
+    #individualCycleData
+    .attendance-stat-card {
+
+        padding: 13px 8px;
+
+    }
+
+
+    #individualCycleData
+    .attendance-stat-card strong {
+
+        font-size: 21px;
+
+    }
+
+
+    #individualCycleData
+    .attendance-overall strong {
+
+        font-size: 29px;
+
+    }
+
+}
+/* ==========================================
+   INDIVIDUAL ATTENDANCE MODAL
+========================================== */
+
+#individualAttendanceModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(7px);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+/* MAIN POPUP */
+
+#individualAttendanceModal .modal-content {
+    width: min(560px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background: #ffffff;
+    border-radius: 24px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.25);
+
+    animation: attendancePopup 0.25s ease;
+}
+
+
+@keyframes attendancePopup {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* HEADER */
+
+.individual-popup-header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+
+.individual-popup-header h2 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: #172033;
+}
+
+
+.individual-popup-header h3 {
+    margin: 7px 0 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+
+/* CYCLE */
+
+.attendance-cycle-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.attendance-cycle-title {
+    font-size: 17px;
+    font-weight: 700;
+
+    color: #172033;
+
+    margin-bottom: 15px;
+}
+
+
+/* ATTENDANCE TYPE CARD */
+
+.attendance-stat {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 15px;
+
+    padding: 14px 15px;
+
+    margin-bottom: 12px;
+}
+
+
+.attendance-stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.attendance-stat-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #334155;
+}
+
+
+.attendance-stat-number {
+    font-size: 15px;
+    font-weight: 700;
+    color: #172033;
+}
+
+
+/* PROGRESS BAR */
+
+.attendance-progress {
+    width: 100%;
+    height: 8px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.attendance-progress-fill {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+}
+
+
+/* DIFFERENT TYPES */
+
+.zoom-progress {
+    background: #3b82f6;
+}
+
+.saturday-progress {
+    background: #8b5cf6;
+}
+
+.sunday-progress {
+    background: #10b981;
+}
+
+
+/* PERCENTAGE */
+
+.attendance-percent {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #64748b;
+
+    text-align: right;
+}
+
+
+/* OVERALL */
+
+.attendance-overall {
+    margin-top: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #172033,
+        #263957
+    );
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+
+.attendance-overall-label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+.attendance-overall-percent {
+    font-size: 38px;
+    font-weight: 800;
+
+    margin: 3px 0;
+}
+
+
+.attendance-overall-count {
+    font-size: 13px;
+    opacity: 0.75;
+}
+
+
+/* CLOSE BUTTON */
+
+.individual-close-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    padding: 13px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: #f1f5f9;
+    color: #334155;
+}
+
+
+.individual-close-btn:hover {
+    background: #e2e8f0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    #individualAttendanceModal {
+        padding: 12px;
+    }
+
+    #individualAttendanceModal .modal-content {
+        padding: 18px;
+        border-radius: 20px;
+        max-height: 92vh;
+    }
+
+    .individual-popup-header h2 {
+        font-size: 21px;
+    }
+
+    .attendance-cycle-card {
+        padding: 14px;
+    }
+
+    .attendance-overall-percent {
+        font-size: 34px;
+    }
+
+}
+/* ==========================================
+   INDIVIDUAL ATTENDANCE
+   MODERN UI
+========================================== */
+
+
+/* ==========================================
+   MODAL BACKGROUND
+========================================== */
+
+#individualAttendanceModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(15, 23, 42, 0.65);
+
+    backdrop-filter: blur(5px);
+
+    -webkit-backdrop-filter: blur(5px);
+
+    z-index: 9999;
+
+    padding: 20px;
+
+}
+
+
+/* ==========================================
+   MODAL BOX
+========================================== */
+
+#individualAttendanceModal .modal-content {
+
+    width: min(650px, 95vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+    color: #1e293b;
+
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+#individualAttendanceModal
+.modal-content::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+#individualAttendanceModal
+.modal-content::-webkit-scrollbar-track {
+
+    background: #f1f5f9;
+
+    border-radius: 10px;
+
+}
+
+#individualAttendanceModal
+.modal-content::-webkit-scrollbar-thumb {
+
+    background: #94a3b8;
+
+    border-radius: 10px;
+
+}
+
+#individualAttendanceModal
+.modal-content::-webkit-scrollbar-thumb:hover {
+
+    background: #64748b;
+
+}
+
+
+/* ==========================================
+   POPUP HEADER
+========================================== */
+
+.individual-popup-header {
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+}
+
+
+.individual-popup-header h2 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+}
+
+
+.individual-popup-header h3 {
+
+    margin: 8px 0 0;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   MEMBER LIST
+========================================== */
+
+.attendance-member {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 16px 18px;
+
+    margin-bottom: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 12px rgba(15, 23, 42, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.attendance-member:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #94a3b8;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.12);
+
+}
+
+
+/* ==========================================
+   MEMBER INFORMATION
+========================================== */
+
+.member-info {
+
+    min-width: 0;
+
+}
+
+
+.member-name {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+}
+
+
+.member-choir {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.attendance-view-btn {
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 10px 15px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.attendance-view-btn:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ==========================================
+   CYCLE CARD
+========================================== */
+
+.attendance-cycle-card {
+
+    background: #ffffff;
+
+    border: 1px solid #dbe3ee;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.08);
+
+}
+
+
+/* ==========================================
+   CYCLE TITLE
+========================================== */
+
+.attendance-cycle-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #0f172a;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   ATTENDANCE STAT
+========================================== */
+
+.attendance-stat {
+
+    margin-bottom: 18px;
+
+}
+
+
+/* ==========================================
+   STAT TOP
+========================================== */
+
+.attendance-stat-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+}
+
+
+.attendance-stat-name {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+}
+
+
+.attendance-stat-number {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+}
+
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.attendance-progress {
+
+    width: 100%;
+
+    height: 10px;
+
+    overflow: hidden;
+
+    background: #e2e8f0;
+
+    border-radius: 999px;
+
+}
+
+
+.attendance-progress-fill {
+
+    height: 100%;
+
+    min-width: 0;
+
+    border-radius: 999px;
+
+    transition: width 0.5s ease;
+
+}
+
+
+/* ==========================================
+   PROGRESS COLORS
+========================================== */
+
+.zoom-progress {
+
+    background: #2563eb;
+
+}
+
+
+.saturday-progress {
+
+    background: #7c3aed;
+
+}
+
+
+.sunday-progress {
+
+    background: #059669;
+
+}
+
+
+/* ==========================================
+   PERCENTAGE
+========================================== */
+
+.attendance-percent {
+
+    display: block;
+
+    margin-top: 6px;
+
+    text-align: right;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #475569;
+
+}
+
+
+/* ==========================================
+   OVERALL ATTENDANCE
+========================================== */
+
+.attendance-overall {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+}
+
+
+.attendance-overall-label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #475569;
+
+}
+
+
+.attendance-overall-percent {
+
+    margin-top: 6px;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    color: #2563eb;
+
+}
+
+
+.attendance-overall-count {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+}
+
+
+/* ==========================================
+   NO ATTENDANCE
+========================================== */
+
+.no-attendance {
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.loading-attendance {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #475569;
+
+    font-size: 15px;
+
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+========================================== */
+
+.individual-close-btn {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #0f172a;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.individual-close-btn:hover {
+
+    background: #1e293b;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #individualAttendanceModal {
+
+        padding: 10px;
+
+    }
+
+
+    #individualAttendanceModal
+    .modal-content {
+
+        width: 100%;
+
+        max-height: 94vh;
+
+        padding: 18px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .attendance-member {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .attendance-view-btn {
+
+        width: 100%;
+
+    }
+
+
+    .attendance-cycle-card {
+
+        padding: 16px;
+
+    }
+
+
+    .attendance-overall-percent {
+
+        font-size: 32px;
+
+    }
+
+}
+/* ==========================================
+   MEMBER DONUT CHART
+========================================== */
+
+.member-chart-section {
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+.member-chart-section h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+
+/* Chart + Legend */
+
+.donut-chart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    padding: 10px;
+}
+
+
+/* Donut */
+
+.donut-chart {
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #22c55e 0deg,
+            #22c55e 0deg,
+            #ef4444 0deg,
+            #ef4444 360deg
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+/* White center */
+
+.donut-chart::before {
+    content: "";
+
+    position: absolute;
+
+    width: 135px;
+    height: 135px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+
+/* Center text */
+
+.donut-center {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.donut-center strong {
+    font-size: 38px;
+    font-weight: 800;
+
+    color: #111827;
+
+    line-height: 1;
+}
+
+
+.donut-center span {
+    margin-top: 8px;
+
+    font-size: 15px;
+
+    color: #6b7280;
+
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   LEGEND
+========================================== */
+
+.donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+
+.legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+
+.legend-dot {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    margin-top: 4px;
+
+    flex-shrink: 0;
+}
+
+
+.present-dot {
+    background: #22c55e;
+}
+
+
+.absent-dot {
+    background: #ef4444;
+}
+
+
+.legend-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.legend-item strong {
+    font-size: 17px;
+    color: #111827;
+}
+
+
+.legend-item span:not(.legend-dot) {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 650px) {
+
+    .donut-chart-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .donut-chart {
+        width: 210px;
+        height: 210px;
+    }
+
+    .donut-chart::before {
+        width: 125px;
+        height: 125px;
+    }
+
+    .donut-center strong {
+        font-size: 34px;
+    }
+
+    .donut-legend {
+        width: 100%;
+        max-width: 230px;
+    }
+
+}

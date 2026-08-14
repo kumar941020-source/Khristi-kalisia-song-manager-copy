@@ -1,6 +1,7 @@
 // ==========================================
 // SLOW SONG PAGE
 // ==========================================
+
 import {
     slowSongs,
     addSlowSong,
@@ -9,217 +10,594 @@ import {
     editSlowSong,
     deleteSlowSong,
     saveSlowSongLyrics
-
 } from "../script1.js";
+
+
 let currentSongId = "";
-function displaySlowSongs() {
 
-    let table = document.getElementById("slowSongTable");
 
-    if (!table) return;
+// ==========================================
+// SORT SONGS
+// OLDEST LAST-SUNG FIRST
+// ==========================================
 
-    table.innerHTML = "";
+function getSortedSongs(songs) {
 
-    slowSongs.forEach(song => {
+    return [...songs].sort((a, b) => {
 
-        let row = document.createElement("tr");
+        // Never sung songs first
+        if (!a.lastSung && !b.lastSung) {
+            return 0;
+        }
 
-        row.innerHTML = `
+        if (!a.lastSung) {
+            return -1;
+        }
 
-        <td>
-            ${song.name}
-            ${song.selected ? " ⭐" : ""}
-        </td>
+        if (!b.lastSung) {
+            return 1;
+        }
 
-        <td>
-            ${song.lastSung || "-"}
-        </td>
 
-        <td>
-            ${song.timesSung || 0}
-        </td>
+        function parseDate(date) {
 
-        <td>
+            const parts =
+                date.split("/");
 
-            <button
-                class="btn-success admin-only"
-                onclick="markSlowSongUsed('${song.id}')">
-                ✔ Used
-            </button>
+            if (parts.length !== 3) {
+                return 0;
+            }
 
-            <button
-                class="btn-primary admin-only"
-                onclick="selectSlowSong('${song.id}')">
-                ⭐ Select
-            </button>
+            return new Date(
+                parts[2],
+                parts[1] - 1,
+                parts[0]
+            ).getTime();
 
-            <button
-                class="btn-primary admin-only"
-                onclick="editSlowSong('${song.id}')">
-                ✏ Edit
-            </button>
+        }
 
-            <button
-                class="btn-danger admin-only"
-                onclick="deleteSlowSong('${song.id}')">
-                🗑 Delete
-            </button>
-            <button
-class="btn-primary"
-onclick="openLyrics('${song.id}')">
 
-📖 Lyrics
-
-</button>
-
-        </td>
-
-        `;
-
-        table.appendChild(row);
+        return (
+            parseDate(a.lastSung) -
+            parseDate(b.lastSung)
+        );
 
     });
 
 }
 
 
+// ==========================================
+// CREATE SONG CARD
+// ==========================================
+
+function createSongCard(song) {
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "attendance-record-card";
+
+
+    // ======================================
+    // SONG HEADER
+    // ======================================
+
+    const songHeader =
+        document.createElement("div");
+
+
+    songHeader.className =
+        "song-card-header";
+
+
+    songHeader.innerHTML = `
+
+        <h3>
+
+            🎵 ${song.name}
+
+            ${song.selected ? " ⭐" : ""}
+
+        </h3>
+
+        <span class="song-arrow">
+            ▼
+        </span>
+
+    `;
+
+
+    // ======================================
+    // INNER DETAILS
+    // ======================================
+
+    const details =
+        document.createElement("div");
+
+
+    details.className =
+        "song-card-details";
+
+
+    details.style.display =
+        "none";
+
+
+    details.innerHTML = `
+
+        <div class="attendance-record">
+
+            <div>
+
+                <p>
+
+                    📅 Last Sung:
+
+                    <b>
+                        ${song.lastSung || "-"}
+                    </b>
+
+                </p>
+
+
+                <p>
+
+                    🎵 Times Sung:
+
+                    <b>
+                        ${song.timesSung || 0}
+                    </b>
+
+                </p>
+
+            </div>
+
+
+            <div class="attendance-record-stats">
+
+
+                <button
+                    class="btn-success admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        markSlowSongUsed('${song.id}');
+                    ">
+
+                    ✔ Used
+
+                </button>
+
+
+                <button
+                    class="btn-primary admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        selectSlowSong('${song.id}');
+                    ">
+
+                    ⭐ Select
+
+                </button>
+
+
+                <button
+                    class="btn-primary"
+                    onclick="
+                        event.stopPropagation();
+                        openLyrics('${song.id}');
+                    ">
+
+                    📖 Lyrics
+
+                </button>
+
+
+                <button
+                    class="btn-primary admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        editSlowSong('${song.id}');
+                    ">
+
+                    ✏ Edit
+
+                </button>
+
+
+                <button
+                    class="btn-danger admin-only"
+                    onclick="
+                        event.stopPropagation();
+                        deleteSlowSong('${song.id}');
+                    ">
+
+                    🗑 Delete
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    // ======================================
+    // CLICK SONG TO OPEN/CLOSE
+    // ======================================
+
+    songHeader.addEventListener(
+        "click",
+        function () {
+
+            const isOpen =
+                details.style.display !== "none";
+
+
+            // Close all other songs
+            document
+                .querySelectorAll(
+                    ".song-card-details"
+                )
+                .forEach(otherDetails => {
+
+                    otherDetails.style.display =
+                        "none";
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    ".song-arrow"
+                )
+                .forEach(arrow => {
+
+                    arrow.innerText = "▼";
+
+                });
+
+
+            // Open clicked song
+            if (!isOpen) {
+
+                details.style.display =
+                    "block";
+
+                const arrow =
+                    songHeader.querySelector(
+                        ".song-arrow"
+                    );
+
+                if (arrow) {
+                    arrow.innerText = "▲";
+                }
+
+            }
+
+        }
+    );
+
+
+    card.appendChild(
+        songHeader
+    );
+
+
+    card.appendChild(
+        details
+    );
+
+
+    return card;
+
+}
+
+
+// ==========================================
+// DISPLAY SLOW SONGS
+// ==========================================
+
+function displaySlowSongs() {
+
+    const box =
+        document.getElementById(
+            "slowSongTable"
+        );
+
+
+    if (!box) return;
+
+
+    box.innerHTML = "";
+
+
+    const sortedSongs =
+        getSortedSongs(
+            slowSongs
+        );
+
+
+    sortedSongs.forEach(song => {
+
+        box.appendChild(
+            createSongCard(song)
+        );
+
+    });
+
+
+    applyAdminPermission();
+
+}
+
+
+// ==========================================
+// SEARCH
+// ==========================================
+
+function searchSlow(value) {
+
+    const box =
+        document.getElementById(
+            "slowSongTable"
+        );
+
+
+    if (!box) return;
+
+
+    const search =
+        value
+            .toLowerCase()
+            .trim();
+
+
+    const filteredSongs =
+        slowSongs.filter(song => {
+
+            return (
+                song.name || ""
+            )
+            .toLowerCase()
+            .includes(search);
+
+        });
+
+
+    box.innerHTML = "";
+
+
+    const sortedSongs =
+        getSortedSongs(
+            filteredSongs
+        );
+
+
+    sortedSongs.forEach(song => {
+
+        box.appendChild(
+            createSongCard(song)
+        );
+
+    });
+
+
+    applyAdminPermission();
+
+}
+
+
+// ==========================================
+// ADMIN / VISITOR PERMISSION
+// ==========================================
+
+function applyAdminPermission() {
+
+    if (
+        document.body.classList.contains(
+            "visitor"
+        )
+    ) {
+
+        document
+            .querySelectorAll(
+                ".admin-only"
+            )
+            .forEach(element => {
+
+                element.style.display =
+                    "none";
+
+            });
+
+    }
+
+}
+
+
+// ==========================================
+// ADD SLOW SONG
+// ==========================================
 
 async function addSlow() {
 
-    let name = document.getElementById("slowSongName").value.trim();
+    const name =
+        document
+            .getElementById(
+                "slowSongName"
+            )
+            .value
+            .trim();
 
-    let date = document.getElementById("slowSongDate").value;
 
-    if (name === "") {
+    const date =
+        document
+            .getElementById(
+                "slowSongDate"
+            )
+            .value;
 
-        alert("Enter song name");
+
+    if (!name) {
+
+        alert(
+            "Enter song name"
+        );
 
         return;
 
     }
 
-    addSlowSong(name, date);
 
-    document.getElementById("slowSongName").value = "";
-
-    document.getElementById("slowSongDate").value = "";
-
-}
+    await addSlowSong(
+        name,
+        date
+    );
 
 
-
-function searchSlow(value) {
-
-    let table = document.getElementById("slowSongTable");
-
-    if (!table) return;
-
-    let search = value.toLowerCase();
-
-    table.innerHTML = "";
-
-    slowSongs
-        .filter(song =>
-            song.name.toLowerCase().includes(search)
+    document
+        .getElementById(
+            "slowSongName"
         )
-        .forEach(song => {
+        .value = "";
 
-            let row = document.createElement("tr");
 
-            row.innerHTML = `
-
-            <td>${song.name}</td>
-
-            <td>${song.lastSung || "-"}</td>
-
-            <td>${song.timesSung || 0}</td>
-
-            <td>
-
-    <button
-        class="btn-success admin-only"
-        onclick="markSlowSongUsed('${song.id}')">
-        ✔ Used
-    </button>
-
-    <button
-        class="btn-primary admin-only"
-        onclick="selectSlowSong('${song.id}')">
-        ⭐ Select
-    </button>
-
-    <button
-        class="btn-primary"
-        onclick="openLyrics('${song.id}')">
-        📖 Lyrics
-    </button>
-
-    <button
-        class="btn-primary admin-only"
-        onclick="editSlowSong('${song.id}')">
-        ✏ Edit
-    </button>
-
-    <button
-        class="btn-danger admin-only"
-        onclick="deleteSlowSong('${song.id}')">
-        🗑 Delete
-    </button>
-
-</td>
-            `;
-
-            table.appendChild(row);
-
-        });
+    document
+        .getElementById(
+            "slowSongDate"
+        )
+        .value = "";
 
 }
+
+
+// ==========================================
+// OPEN LYRICS
+// ==========================================
+
 function openLyrics(songId) {
 
-    currentSongId = songId;
+    currentSongId =
+        songId;
 
-    const modal = document.getElementById("lyricsModal");
-    const text = document.getElementById("lyricsText");
-    const title = document.getElementById("lyricsSongName");
 
-    const song = slowSongs.find(s => s.id === songId);
+    const song =
+        slowSongs.find(
+            song =>
+                song.id === songId
+        );
+
 
     if (!song) return;
 
-    title.innerText = song.name;
-    text.value = song.lyrics || "";
 
-    modal.style.display = "flex";
+    document
+        .getElementById(
+            "lyricsSongName"
+        )
+        .innerText =
+            song.name;
+
+
+    document
+        .getElementById(
+            "lyricsText"
+        )
+        .value =
+            song.lyrics || "";
+
+
+    document
+        .getElementById(
+            "lyricsModal"
+        )
+        .style.display =
+            "flex";
 
 }
+
+
+// ==========================================
+// CLOSE LYRICS
+// ==========================================
 
 function closeLyrics() {
 
-    document.getElementById("lyricsModal").style.display = "none";
+    document
+        .getElementById(
+            "lyricsModal"
+        )
+        .style.display =
+            "none";
 
 }
+
+
+// ==========================================
+// SAVE LYRICS
+// ==========================================
+
 async function saveLyrics() {
 
     const lyrics =
-    document.getElementById("lyricsText").value;
+        document
+            .getElementById(
+                "lyricsText"
+            )
+            .value;
 
-    await saveSlowSongLyrics(currentSongId, lyrics);
 
-    alert("Lyrics Saved Successfully ✅");
+    await saveSlowSongLyrics(
+        currentSongId,
+        lyrics
+    );
+
+
+    alert(
+        "Lyrics Saved Successfully ✅"
+    );
+
 
     closeLyrics();
 
 }
 
-// DOMContentLoaded ki zarurat nahi hai.
-// initializeApp() script1.js se displaySlowSongs() call ho jayega.
-window.openLyrics = openLyrics;
-window.closeLyrics = closeLyrics;
-window.saveLyrics = saveLyrics;
-window.displaySlowSongs = displaySlowSongs;
-window.addSlow = addSlow;
-window.searchSlow = searchSlow;
-window.markSlowSongUsed = markSlowSongUsed;
-window.selectSlowSong = selectSlowSong;
-window.editSlowSong = editSlowSong;
-window.deleteSlowSong = deleteSlowSong;
+
+// ==========================================
+// WINDOW FUNCTIONS
+// ==========================================
+
+window.displaySlowSongs =
+    displaySlowSongs;
+
+window.searchSlow =
+    searchSlow;
+
+window.addSlow =
+    addSlow;
+
+window.openLyrics =
+    openLyrics;
+
+window.closeLyrics =
+    closeLyrics;
+
+window.saveLyrics =
+    saveLyrics;
+
+window.markSlowSongUsed =
+    markSlowSongUsed;
+
+window.selectSlowSong =
+    selectSlowSong;
+
+window.editSlowSong =
+    editSlowSong;
+
+window.deleteSlowSong =
+    deleteSlowSong;

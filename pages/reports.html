@@ -3,20 +3,435 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Worship Reports | Khristi Kalisiya</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <style>
+
+        /* =========================================
+           REPORT HEADER
+        ========================================= */
+
+        .report-cycle {
+            margin-top: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
 
 
-<title>
-Reports | Khristi Kalisiya
-</title>
+        /* =========================================
+           REPORT CARDS
+        ========================================= */
+
+        .report-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 20px;
+            margin-top: 20px;
+        }
 
 
-<link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../css/dashboard.css">
+        .report-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 22px;
+
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.08);
+
+            border: 1px solid #eef2f7;
+        }
 
 
+        .report-card-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+
+            background: #f1f5f9;
+        }
+
+
+        .report-card-info span {
+            display: block;
+
+            font-size: 13px;
+            color: #64748b;
+
+            margin-bottom: 5px;
+        }
+
+
+        .report-card-info strong {
+            display: block;
+
+            font-size: 24px;
+            color: #0f172a;
+        }
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .report-section {
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 24px;
+
+            margin-top: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.06);
+
+            border: 1px solid #eef2f7;
+        }
+
+
+        .report-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+
+        .report-section-header h2 {
+            margin: 0;
+            color: #0f172a;
+        }
+
+
+        .report-section-header p {
+            margin: 5px 0 0;
+
+            font-size: 13px;
+            color: #64748b;
+        }
+
+
+        /* =========================================
+           BEST MEMBER
+        ========================================= */
+
+        .best-member {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f0fdf4,
+                    #ffffff
+                );
+
+            border: 1px solid #dcfce7;
+        }
+
+
+        .best-member-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #dcfce7;
+
+            font-size: 25px;
+        }
+
+
+        .best-member-info strong {
+            display: block;
+
+            font-size: 18px;
+
+            color: #166534;
+        }
+
+
+        .best-member-info span {
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           CHOIR REPORT
+        ========================================= */
+
+        .choir-report-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+
+        .choir-report-row {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr
+                repeat(4, 1fr);
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #f8fafc;
+
+            border: 1px solid #eef2f7;
+        }
+
+
+        .choir-name {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 600;
+
+            color: #0f172a;
+        }
+
+
+        .choir-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ede9fe;
+
+            font-size: 20px;
+        }
+
+
+        .choir-stat {
+            text-align: center;
+        }
+
+
+        .choir-stat span {
+            display: block;
+
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-bottom: 4px;
+        }
+
+
+        .choir-stat strong {
+            font-size: 16px;
+
+            color: #0f172a;
+        }
+
+
+        /* =========================================
+           PROGRESS
+        ========================================= */
+
+        .report-progress {
+            height: 7px;
+
+            width: 100%;
+
+            background: #e2e8f0;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin-top: 7px;
+        }
+
+
+        .report-progress-fill {
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: #22c55e;
+
+            width: 0%;
+        }
+
+
+        /* =========================================
+           MEMBER TABLE
+        ========================================= */
+
+        .member-report-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .member-report-table th {
+            text-align: left;
+
+            padding: 14px;
+
+            font-size: 12px;
+
+            color: #64748b;
+
+            background: #f8fafc;
+        }
+
+
+        .member-report-table td {
+            padding: 14px;
+
+            border-bottom:
+                1px solid #eef2f7;
+
+            font-size: 14px;
+
+            color: #334155;
+        }
+
+
+        .member-report-table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .attendance-badge {
+            display: inline-flex;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .attendance-good {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+
+        .attendance-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+
+        .attendance-low {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
+        .report-empty {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .report-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .choir-report-row {
+                grid-template-columns:
+                    1.5fr
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .choir-report-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .choir-name {
+                grid-column: 1 / -1;
+            }
+
+
+            .member-report-table {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -24,200 +439,422 @@ Reports | Khristi Kalisiya
 <body>
 
 
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
 <div class="sidebar">
 
-
-<h2>
-✝ Khristi Kalisiya
-</h2>
-
-
-<a href="../index.html">
-Dashboard
-</a>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
 
 
-<a href="fast-songs.html">
-Fast Songs
-</a>
+    <a href="../index.html">
+        Dashboard
+    </a>
 
 
-<a href="slow-songs.html">
-Slow Songs
-</a>
+    <a href="songs.html">
+              Songs
+    </a>
 
 
-<a href="planner.html">
-Sunday Planner
-</a>
+    <a href="planner.html">
+        Sunday Planner
+    </a>
 
 
-<a href="history.html">
-History
-</a>
-<a href="choir.html">
-    🎤 Choir
-</a>
-
-<a href="reports.html">
-Reports
-</a>
+    <a href="choir.html">
+        🎤 Choir
+    </a>
 
 
-<a href="settings.html">
-Settings
-</a>
+    <a href="history.html">
+        History
+    </a>
 
+
+    <a href="reports.html"
+       class="active">
+         Reports
+    </a>
+
+
+    <a href="settings.html"
+       class="admin-only">
+        Settings
+    </a>
 
 </div>
 
 
-
-
+<!-- =========================================
+     MAIN
+========================================= -->
 
 <div class="main">
 
 
-<div class="top-header">
+    <!-- HEADER -->
 
-<h1>
-Worship Reports
-</h1>
+    <div class="top-header">
+
+        <div>
+
+            <h1>
+                📊 Worship Reports
+            </h1>
+
+            <p class="report-cycle">
+
+                Current Cycle:
+                <strong id="reportCycleName">
+                    Cycle 1
+                </strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         SUMMARY CARDS
+    ====================================== -->
+
+    <div class="report-grid">
+
+
+        <!-- MEMBERS -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon">
+                👥
+            </div>
+
+            <div class="report-card-info">
+
+                <span>
+                    Total Worship Members
+                </span>
+
+                <strong id="reportMembers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ZOOM -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon">
+                💻
+            </div>
+
+            <div class="report-card-info">
+
+                <span>
+                    Zoom Sessions
+                </span>
+
+                <strong id="reportZoom">
+                    0 / 30
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- SATURDAY -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon">
+                🎵
+            </div>
+
+            <div class="report-card-info">
+
+                <span>
+                    Saturday Practice
+                </span>
+
+                <strong id="reportSaturday">
+                    0 / 4
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUNDAY -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon">
+                ⛪
+            </div>
+
+            <div class="report-card-info">
+
+                <span>
+                    Sunday Practice
+                </span>
+
+                <strong id="reportSunday">
+                    0 / 4
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         OVERALL
+    ====================================== -->
+
+    <div class="report-section">
+
+        <div class="report-section-header">
+
+            <div>
+
+                <h2>
+                    📈 Overall Attendance
+                </h2>
+
+                <p>
+                    Current worship attendance performance
+                </p>
+
+            </div>
+
+            <strong
+                id="reportOverall"
+                style="font-size:28px;">
+
+                0%
+
+            </strong>
+
+        </div>
+
+
+        <div class="report-progress">
+
+            <div
+                id="reportOverallProgress"
+                class="report-progress-fill">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         BEST MEMBER
+    ====================================== -->
+
+    <div class="report-section">
+
+        <div class="report-section-header">
+
+            <div>
+
+                <h2>
+                    🏆 Best Attendance
+                </h2>
+
+                <p>
+                    Member with the highest attendance
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="bestMember"
+            class="best-member">
+
+            <div class="best-member-icon">
+                🏆
+            </div>
+
+            <div class="best-member-info">
+
+                <strong>
+                    Loading...
+                </strong>
+
+                <span>
+                    Calculating attendance
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         CHOIR REPORT
+    ====================================== -->
+
+    <div class="report-section">
+
+        <div class="report-section-header">
+
+            <div>
+
+                <h2>
+                    🎤 Worship Team Report
+                </h2>
+
+                <p>
+                    Attendance performance by worship team
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="choirReportList"
+            class="choir-report-list">
+
+            Loading worship teams...
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         MEMBER REPORT
+    ====================================== -->
+
+    <div class="report-section">
+
+        <div class="report-section-header">
+
+            <div>
+
+                <h2>
+                    👥 Member Attendance
+                </h2>
+
+                <p>
+                    Current cycle individual attendance
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div style="overflow-x:auto;">
+
+            <table class="member-report-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            Worship Team
+                        </th>
+
+                        <th>
+                            Zoom
+                        </th>
+
+                        <th>
+                            Saturday
+                        </th>
+
+                        <th>
+                            Sunday
+                        </th>
+
+                        <th>
+                            Overall
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="memberReportBody">
+
+                    <tr>
+
+                        <td colspan="6">
+
+                            <div class="report-empty">
+
+                                Loading attendance...
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 
 </div>
 
 
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
 
+<script
+    type="module"
+    src="../script1.js">
+</script>
 
 
-<div class="cards">
+<script
+    type="module"
+    src="../js/reports.js">
+</script>
 
 
-
-<div class="card">
-
-<h3>
-Total Songs
-</h3>
-
-<p id="totalSongs">
-0
-</p>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h3>
-Fast Songs
-</h3>
-
-<p id="reportFast">
-0
-</p>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h3>
-Slow Songs
-</h3>
-
-<p id="reportSlow">
-0
-</p>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h3>
-Sunday Plans
-</h3>
-
-<p id="totalPlans">
-0
-</p>
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>
-Most Played Song
-</h2>
-
-
-<h3 id="reportMostPlayed">
--
-</h3>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>
-Total Usage
-
-</h2>
-
-
-<h3 id="totalUsage">
-0
-</h3>
-
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-<script type="module" src="../script1.js"></script>
-
-<script type="module" src="../js/reports.js"></script>
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
 
 
 </body>

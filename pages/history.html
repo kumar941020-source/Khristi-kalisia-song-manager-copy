@@ -3,20 +3,148 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
+    <title>
+        History | Khristi Kalisiya
+    </title>
 
-<title>
-Sunday History | Khristi Kalisiya
-</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 
+    <style>
 
-<link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../css/dashboard.css">
+        /* ==========================================
+           ATTENDANCE CYCLE HISTORY
+        ========================================== */
 
+        .cycle-history-section {
+            margin-top: 30px;
+        }
 
+        .cycle-history-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .cycle-history-title h2 {
+            margin: 0;
+        }
+
+        .cycle-history-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            border: 1px solid #eeeeee;
+        }
+
+        .cycle-history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .cycle-history-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cycle-history-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            font-size: 22px;
+        }
+
+        .cycle-history-name h3 {
+            margin: 0 0 4px;
+        }
+
+        .cycle-history-name p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .cycle-delete-btn {
+            border: none;
+            border-radius: 9px;
+            padding: 9px 13px;
+            cursor: pointer;
+            background: #fee2e2;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .cycle-delete-btn:hover {
+            background: #fecaca;
+        }
+
+        .cycle-summary-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .cycle-summary-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .cycle-summary-item span {
+            display: block;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        .cycle-summary-item strong {
+            font-size: 18px;
+        }
+
+        .cycle-overall {
+            background: #f0fdf4;
+        }
+
+        .cycle-empty {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+
+            .cycle-history-header {
+                align-items: flex-start;
+            }
+
+            .cycle-summary-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -24,112 +152,178 @@ Sunday History | Khristi Kalisiya
 <body>
 
 
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <div class="sidebar">
 
-
-<h2>
-✝ Khristi Kalisiya
-</h2>
-
-
-<a href="../index.html">
-Dashboard
-</a>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
 
 
-<a href="fast-songs.html">
-Fast Songs
-</a>
+    <a href="../index.html">
+
+        <i class="fa-solid fa-house"></i>
+
+        Dashboard
+
+    </a>
 
 
-<a href="slow-songs.html">
-Slow Songs
-</a>
+    <a href="songs.html">
+
+        <i class="fa-solid fa-music"></i>
+
+        Songs
+
+    </a>
 
 
-<a href="planner.html">
-Sunday Planner
-</a>
+    <a href="planner.html">
+
+        <i class="fa-solid fa-calendar"></i>
+
+        Sunday Planner
+
+    </a>
 
 
-<a href="history.html">
-History
-</a>
+    <a href="history.html" class="active">
 
-<a href="choir.html">
-    🎤 Choir
-</a>
-<a href="reports.html">
-Reports
-</a>
+        <i class="fa-solid fa-clock"></i>
+
+        History
+
+    </a>
 
 
-<a href="settings.html">
-Settings
-</a>
+    <a href="choir.html">
 
+        🎤 Choir
+
+    </a>
+
+
+    <div class="admin-only">
+
+        <a href="reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Reports
+
+        </a>
+
+    </div>
+
+
+    <a href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+
+        Settings
+
+    </a>
 
 </div>
 
 
-
-
-
-
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <div class="main">
 
 
-<div class="top-header">
+    <div class="top-header">
+
+        <h1>
+            History
+        </h1>
+
+    </div>
 
 
-<h1>
-Sunday Worship History
-</h1>
+    <!-- =================================================
+         SUNDAY WORSHIP HISTORY
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>
+            ⛪ Previous Sunday Plans
+        </h2>
+
+
+        <div id="historyContainer">
+
+            Loading history...
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ATTENDANCE CYCLE HISTORY
+    ================================================== -->
+
+    <div class="section cycle-history-section">
+
+        <div class="cycle-history-title">
+
+            <span style="font-size:25px;">
+                📊
+            </span>
+
+            <h2>
+                Attendance Cycle History
+            </h2>
+
+        </div>
+
+
+        <p style="color:#777;">
+            Completed attendance cycles are stored here.
+        </p>
+
+
+        <div id="attendanceCycleHistory">
+
+            Loading attendance cycles...
+
+        </div>
+
+    </div>
 
 
 </div>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="../script1.js">
+</script>
 
 
+<script
+    type="module"
+    src="../js/history.js">
+</script>
 
 
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
 
-<div class="section">
-
-
-<h2>
-Previous Sunday Plans
-</h2>
-
-
-<div id="historyContainer">
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<script type="module" src="../script1.js"></script>
-<script type="module" src="../js/history.js"></script>
-<script type="module" src="../js/admin.js"></script>
 
 </body>
-
 
 </html>
