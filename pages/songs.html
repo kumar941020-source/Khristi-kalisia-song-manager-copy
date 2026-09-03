@@ -3,223 +3,392 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>
-Songs Dashboard
-</title>
+    <title>
+        Songs Dashboard
+    </title>
 
-<link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../css/dashboard.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet">
+    <!-- ==========================================
+         CSS
+    =========================================== -->
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard1.css"
+    >
+
+
+    <!-- ==========================================
+         GOOGLE FONT
+    =========================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==========================================
+         FONT AWESOME
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
 </head>
+
 
 <body>
 
 
-<!-- ==========================================
+<!-- ==================================================
      SIDEBAR
-========================================== -->
+=================================================== -->
 
 <div class="sidebar">
+
 
     <h2>
         ✝ Khristi Kalisiya
     </h2>
 
 
+    <!-- Dashboard -->
+
     <a href="../index.html">
 
         <i class="fa-solid fa-house"></i>
 
-        Dashboard
+        <span>
+            Dashboard
+        </span>
 
     </a>
 
 
-    <a href="songs.html" class="active">
+    <!-- Songs -->
+
+    <a
+        href="songs.html"
+        class="active"
+    >
 
         <i class="fa-solid fa-music"></i>
 
-        Songs
+        <span>
+            Songs
+        </span>
 
     </a>
 
+
+    <!-- Sunday Planner -->
 
     <a href="planner.html">
 
-        <i class="fa-solid fa-calendar"></i>
+        <i class="fa-solid fa-calendar-days"></i>
 
-        Sunday Planner
+        <span>
+            Sunday Planner
+        </span>
 
     </a>
 
+
+    <!-- History -->
 
     <a href="history.html">
 
-        <i class="fa-solid fa-clock"></i>
+        <i class="fa-solid fa-clock-rotate-left"></i>
 
-        History
+        <span>
+            History
+        </span>
 
     </a>
 
+
+    <!-- Choir -->
 
     <a href="choir.html">
 
-        🎤 Choir
+        <i class="fa-solid fa-users"></i>
+
+        <span>
+            Choir
+        </span>
 
     </a>
 
-<div class="admin-only">
-    <a href="reports.html">
 
-        <i class="fa-solid fa-chart-line"></i>
+    <!-- Reports -->
 
-        Reports
+    <div class="admin-only">
 
-    </a>
-</div>
+        <a href="reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- Settings -->
 
     <a href="settings.html">
 
         <i class="fa-solid fa-gear"></i>
 
-        Settings
+        <span>
+            Settings
+        </span>
 
     </a>
+
 
 </div>
 
 
 
-<!-- ==========================================
-     MAIN
-========================================== -->
+<!-- ==================================================
+     MAIN CONTENT
+=================================================== -->
 
 <div class="main">
 
 
-    <!-- HEADER -->
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
 
     <div class="top-header">
 
-        <h1>
+        <div>
 
-            🎵 Songs Dashboard
+            <h1>
+                🎵 Songs Dashboard
+            </h1>
 
-        </h1>
+            <p>
+                Manage and track your worship songs.
+            </p>
+
+        </div>
 
     </div>
 
 
 
-    <!-- ==========================================
-         SONG CARDS
-    =========================================== -->
+    <!-- ==================================================
+         WELCOME
+    =================================================== -->
 
-    <div class="cards">
-
-
-        <!-- FAST SONGS -->
-
-        <div
-            class="card"
-            onclick="location.href='fast-songs.html'">
-
-            <i class="fa-solid fa-bolt"></i>
-
-            <h3>
-
-                Fast Songs
-
-            </h3>
-
-            <p id="fastCount">
-
-                0
-
-            </p>
-
-        </div>
-
-
-
-        <!-- SLOW SONGS -->
-
-        <div
-            class="card"
-            onclick="location.href='slow-songs.html'">
-
-            <i class="fa-solid fa-heart"></i>
-
-            <h3>
-
-                Slow Songs
-
-            </h3>
-
-            <p id="slowCount">
-
-                0
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- ==========================================
-         QUICK ACTIONS
-    =========================================== -->
-
-    <div class="section">
+    <div class="songs-welcome">
 
         <h2>
-
-            🎵 Song Management
-
+            Worship Songs 🎶
         </h2>
 
+        <p>
+            Manage your fast and slow worship songs easily.
+        </p>
 
-        <div class="quick-buttons">
+    </div>
 
+
+
+    <!-- ==================================================
+         SONG CARDS
+    =================================================== -->
+
+    <div class="cards song-cards">
+
+
+        <!-- ==============================================
+             FAST SONGS
+        =============================================== -->
+
+        <div
+            class="dashboard-card song-card fast-song-card"
+            onclick="location.href='fast-songs.html'"
+        >
+
+
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-bolt"></i>
+
+            </div>
+
+
+            <h2>
+                Fast Songs
+            </h2>
+
+
+            <strong
+                class="song-count"
+                id="fastCount"
+            >
+                0
+            </strong>
+
+
+            <p>
+                Energetic Worship
+            </p>
+
+
+            <span class="card-button">
+                Manage Songs
+            </span>
+
+
+        </div>
+
+
+
+        <!-- ==============================================
+             SLOW SONGS
+        =============================================== -->
+
+        <div
+            class="dashboard-card song-card slow-song-card"
+            onclick="location.href='slow-songs.html'"
+        >
+
+
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </div>
+
+
+            <h2>
+                Slow Songs
+            </h2>
+
+
+            <strong
+                class="song-count"
+                id="slowCount"
+            >
+                0
+            </strong>
+
+
+            <p>
+                Peaceful Worship
+            </p>
+
+
+            <span class="card-button">
+                Manage Songs
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         SONG MANAGEMENT
+    =================================================== -->
+
+    <div class="section dashboard-section">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    🎵 Song Management
+                </h2>
+
+                <p>
+                    Quickly manage your worship songs.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-buttons song-actions">
+
+
+            <!-- Fast -->
 
             <a href="fast-songs.html">
 
-                ⚡ Manage Fast Songs
+                <i class="fa-solid fa-bolt"></i>
+
+                <span>
+                    Manage Fast Songs
+                </span>
 
             </a>
 
+
+            <!-- Slow -->
 
             <a href="slow-songs.html">
 
-                ❤️ Manage Slow Songs
+                <i class="fa-solid fa-heart"></i>
+
+                <span>
+                    Manage Slow Songs
+                </span>
 
             </a>
 
+
+            <!-- Planner -->
 
             <a href="planner.html">
 
-                📅 Plan Sunday
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>
+                    Plan Sunday
+                </span>
 
             </a>
 
+
+            <!-- Back -->
 
             <a href="../index.html">
 
-                ← Back to Dashboard
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>
+                    Back to Dashboard
+                </span>
 
             </a>
 
@@ -230,77 +399,154 @@ Songs Dashboard
 
 
 
-    <!-- ==========================================
-         SONG STATISTICS
-    =========================================== -->
+    <!-- ==================================================
+         SONG INSIGHTS
+    =================================================== -->
 
-<div class="section">
-
-    <h2>📊 Song Insights</h2>
-
-    <div class="song-insights">
-
-        <div class="insight-row">
-
-            <div class="insight-icon">
-                🏆
-            </div>
-
-            <div class="insight-info">
-                <span>Most Played</span>
-                <strong id="mostPlayed">-</strong>
-            </div>
-
-        </div>
+    <div class="section dashboard-section">
 
 
-        <div class="insight-row">
+        <div class="section-header">
 
-            <div class="insight-icon">
-                🎵
-            </div>
+            <div>
 
-            <div class="insight-info">
-                <span>Recently Sung</span>
-                <strong id="recentSong">-</strong>
+                <h2>
+                    📊 Song Insights
+                </h2>
+
+                <p>
+                    Quick overview of your song usage.
+                </p>
+
             </div>
 
         </div>
 
 
-        <div class="insight-row">
+        <div class="song-insights">
 
-            <div class="insight-icon">
-                🕐
+
+            <!-- Most Played -->
+
+            <div class="insight-row">
+
+
+                <div class="insight-icon">
+
+                    <i class="fa-solid fa-trophy"></i>
+
+                </div>
+
+
+                <div class="insight-info">
+
+                    <span>
+                        Most Played
+                    </span>
+
+
+                    <strong id="mostPlayed">
+                        -
+                    </strong>
+
+                </div>
+
+
             </div>
 
-            <div class="insight-info">
-                <span>Long Time Not Sung</span>
-                <strong id="oldSong">-</strong>
+
+
+            <!-- Recently Sung -->
+
+            <div class="insight-row">
+
+
+                <div class="insight-icon">
+
+                    <i class="fa-solid fa-music"></i>
+
+                </div>
+
+
+                <div class="insight-info">
+
+                    <span>
+                        Recently Sung
+                    </span>
+
+
+                    <strong id="recentSong">
+                        -
+                    </strong>
+
+                </div>
+
+
             </div>
+
+
+
+            <!-- Old Song -->
+
+            <div class="insight-row">
+
+
+                <div class="insight-icon">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+
+                <div class="insight-info">
+
+                    <span>
+                        Long Time Not Sung
+                    </span>
+
+
+                    <strong id="oldSong">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
     </div>
+
 
 </div>
 
 
 
-<!-- ==========================================
+<!-- ==================================================
      JAVASCRIPT
-========================================== -->
+=================================================== -->
 
 <script src="../js/clock.js"></script>
 
-<script type="module"
-        src="../firebase.js"></script>
 
-<script type="module"
-        src="../script1.js"></script>
+<script
+    type="module"
+    src="../firebase.js"
+></script>
 
-<script type="module"
-        src="../js/admin.js"></script>
+
+<script
+    type="module"
+    src="../script1.js"
+></script>
+
+
+<script
+    type="module"
+    src="../js/admin.js"
+></script>
 
 
 </body>

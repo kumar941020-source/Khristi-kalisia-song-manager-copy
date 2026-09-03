@@ -3,18 +3,395 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Settings | Khristi Kalisiya
+    </title>
 
 
-<title>
-Settings | Khristi Kalisiya
-</title>
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;500;600;700&display=swap"
+        rel="stylesheet">
 
 
-<link rel="stylesheet" href="../style.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="../style.css">
+
+
+    <style>
+
+        /* =====================================
+           SETTINGS PAGE
+           ===================================== */
+
+        .settings-page {
+            padding: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* =====================================
+           TOP HEADER
+           ===================================== */
+
+        .top-header {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            color: white;
+
+            padding: 25px 28px;
+
+            border-radius: 16px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.18);
+        }
+
+
+        .top-header h1 {
+            margin: 0;
+
+            color: white;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        .top-header p {
+            margin: 5px 0 0;
+
+            color: rgba(255, 255, 255, 0.85);
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           SECTION
+           ===================================== */
+
+        .section {
+            background: #ffffff;
+
+            border: 1px solid #e8edf3;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.05);
+        }
+
+
+        .section h2 {
+            margin: 0 0 16px;
+
+            color: #1e293b;
+
+            font-size: 18px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           APPLICATION INFORMATION
+           ===================================== */
+
+        .application-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+        }
+
+
+        .info-item {
+            background: #f8fafc;
+
+            border: 1px solid #edf1f5;
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+        }
+
+
+        .info-icon {
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            border-radius: 10px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 15px;
+        }
+
+
+        .info-content span {
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .info-content strong {
+            display: block;
+
+            color: #334155;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           DATA MANAGEMENT
+           ===================================== */
+
+        .section-description {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin: -5px 0 16px;
+        }
+
+
+        .settings-buttons {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn-primary,
+        .btn-danger {
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 11px 18px;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            transition: 0.2s ease;
+        }
+
+
+        .btn-primary {
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-1px);
+        }
+
+
+        .btn-danger {
+            background: #ef4444;
+
+            color: white;
+        }
+
+
+        .btn-danger:hover {
+            background: #dc2626;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================
+           FUTURE FEATURES
+           ===================================== */
+
+        .feature-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+        }
+
+
+        .feature-list li {
+            background: #f8fafc;
+
+            border: 1px solid #edf1f5;
+
+            border-radius: 10px;
+
+            padding: 12px 14px;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+
+        .feature-list li i {
+            color: #2563eb;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           MOBILE
+           ===================================== */
+
+        @media (max-width: 800px) {
+
+            .settings-page {
+                padding: 18px;
+            }
+
+
+            .application-info {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .settings-page {
+                padding: 14px;
+            }
+
+
+            .top-header {
+                padding: 21px;
+
+                border-radius: 14px;
+            }
+
+
+            .top-header h1 {
+                font-size: 23px;
+            }
+
+
+            .section {
+                padding: 17px;
+
+                border-radius: 14px;
+            }
+
+
+            .settings-buttons {
+                flex-direction: column;
+            }
+
+
+            .btn-primary,
+            .btn-danger {
+                width: 100%;
+            }
+
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -22,20 +399,28 @@ Settings | Khristi Kalisiya
 <body>
 
 
+<!-- =====================================
+     SIDEBAR
+     ===================================== -->
+
 <div class="sidebar">
 
 
-<h2>
-✝ Khristi Kalisiya
-</h2>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
 
 
-<a href="../index.html">
-Dashboard
-</a>
+    <a href="../index.html">
+
+        <i class="fa-solid fa-house"></i>
+
+        Dashboard
+
+    </a>
 
 
-<a href="songs.html" class="active">
+    <a href="songs.html">
 
         <i class="fa-solid fa-music"></i>
 
@@ -44,173 +429,302 @@ Dashboard
     </a>
 
 
-<a href="planner.html">
-Sunday Planner
-</a>
+    <a href="planner.html">
+
+        <i class="fa-solid fa-calendar-check"></i>
+
+        Sunday Planner
+
+    </a>
 
 
-<a href="history.html">
-History
-</a>
-<a href="choir.html">
-    🎤 Choir
-</a>
+    <a href="history.html">
 
-<div class="admin-only">
-<a href="reports.html">
-Reports
-</a>
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        History
+
+    </a>
+
+
+    <a href="choir.html">
+
+        <i class="fa-solid fa-microphone"></i>
+
+        Choir
+
+    </a>
+
+
+    <!-- Reports: NO ADMIN-ONLY -->
+
+    <a href="reports.html">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        Reports
+
+    </a>
+
+
+    <a href="settings.html"
+       class="active">
+
+        <i class="fa-solid fa-gear"></i>
+
+        Settings
+
+    </a>
+
+
 </div>
 
 
-<a href="settings.html">
-Settings
-</a>
 
-
-</div>
-
-
-
-
-
+<!-- =====================================
+     MAIN
+     ===================================== -->
 
 <div class="main">
 
 
-<div class="top-header">
+    <div class="settings-page">
 
-<h1>
-Settings
-</h1>
+
+        <!-- =================================
+             HEADER
+             ================================= -->
+
+        <div class="top-header">
+
+            <h1>
+                Settings
+            </h1>
+
+            <p>
+                Manage your Worship Manager application.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================
+             APPLICATION INFORMATION
+             ================================= -->
+
+        <div class="section">
+
+            <h2>
+                <i class="fa-solid fa-circle-info"></i>
+                Application Information
+            </h2>
+
+
+            <div class="application-info">
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-church"></i>
+
+                    </div>
+
+
+                    <div class="info-content">
+
+                        <span>
+                            Application
+                        </span>
+
+                        <strong>
+                            ✝ Khristi Kalisiya Worship Song Manager
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-code-branch"></i>
+
+                    </div>
+
+
+                    <div class="info-content">
+
+                        <span>
+                            Version
+                        </span>
+
+                        <strong>
+                            Version 1.0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                    </div>
+
+
+                    <div class="info-content">
+
+                        <span>
+                            System
+                        </span>
+
+                        <strong>
+                            Church Worship Management System
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             DATA MANAGEMENT
+             ADMIN ONLY
+             ================================= -->
+
+        <div class="section admin-only">
+
+            <h2>
+
+                <i class="fa-solid fa-database"></i>
+
+                Data Management
+
+            </h2>
+
+
+            <p class="section-description">
+
+                Backup your worship data or clear all application data.
+
+            </p>
+
+
+            <div class="settings-buttons">
+
+
+                <button
+                    class="btn-primary admin-only"
+                    onclick="backupData()">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Backup Data
+
+                </button>
+
+
+
+                <button
+                    class="btn-danger admin-only"
+                    onclick="clearAllData()">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear All Data
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             FUTURE FEATURES
+             ================================= -->
+
+        <div class="section">
+
+            <h2>
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Future Features
+
+            </h2>
+
+
+            <ul class="feature-list">
+
+
+                <li>
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Choir Member Management
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    Attendance System
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+    </div>
 
 </div>
 
 
 
+<!-- =====================================
+     SCRIPTS
+     ===================================== -->
 
+<script
+    type="module"
+    src="../script1.js">
+</script>
 
 
+<script
+    src="../js/settings.js">
+</script>
 
-<div class="section">
 
-
-<h2>
-Application Information
-</h2>
-
-
-<p>
-✝ Khristi Kalisia Worship Song Manager
-</p>
-
-
-<p>
-Version : 1.0
-</p>
-
-
-<p>
-Church Worship Management System
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="section admin-only">
-
-
-<h2>
-Data Management
-</h2>
-
-
-
-<button 
-class="btn-primary admin-only"
-onclick="backupData()">
-
-⬇ Backup Data
-
-</button>
-
-
-
-
-
-<button
-
-class="btn-danger admin-only"
-
-onclick="clearAllData()">
-
-🗑 Clear All Data
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>
-Future Features
-</h2>
-
-
-<ul>
-
-
-
-
-<li>
-Choir Member Management
-</li>
-
-
-<li>
-Attendance System
-</li>
-
-
-</ul>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-<script type="module" src="../script1.js"></script>
-
-<script src="../js/settings.js"></script>
-<script type="module" src="../js/admin.js"></script>
-
-
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
 
 
 </body>

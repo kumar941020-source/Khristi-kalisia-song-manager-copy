@@ -8,138 +8,741 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        History | Khristi Kalisiya
-    </title>
+    <title>History | Khristi Kalisiya</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/history.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+
 
     <style>
 
         /* ==========================================
-           ATTENDANCE CYCLE HISTORY
+           HISTORY PAGE
         ========================================== */
 
-        .cycle-history-section {
-            margin-top: 30px;
+        .history-page {
+            max-width: 1200px;
+            margin: auto;
         }
 
-        .cycle-history-title {
+
+        /* ==========================================
+           PAGE HEADER
+        ========================================== */
+
+        .history-page-header {
+            margin-bottom: 25px;
+        }
+
+        .history-page-header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .history-page-header p {
+            margin: 6px 0 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        /* ==========================================
+           SEARCH
+        ========================================== */
+
+        .history-search-box {
+            background: #ffffff;
+            border: 1px solid #e8e8ef;
+            border-radius: 16px;
+            padding: 16px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 28px;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .history-search-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            background: #f0ecff;
+            color: #6c4ce6;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+        .history-search-input {
+            flex: 1;
+
+            border: none;
+            outline: none;
+
+            font-family: Poppins, sans-serif;
+            font-size: 14px;
+
+            background: transparent;
+        }
+
+        .history-search-input::placeholder {
+            color: #999;
+        }
+
+        .clear-search-btn {
+            border: none;
+            background: #f3f3f7;
+            color: #666;
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            display: none;
+        }
+
+        .clear-search-btn:hover {
+            background: #e9e9ef;
+        }
+
+
+        /* ==========================================
+           SECTION
+        ========================================== */
+
+        .history-section {
+            margin-bottom: 38px;
+        }
+
+        .history-section-title {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 18px;
+
+            margin-bottom: 6px;
         }
 
-        .cycle-history-title h2 {
-            margin: 0;
+        .history-section-title .section-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f0ecff;
+            color: #6c4ce6;
         }
+
+        .history-section-title h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .history-section-subtitle {
+            margin: 0 0 18px 50px;
+            color: #888;
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           SUNDAY HISTORY CARD
+        ========================================== */
+
+        .history-card {
+            background: #ffffff;
+
+            border: 1px solid #e9e9ef;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 17px;
+
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .history-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 28px rgba(0,0,0,0.09);
+        }
+
+
+        /* ==========================================
+           HISTORY HEADER
+        ========================================== */
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #eeeeF3;
+        }
+
+        .history-title-area {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .history-date-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 13px;
+
+            background: #eef2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #5b5bd6;
+
+            font-size: 20px;
+        }
+
+        .history-title-area h3 {
+            margin: 0 0 3px;
+
+            font-size: 17px;
+        }
+
+        .history-date {
+            margin: 0;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           SONG SECTIONS
+        ========================================== */
+
+        .history-song-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-top: 17px;
+        }
+
+        .history-song-section {
+            background: #fafafd;
+
+            border: 1px solid #ededf3;
+
+            border-radius: 14px;
+
+            padding: 15px;
+        }
+
+        .history-song-section h4 {
+            margin: 0 0 12px;
+
+            font-size: 14px;
+        }
+
+        .history-song-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .history-song {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeF2;
+
+            border-radius: 9px;
+
+            padding: 9px 11px;
+
+            font-size: 13px;
+        }
+
+        .history-empty {
+            margin: 0;
+
+            color: #999;
+
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           DELETE BUTTON
+        ========================================== */
+
+        .history-actions {
+            display: flex;
+            justify-content: flex-end;
+
+            margin-top: 15px;
+        }
+
+        .history-delete-btn {
+            border: none;
+
+            background: #fff1f2;
+
+            color: #dc2626;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            font-family: Poppins, sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .history-delete-btn:hover {
+            background: #fee2e2;
+        }
+
+
+        /* ==========================================
+           EMPTY STATE
+        ========================================== */
+
+        .history-empty-state {
+            background: #ffffff;
+
+            border: 1px dashed #dcdce5;
+
+            border-radius: 17px;
+
+            padding: 38px 20px;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+        .history-empty-icon {
+            font-size: 40px;
+
+            margin-bottom: 8px;
+        }
+
+        .history-empty-state h3 {
+            margin: 0 0 5px;
+
+            color: #444;
+        }
+
+        .history-empty-state p {
+            margin: 0;
+
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           ATTENDANCE CYCLE
+        ========================================== */
 
         .cycle-history-card {
             background: #ffffff;
-            border-radius: 16px;
+
+            border-radius: 17px;
+
             padding: 20px;
+
             margin-bottom: 16px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-            border: 1px solid #eeeeee;
+
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+
+            border: 1px solid #e9e9ef;
         }
 
         .cycle-history-header {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             gap: 15px;
+
             margin-bottom: 18px;
         }
 
         .cycle-history-name {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
         }
 
         .cycle-history-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
+            width: 47px;
+            height: 47px;
+
+            border-radius: 13px;
+
+            background: #eef2ff;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            background: #eef2ff;
-            font-size: 22px;
+
+            font-size: 21px;
         }
 
         .cycle-history-name h3 {
             margin: 0 0 4px;
+
+            font-size: 16px;
         }
 
         .cycle-history-name p {
             margin: 0;
+
             color: #777;
-            font-size: 13px;
+
+            font-size: 12px;
         }
 
         .cycle-delete-btn {
             border: none;
+
             border-radius: 9px;
+
             padding: 9px 13px;
+
             cursor: pointer;
-            background: #fee2e2;
+
+            background: #fff1f2;
+
             color: #dc2626;
+
+            font-family: Poppins, sans-serif;
+
+            font-size: 12px;
+
             font-weight: 600;
         }
 
         .cycle-delete-btn:hover {
-            background: #fecaca;
+            background: #fee2e2;
         }
 
         .cycle-summary-grid {
             display: grid;
+
             grid-template-columns:
                 repeat(4, minmax(0, 1fr));
+
             gap: 12px;
         }
 
         .cycle-summary-item {
             background: #f8fafc;
+
             border-radius: 12px;
+
             padding: 14px;
+
             text-align: center;
         }
 
         .cycle-summary-item span {
             display: block;
-            font-size: 13px;
+
+            font-size: 12px;
+
             color: #777;
+
             margin-bottom: 6px;
         }
 
         .cycle-summary-item strong {
-            font-size: 18px;
+            font-size: 17px;
         }
 
         .cycle-overall {
             background: #f0fdf4;
         }
 
-        .cycle-empty {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            color: #777;
+
+        /* ==========================================
+           CONFIRMATION MODAL
+        ========================================== */
+
+        .delete-modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 15, 25, 0.55);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
         }
+
+        .delete-modal.show {
+            display: flex;
+        }
+
+        .delete-modal-box {
+            width: 100%;
+
+            max-width: 430px;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.25);
+
+            animation: deleteModalIn 0.2s ease;
+        }
+
+        @keyframes deleteModalIn {
+
+            from {
+                opacity: 0;
+                transform: scale(0.95)
+                           translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+                           translateY(0);
+            }
+
+        }
+
+        .delete-modal-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 15px;
+
+            background: #fff1f2;
+
+            color: #dc2626;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+
+            margin-bottom: 15px;
+        }
+
+        .delete-modal-box h3 {
+            margin: 0 0 7px;
+
+            font-size: 19px;
+        }
+
+        .delete-modal-box p {
+            margin: 0;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .delete-item-name {
+            margin-top: 12px;
+
+            padding: 11px 13px;
+
+            background: #f8f8fb;
+
+            border-radius: 10px;
+
+            color: #444;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .delete-modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+        .modal-cancel-btn,
+        .modal-delete-btn {
+            border: none;
+
+            padding: 10px 17px;
+
+            border-radius: 9px;
+
+            font-family: Poppins, sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .modal-cancel-btn {
+            background: #f1f1f5;
+
+            color: #555;
+        }
+
+        .modal-delete-btn {
+            background: #dc2626;
+
+            color: #ffffff;
+        }
+
+        .modal-delete-btn:hover {
+            background: #b91c1c;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
 
         @media (max-width: 700px) {
 
-            .cycle-history-header {
-                align-items: flex-start;
+            .history-page-header h1 {
+                font-size: 25px;
+            }
+
+            .history-search-box {
+                padding: 12px;
+            }
+
+            .history-song-grid {
+                grid-template-columns: 1fr;
             }
 
             .cycle-summary-grid {
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
+            }
+
+            .history-header,
+            .cycle-history-header {
+                align-items: flex-start;
+            }
+
+            .history-delete-btn,
+            .cycle-delete-btn {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .history-title-area {
+                align-items: flex-start;
+            }
+
+            .history-date-icon,
+            .cycle-history-icon {
+                width: 42px;
+                height: 42px;
+            }
+
+            .history-card,
+            .cycle-history-card {
+                padding: 14px;
+            }
+
+            .delete-modal-box {
+                padding: 20px;
+            }
+
+            .delete-modal-actions {
+                display: grid;
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .modal-cancel-btn,
+            .modal-delete-btn {
+                width: 100%;
             }
 
         }
@@ -190,9 +793,12 @@
     </a>
 
 
-    <a href="history.html" class="active">
+    <a
+        href="history.html"
+        class="active"
+    >
 
-        <i class="fa-solid fa-clock"></i>
+        <i class="fa-solid fa-clock-rotate-left"></i>
 
         History
 
@@ -201,7 +807,9 @@
 
     <a href="choir.html">
 
-        🎤 Choir
+        <i class="fa-solid fa-users"></i>
+
+        Choir
 
     </a>
 
@@ -236,68 +844,197 @@
 
 <div class="main">
 
-
-    <div class="top-header">
-
-        <h1>
-            History
-        </h1>
-
-    </div>
+    <div class="history-page">
 
 
-    <!-- =================================================
-         SUNDAY WORSHIP HISTORY
-    ================================================== -->
+        <!-- PAGE HEADER -->
 
-    <div class="section">
+        <div class="history-page-header">
 
-        <h2>
-            ⛪ Previous Sunday Plans
-        </h2>
+            <h1>
+                📚 History
+            </h1>
 
-
-        <div id="historyContainer">
-
-            Loading history...
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         ATTENDANCE CYCLE HISTORY
-    ================================================== -->
-
-    <div class="section cycle-history-section">
-
-        <div class="cycle-history-title">
-
-            <span style="font-size:25px;">
-                📊
-            </span>
-
-            <h2>
-                Attendance Cycle History
-            </h2>
+            <p>
+                View previous Sunday worship plans and completed attendance cycles.
+            </p>
 
         </div>
 
 
-        <p style="color:#777;">
-            Completed attendance cycles are stored here.
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <div class="history-search-box">
+
+            <div class="history-search-icon">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </div>
+
+
+            <input
+                type="text"
+                id="historySearch"
+                class="history-search-input"
+                placeholder="Search history by date — e.g. 24/05/2026"
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="clearHistorySearch"
+                class="clear-search-btn"
+                title="Clear search"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             SUNDAY HISTORY
+        ================================================== -->
+
+        <section class="history-section">
+
+            <div class="history-section-title">
+
+                <div class="section-icon">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </div>
+
+                <h2>
+                    Previous Sunday Plans
+                </h2>
+
+            </div>
+
+            <p class="history-section-subtitle">
+                Your saved Sunday worship song plans.
+            </p>
+
+
+            <div id="historyContainer">
+
+                Loading history...
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ATTENDANCE HISTORY
+        ================================================== -->
+
+        <section class="history-section">
+
+            <div class="history-section-title">
+
+                <div class="section-icon">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                </div>
+
+                <h2>
+                    Attendance Cycle History
+                </h2>
+
+            </div>
+
+            <p class="history-section-subtitle">
+                Completed attendance cycles are stored here.
+            </p>
+
+
+            <div id="attendanceCycleHistory">
+
+                Loading attendance cycles...
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DELETE CONFIRMATION MODAL
+===================================================== -->
+
+<div
+    id="deleteModal"
+    class="delete-modal"
+>
+
+    <div class="delete-modal-box">
+
+        <div class="delete-modal-icon">
+
+            <i class="fa-solid fa-trash-can"></i>
+
+        </div>
+
+
+        <h3 id="deleteModalTitle">
+            Are you sure?
+        </h3>
+
+
+        <p id="deleteModalMessage">
+
+            Are you sure you really want to delete this history?
+
         </p>
 
 
-        <div id="attendanceCycleHistory">
+        <div
+            id="deleteItemName"
+            class="delete-item-name"
+        >
+        </div>
 
-            Loading attendance cycles...
+
+        <div class="delete-modal-actions">
+
+            <button
+                type="button"
+                class="modal-cancel-btn"
+                id="cancelDeleteBtn"
+            >
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                class="modal-delete-btn"
+                id="confirmDeleteBtn"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+                Delete
+
+            </button>
 
         </div>
 
     </div>
-
 
 </div>
 

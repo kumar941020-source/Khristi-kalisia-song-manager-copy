@@ -3,209 +3,451 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>
-Khristi Kalisiya Worship Song Manager
-</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="css/dashboard.css">
+    <title>
+        Khristi Kalisiya Worship Manager
+    </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- =========================================
+         CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard1.css"
+    >
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
 </head>
+
 
 <body>
 
 
-<!-- ==========================================
+<!-- =====================================================
      SIDEBAR
-========================================== -->
+====================================================== -->
 
 <div class="sidebar">
+
 
     <h2>
         ✝ Khristi Kalisiya
     </h2>
 
 
-    <a href="index.html">
+    <!-- Dashboard -->
+
+    <a
+        href="index.html"
+        class="active"
+    >
+
         <i class="fa-solid fa-house"></i>
-        Dashboard
+
+        <span>
+            Dashboard
+        </span>
+
     </a>
 
 
-    <!-- SONGS -->
+    <!-- Songs -->
 
     <a href="pages/songs.html">
+
         <i class="fa-solid fa-music"></i>
-        Songs
+
+        <span>
+            Songs
+        </span>
+
     </a>
 
+
+    <!-- Sunday Planner -->
 
     <a href="pages/planner.html">
-        <i class="fa-solid fa-calendar"></i>
-        Sunday Planner
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        <span>
+            Sunday Planner
+        </span>
+
     </a>
 
+
+    <!-- History -->
 
     <a href="pages/history.html">
-        <i class="fa-solid fa-clock"></i>
-        History
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        <span>
+            History
+        </span>
+
     </a>
 
+
+    <!-- Choir -->
 
     <a href="pages/choir.html">
-        🎤 Choir
+
+        <i class="fa-solid fa-users"></i>
+
+        <span>
+            Choir
+        </span>
+
     </a>
 
-     <div class="admin-only">
-    <a href="pages/reports.html">
-        <i class="fa-solid fa-chart-line"></i>
-        Reports
-    </a>
-     </div>
 
+    <!-- Admin Reports -->
+
+    <div class="admin-only">
+
+        <a href="pages/reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- Settings -->
 
     <a href="pages/settings.html">
+
         <i class="fa-solid fa-gear"></i>
-        Settings
+
+        <span>
+            Settings
+        </span>
+
     </a>
+
 
 </div>
 
 
 
-<!-- ==========================================
-     MAIN
-========================================== -->
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
 
 <div class="main">
 
 
-    <!-- HEADER -->
+    <!-- =================================================
+         HEADER
+    ================================================== -->
 
     <div class="top-header">
 
-        <h1>
-            Worship Management Dashboard
-        </h1>
+
+        <div>
+
+            <h1>
+                Worship Dashboard
+            </h1>
+
+            <p>
+                Manage your worship easily.
+            </p>
+
+        </div>
 
 
         <div class="header-right">
 
+
+            <!-- Admin Login -->
+
             <a
                 href="login.html"
                 id="loginBtnHeader"
-                class="btn-primary">
+                class="btn-primary"
+            >
+
+                <i class="fa-solid fa-lock"></i>
 
                 Admin Login
 
             </a>
 
 
+            <!-- Logout -->
+
             <button
                 id="logoutBtn"
-                class="btn-danger">
+                class="btn-danger"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
 
                 Logout
 
             </button>
 
+
         </div>
+
 
     </div>
 
 
 
-    <!-- ==========================================
-         MAIN DASHBOARD CARDS
-    =========================================== -->
+    <!-- =================================================
+         WELCOME
+    ================================================== -->
+
+    <div class="dashboard-welcome">
+
+
+        <h2>
+            Welcome to Worship Manager 👋
+        </h2>
+
+
+        <p>
+            Everything for Sunday worship in one place.
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         DASHBOARD CARDS
+    ================================================== -->
 
     <div class="cards">
 
 
-        <!-- SONGS -->
+        <!-- =============================================
+             FAST SONGS
+        ============================================== -->
 
         <div
-            class="card"
-            onclick="location.href='pages/songs.html'">
+            class="card dashboard-card fast-card"
+            onclick="location.href='pages/fast-songs.html'"
+        >
 
-            <i class="fa-solid fa-music"></i>
 
-            <h3>
-                Songs
-            </h3>
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-music"></i>
+
+            </div>
+
+
+            <h2>
+                Fast Songs
+            </h2>
+
 
             <p>
-                🎵
+                Worship Songs
             </p>
+
+
+            <span class="card-button">
+                Open List
+            </span>
+
 
         </div>
 
 
 
-        <!-- SUNDAY PLANNER -->
+        <!-- =============================================
+             SLOW SONGS
+        ============================================== -->
 
         <div
-            class="card"
-            onclick="location.href='pages/planner.html'">
+            class="card dashboard-card slow-card"
+            onclick="location.href='pages/slow-songs.html'"
+        >
 
-            <i class="fa-solid fa-calendar-days"></i>
 
-            <h3>
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </div>
+
+
+            <h2>
+                Slow Songs
+            </h2>
+
+
+            <p>
+                Worship Songs
+            </p>
+
+
+            <span class="card-button">
+                Open List
+            </span>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             SUNDAY PLANNER
+        ============================================== -->
+
+        <div
+            class="card dashboard-card planner-card"
+            onclick="location.href='pages/planner.html'"
+        >
+
+
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+            </div>
+
+
+            <h2>
                 Sunday Planner
-            </h3>
+            </h2>
+
 
             <p>
-                4 + 3
+                Plan Worship
             </p>
+
+
+            <span class="card-button">
+                Open Planner
+            </span>
+
 
         </div>
 
 
 
-        <!-- HISTORY -->
+        <!-- =============================================
+             HISTORY
+        ============================================== -->
 
         <div
-            class="card"
-            onclick="location.href='pages/history.html'">
+            class="card dashboard-card history-card"
+            onclick="location.href='pages/history.html'"
+        >
 
-            <i class="fa-solid fa-history"></i>
 
-            <h3>
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <h2>
                 History
-            </h3>
+            </h2>
 
-            <p id="historyCount">
+
+            <!-- ONLY HISTORY HAS COUNT -->
+
+            <strong
+                class="card-number"
+                id="historyCount"
+            >
                 0
+            </strong>
+
+
+            <p>
+                Worship Plans
             </p>
+
+
+            <span class="card-button">
+                View History
+            </span>
+
 
         </div>
 
 
 
-        <!-- CHOIR -->
+        <!-- =============================================
+             CHOIR
+        ============================================== -->
 
         <div
-            class="card"
-            onclick="location.href='pages/choir.html'">
+            class="card dashboard-card choir-card"
+            onclick="location.href='pages/choir.html'"
+        >
 
-            <i class="fa-solid fa-users"></i>
 
-            <h3>
+            <div class="dashboard-card-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+
+            <h2>
                 Choir
-            </h3>
+            </h2>
+
 
             <p>
-                🎤
+                Choir Members
             </p>
+
+
+            <span class="card-button">
+                Manage Choir
+            </span>
+
 
         </div>
 
@@ -214,86 +456,206 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 
 
-    <!-- ==========================================
-         SELECTED SONGS
-    =========================================== -->
+    <!-- =================================================
+         THIS SUNDAY'S SONGS
+    ================================================== -->
 
-    <div class="section">
+    <div class="section dashboard-section">
 
-        <h2>
-            ⭐ Selected Songs For This Sunday
-        </h2>
 
+        <div class="section-header">
+
+
+            <div>
+
+                <h2>
+                    ⭐ This Sunday's Songs
+                </h2>
+
+
+                <p>
+                    Songs selected for this Sunday.
+                </p>
+
+            </div>
+
+
+            <a
+                href="pages/planner.html"
+                class="small-action-btn"
+            >
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Open Planner
+
+            </a>
+
+
+        </div>
+
+
+        <!-- Selected Songs -->
 
         <div id="selectedSongs">
 
-            No songs selected
+
+            <!-- Default empty state -->
+
+            <div class="dashboard-empty">
+
+
+                <div class="empty-icon">
+                    🎵
+                </div>
+
+
+                <h3>
+                    No songs selected
+                </h3>
+
+
+                <p>
+                    Select songs from the Sunday Planner.
+                </p>
+
+
+                <a
+                    href="pages/planner.html"
+                    class="empty-button"
+                >
+
+                    Select Songs
+
+                </a>
+
+
+            </div>
+
 
         </div>
+
 
     </div>
 
 
 
-    <!-- ==========================================
+    <!-- =================================================
          QUICK ACTIONS
-    =========================================== -->
+    ================================================== -->
 
-    <div class="section">
+    <div class="section dashboard-section">
 
-        <h2>
-            Quick Actions
-        </h2>
+
+        <div class="section-header">
+
+
+            <div>
+
+                <h2>
+                    ⚡ Quick Actions
+                </h2>
+
+
+                <p>
+                    Frequently used options.
+                </p>
+
+            </div>
+
+
+        </div>
+
 
 
         <div class="quick-buttons">
 
 
+            <!-- Songs -->
+
             <a href="pages/songs.html">
-                🎵 Manage Songs
+
+                <i class="fa-solid fa-music"></i>
+
+                <span>
+                    Manage Songs
+                </span>
+
             </a>
 
+
+            <!-- Planner -->
 
             <a href="pages/planner.html">
-                📅 Plan Sunday
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>
+                    Plan Sunday
+                </span>
+
             </a>
 
+
+            <!-- History -->
 
             <a href="pages/history.html">
-                🕒 View History
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span>
+                    View History
+                </span>
+
             </a>
 
 
+            <!-- Choir -->
+
             <a href="pages/choir.html">
-                🎤 Manage Choir
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Manage Choir
+                </span>
+
             </a>
 
 
         </div>
 
+
     </div>
 
 
-
-    <!-- ==========================================
-         SONG STATISTICS
-    =========================================== -->
+</div>
 
 
-<!-- ==========================================
+
+<!-- =====================================================
      JAVASCRIPT
-========================================== -->
+====================================================== -->
 
 <script src="js/clock.js"></script>
 
-<script type="module"
-src="firebase.js"></script>
 
-<script type="module"
-src="script1.js"></script>
+<script
+    type="module"
+    src="firebase.js"
+></script>
 
-<script type="module"
-src="js/admin.js"></script>
+
+<script
+    type="module"
+    src="script1.js"
+></script>
+
+
+<script
+    type="module"
+    src="js/admin.js"
+></script>
 
 
 </body>

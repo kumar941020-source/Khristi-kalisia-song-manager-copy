@@ -1,0 +1,504 @@
+/* =========================================
+   HISTORY PAGE - CLEAN COMPACT DESIGN
+   ========================================= */
+
+.history-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    border: 1px solid #e8edf3;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Header */
+
+.history-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.history-card-header h3 {
+    margin: 5px 0 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* Delete button */
+
+.delete-history-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: #fff1f1;
+    color: #dc3545;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+}
+
+.delete-history-btn:hover {
+    background: #dc3545;
+    color: white;
+}
+
+
+/* =========================================
+   FAST / SLOW SECTION
+   ========================================= */
+
+.history-songs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 15px;
+}
+
+
+.history-song-section {
+    min-width: 0;
+}
+
+
+/* Section title */
+
+.song-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.song-section-title strong {
+    font-size: 14px;
+    color: #344054;
+}
+
+.song-count {
+    font-size: 12px;
+    background: #eef2f7;
+    padding: 2px 8px;
+    border-radius: 20px;
+    color: #667085;
+}
+
+
+/* =========================================
+   SONG LIST - GAP REDUCED
+   ========================================= */
+
+.history-song-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;              /* IMPORTANT */
+}
+
+
+.history-song {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-height: 34px;
+    padding: 6px 9px;
+
+    background: #f8fafc;
+    border: 1px solid #edf1f5;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+
+.history-song:hover {
+    background: #f1f5f9;
+}
+
+
+/* Song number */
+
+.song-number {
+    width: 23px;
+    height: 23px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e9eef5;
+    color: #667085;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* Song name */
+
+.song-name {
+    font-size: 13px;
+    line-height: 1.3;
+    color: #344054;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* No songs */
+
+.no-songs {
+    padding: 10px;
+    text-align: center;
+    color: #98a2b3;
+    font-size: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+
+/* =========================================
+   FAST / SLOW DOTS
+   ========================================= */
+
+.song-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.fast-dot {
+    background: #22c55e;
+}
+
+.slow-dot {
+    background: #8b5cf6;
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+   ========================================= */
+
+.empty-history {
+    width: 100%;
+    padding: 45px 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #f1f5f9;
+
+    color: #667085;
+    font-size: 22px;
+}
+
+.empty-history h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: #344054;
+}
+
+.empty-history p {
+    margin: 0;
+    color: #98a2b3;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SEARCH BOX
+   ========================================= */
+
+.history-search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    margin-bottom: 22px;
+    padding: 12px;
+
+    background: #ffffff;
+    border: 1px solid #e8edf3;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+.history-search-box input {
+    flex: 1;
+    height: 40px;
+
+    border: 1px solid #d9e0e8;
+    border-radius: 9px;
+
+    padding: 0 12px;
+
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.history-search-box input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+
+/* =========================================
+   ATTENDANCE HISTORY
+   ========================================= */
+
+.attendance-history-card {
+    width: 100%;
+    background: #ffffff;
+
+    border: 1px solid #e8edf3;
+    border-radius: 16px;
+
+    padding: 18px 20px;
+    margin-bottom: 18px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.attendance-history-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.attendance-history-header h3 {
+    margin: 5px 0 3px;
+    font-size: 17px;
+}
+
+.cycle-date {
+    margin: 0;
+    font-size: 12px;
+    color: #98a2b3;
+}
+
+
+/* Attendance boxes */
+
+.attendance-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.attendance-summary-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px;
+
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.attendance-icon {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eef2f7;
+    color: #667085;
+
+    font-size: 13px;
+}
+
+.attendance-summary-box span {
+    display: block;
+    font-size: 11px;
+    color: #98a2b3;
+}
+
+.attendance-summary-box strong {
+    display: block;
+    margin-top: 2px;
+    font-size: 16px;
+    color: #344054;
+}
+
+
+/* Total */
+
+.attendance-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 12px;
+    padding-top: 11px;
+
+    border-top: 1px solid #edf0f4;
+
+    font-size: 12px;
+    color: #667085;
+}
+
+.attendance-total strong {
+    font-size: 15px;
+    color: #344054;
+}
+
+
+/* =========================================
+   DELETE MODAL
+   ========================================= */
+
+#deleteModal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    z-index: 9999;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#deleteModal.show {
+    display: flex;
+}
+
+#deleteModal > div {
+    width: min(420px, 100%);
+
+    background: white;
+    border-radius: 18px;
+
+    padding: 24px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+    box-sizing: border-box;
+}
+
+#deleteModalTitle {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+#deleteModalMessage {
+    margin: 0;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#deleteItemName {
+    font-weight: 700;
+    color: #344054;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .history-card {
+        padding: 14px;
+        border-radius: 13px;
+    }
+
+    .history-songs {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .history-song {
+        min-height: 32px;
+        padding: 5px 8px;
+    }
+
+    .song-name {
+        font-size: 12px;
+    }
+
+    .attendance-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-history-card {
+        padding: 14px;
+    }
+
+}
+
+
+/* Very small mobile */
+
+@media (max-width: 420px) {
+
+    .history-card-header h3 {
+        font-size: 16px;
+    }
+
+    .history-card {
+        padding: 12px;
+    }
+
+    .history-song-list {
+        gap: 4px;
+    }
+
+}

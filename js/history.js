@@ -1,12 +1,7 @@
-// ==========================================
-// SUNDAY HISTORY PAGE
-// ==========================================
-
 import {
     getSundayHistory,
     deleteHistory
 } from "../script1.js";
-
 
 import {
     db,
@@ -16,47 +11,671 @@ import {
 } from "../firebase.js";
 
 
-// ==========================================
-// DISPLAY SUNDAY HISTORY
-// ==========================================
+// ===============================
+// GLOBAL VARIABLES
+// ===============================
 
-function displaySundayHistory() {
+let attendanceCycles = [];
+let pendingDelete = null;
+
+
+// ===============================
+// ESCAPE HTML
+// ===============================
+
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+// ===============================
+// DATE NORMALIZE
+// ===============================
+
+function normalizeDate(date) {
+
+    if (!date) return "";
+
+    return String(date)
+        .trim()
+        .replace(/\//g, "-");
+
+}
+
+
+// ===============================
+// WAIT FOR APP READY
+// ===============================
+
+function waitForAppReady(callback) {
+
+    if (window.appReady === true) {
+        callback();
+        return;
+    }
+
+    const check = setInterval(() => {
+
+        if (window.appReady === true) {
+
+            clearInterval(check);
+            callback();
+
+        }
+
+    }, 200);
+
+}
+
+
+// ===============================
+// DISPLAY SUNDAY HISTORY
+// ===============================
+
+function displaySundayHistory(searchValue = "") {
 
     const container =
-        document.getElementById(
-            "historyContainer"
-        );
+        document.getElementById("historyContainer");
 
     if (!container) return;
 
 
-    container.innerHTML = "";
+    const history = getSundayHistory() || [];
+
+    const search =
+        String(searchValue)
+            .trim()
+            .toLowerCase();
 
 
-    const history =
-        [...getSundayHistory()].reverse();
+    let filteredHistory = history.filter(plan => {
+
+        if (!search) return true;
+
+        const date =
+            normalizeDate(plan.date).toLowerCase();
+
+        return date.includes(search);
+
+    });
 
 
-    // ======================================
-    // NO HISTORY
-    // ======================================
+    // Latest first
+    filteredHistory = [...filteredHistory].reverse();
 
-    if (history.length === 0) {
+
+    // ===============================
+    // NO DATA
+    // ===============================
+
+    if (filteredHistory.length === 0) {
 
         container.innerHTML = `
 
-            <div class="cycle-empty">
+            <div class="empty-history">
 
-                <div style="font-size:35px;">
-                    📅
+                <div class="empty-icon">
+                    <i class="fa-solid fa-calendar-xmark"></i>
                 </div>
 
                 <h3>
-                    No Sunday History Available
+                    No Sunday History Found
                 </h3>
 
                 <p>
-                    Previous Sunday plans will appear here.
+                    ${
+                        search
+                        ? "No plan found for this date."
+                        : "No Sunday plans have been saved yet."
+                    }
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    // ===============================
+    // RENDER HISTORY
+    // ===============================
+
+    container.innerHTML =
+        filteredHistory.map(plan => {
+
+            const fastSongs =
+                Array.isArray(plan.fastSongs)
+                    ? plan.fastSongs
+                    : [];
+
+            const slowSongs =
+                Array.isArray(plan.slowSongs)
+                    ? plan.slowSongs
+                    : [];
+
+
+            return `
+
+                <div class="history-card">
+
+                    <div class="history-card-header">
+
+                        <div>
+
+                            <span class="history-label">
+                                SUNDAY PLAN
+                            </span>
+
+                            <h3>
+                                <i class="fa-regular fa-calendar"></i>
+                                ${escapeHTML(plan.date || "No Date")}
+                            </h3>
+
+                        </div>
+
+
+                        <button
+                            class="delete-history-btn admin-only"
+                            onclick="requestDeleteSundayHistory(
+                                '${escapeHTML(plan.id)}',
+                                '${escapeHTML(plan.date || "")}'
+                            )"
+                            title="Delete History"
+                        >
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="history-songs">
+
+                        <!-- FAST SONGS -->
+
+                        <div class="history-song-section fast-section">
+
+                            <div class="song-section-title">
+
+                                <span class="song-dot fast-dot"></span>
+
+                                <strong>
+                                    Fast Songs
+                                </strong>
+
+                                <span class="song-count">
+                                    ${fastSongs.length}
+                                </span>
+
+                            </div>
+
+
+                            <div class="history-song-list">
+
+                                ${
+                                    fastSongs.length
+                                    ? fastSongs.map((song, index) => `
+
+                                        <div class="history-song">
+
+                                            <span class="song-number">
+                                                ${index + 1}
+                                            </span>
+
+                                            <span class="song-name">
+                                                ${escapeHTML(
+                                                    typeof song === "string"
+                                                    ? song
+                                                    : song.name
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                    `).join("")
+                                    : `
+
+                                        <div class="no-songs">
+                                            No Fast Songs
+                                        </div>
+
+                                    `
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SLOW SONGS -->
+
+                        <div class="history-song-section slow-section">
+
+                            <div class="song-section-title">
+
+                                <span class="song-dot slow-dot"></span>
+
+                                <strong>
+                                    Slow Songs
+                                </strong>
+
+                                <span class="song-count">
+                                    ${slowSongs.length}
+                                </span>
+
+                            </div>
+
+
+                            <div class="history-song-list">
+
+                                ${
+                                    slowSongs.length
+                                    ? slowSongs.map((song, index) => `
+
+                                        <div class="history-song">
+
+                                            <span class="song-number">
+                                                ${index + 1}
+                                            </span>
+
+                                            <span class="song-name">
+                                                ${escapeHTML(
+                                                    typeof song === "string"
+                                                    ? song
+                                                    : song.name
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                    `).join("")
+                                    : `
+
+                                        <div class="no-songs">
+                                            No Slow Songs
+                                        </div>
+
+                                    `
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+// ===============================
+// DELETE SUNDAY HISTORY REQUEST
+// ===============================
+
+function requestDeleteSundayHistory(id, date) {
+
+    pendingDelete = {
+
+        type: "sunday",
+
+        id: id
+
+    };
+
+
+    openDeleteModal(
+
+        "Delete Sunday Plan?",
+
+        "Are you sure you really want to delete the Sunday plan of",
+
+        date
+
+    );
+
+}
+
+
+// ===============================
+// OPEN DELETE MODAL
+// ===============================
+
+function openDeleteModal(title, message, itemName) {
+
+    const modal =
+        document.getElementById("deleteModal");
+
+    if (!modal) {
+
+        // Fallback
+        if (confirm(`${message} ${itemName}?`)) {
+
+            confirmDelete();
+
+        }
+
+        return;
+
+    }
+
+
+    const titleElement =
+        document.getElementById("deleteModalTitle");
+
+    const messageElement =
+        document.getElementById("deleteModalMessage");
+
+    const itemElement =
+        document.getElementById("deleteItemName");
+
+
+    if (titleElement) {
+
+        titleElement.textContent = title;
+
+    }
+
+
+    if (messageElement) {
+
+        messageElement.textContent = message;
+
+    }
+
+
+    if (itemElement) {
+
+        itemElement.textContent = itemName;
+
+    }
+
+
+    modal.classList.add("show");
+
+    modal.setAttribute("aria-hidden", "false");
+
+}
+
+
+// ===============================
+// CLOSE DELETE MODAL
+// ===============================
+
+function closeDeleteModal() {
+
+    const modal =
+        document.getElementById("deleteModal");
+
+    if (!modal) return;
+
+
+    modal.classList.remove("show");
+
+    modal.setAttribute("aria-hidden", "true");
+
+    pendingDelete = null;
+
+}
+
+
+// ===============================
+// CONFIRM DELETE
+// ===============================
+
+async function confirmDelete() {
+
+    if (!pendingDelete) return;
+
+
+    const deleteButton =
+        document.getElementById("confirmDeleteBtn");
+
+
+    if (deleteButton) {
+
+        deleteButton.disabled = true;
+
+        deleteButton.innerHTML =
+            `<i class="fa-solid fa-spinner fa-spin"></i> Deleting...`;
+
+    }
+
+
+    try {
+
+        // Sunday History
+        if (pendingDelete.type === "sunday") {
+
+            await deleteHistory(
+                pendingDelete.id
+            );
+
+            displaySundayHistory(
+                getSearchValue()
+            );
+
+        }
+
+
+        // Attendance Cycle
+        else if (pendingDelete.type === "attendance") {
+
+            await remove(
+                ref(
+                    db,
+                    "attendance/history/" +
+                    pendingDelete.key
+                )
+            );
+
+            await loadAttendanceCycleHistory();
+
+        }
+
+
+        closeDeleteModal();
+
+
+    } catch (error) {
+
+        console.error(
+            "Delete Error:",
+            error
+        );
+
+        alert(
+            "Unable to delete. Please try again."
+        );
+
+    } finally {
+
+        if (deleteButton) {
+
+            deleteButton.disabled = false;
+
+            deleteButton.innerHTML =
+                `<i class="fa-solid fa-trash"></i> Delete`;
+
+        }
+
+    }
+
+}
+// ===============================
+// LOAD ATTENDANCE CYCLE HISTORY
+// ===============================
+
+async function loadAttendanceCycleHistory() {
+
+    const container =
+        document.getElementById("attendanceCycleHistory");
+
+    if (!container) return;
+
+
+    try {
+
+        const snapshot =
+            await get(
+                ref(db, "attendance/history")
+            );
+
+
+        if (!snapshot.exists()) {
+
+            attendanceCycles = [];
+
+            renderAttendanceCycles();
+
+            return;
+
+        }
+
+
+        const data =
+            snapshot.val();
+
+
+        attendanceCycles =
+            Object.entries(data).map(
+                ([key, value]) => ({
+
+                    key,
+
+                    ...value
+
+                })
+            );
+
+
+        // Latest cycle first
+        attendanceCycles.sort(
+            (a, b) =>
+                Number(b.cycleNumber || 0) -
+                Number(a.cycleNumber || 0)
+        );
+
+
+        renderAttendanceCycles();
+
+
+    } catch (error) {
+
+        console.error(
+            "Attendance History Error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="empty-history">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <h3>
+                    Unable to Load Attendance History
+                </h3>
+
+                <p>
+                    Please refresh the page.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// ===============================
+// RENDER ATTENDANCE CYCLES
+// ===============================
+
+function renderAttendanceCycles(
+    searchValue = ""
+) {
+
+    const container =
+        document.getElementById("attendanceCycleHistory");
+
+    if (!container) return;
+
+
+    const search =
+        String(searchValue)
+            .trim()
+            .toLowerCase();
+
+
+    const filteredCycles =
+        attendanceCycles.filter(cycle => {
+
+            if (!search) return true;
+
+
+            const cycleName =
+                String(
+                    cycle.cycleName || ""
+                ).toLowerCase();
+
+
+            const completedDate =
+                normalizeDate(
+                    cycle.completedDate ||
+                    cycle.endDate ||
+                    cycle.date ||
+                    ""
+                ).toLowerCase();
+
+
+            return (
+                cycleName.includes(search) ||
+                completedDate.includes(search)
+            );
+
+        });
+
+
+    if (filteredCycles.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-history">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-clipboard-list"></i>
+
+                </div>
+
+                <h3>
+                    No Attendance History Found
+                </h3>
+
+                <p>
+                    ${
+                        search
+                        ? "No attendance cycle found."
+                        : "No attendance cycles have been completed yet."
+                    }
                 </p>
 
             </div>
@@ -68,710 +687,430 @@ function displaySundayHistory() {
     }
 
 
-    // ======================================
-    // CREATE EACH SUNDAY CARD
-    // ======================================
-
-    history.forEach(plan => {
-
-        const fastSongs =
-            Array.isArray(plan.fastSongs)
-                ? plan.fastSongs
-                : [];
+    container.innerHTML =
+        filteredCycles.map(cycle => {
 
 
-        const slowSongs =
-            Array.isArray(plan.slowSongs)
-                ? plan.slowSongs
-                : [];
+            const zoom =
+                cycle.sessions?.zoom || {};
+
+            const saturday =
+                cycle.sessions?.saturday || {};
+
+            const sunday =
+                cycle.sessions?.sunday || {};
 
 
-        // ==================================
-        // FAST SONGS
-        // ==================================
+            const zoomCount =
+                Number(zoom.count || 0);
 
-        let fastList = "";
+            const saturdayCount =
+                Number(saturday.count || 0);
 
-
-        if (fastSongs.length > 0) {
-
-            fastSongs.forEach(song => {
-
-                const songName =
-                    typeof song === "object"
-                        ? song.name
-                        : song;
+            const sundayCount =
+                Number(sunday.count || 0);
 
 
-                fastList += `
-
-                    <div class="history-song">
-
-                        <span>
-                            🔥
-                        </span>
-
-                        <span>
-                            ${escapeHTML(songName)}
-                        </span>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-        else {
-
-            fastList = `
-
-                <p class="history-empty">
-                    No fast songs
-                </p>
-
-            `;
-
-        }
+            const totalSessions =
+                zoomCount +
+                saturdayCount +
+                sundayCount;
 
 
-        // ==================================
-        // SLOW SONGS
-        // ==================================
-
-        let slowList = "";
+            const cycleName =
+                cycle.cycleName ||
+                `Cycle ${cycle.cycleNumber || ""}`;
 
 
-        if (slowSongs.length > 0) {
-
-            slowSongs.forEach(song => {
-
-                const songName =
-                    typeof song === "object"
-                        ? song.name
-                        : song;
+            const completedDate =
+                cycle.completedDate ||
+                cycle.endDate ||
+                cycle.date ||
+                "Date not available";
 
 
-                slowList += `
+            return `
 
-                    <div class="history-song">
+                <div class="attendance-history-card">
 
-                        <span>
-                            ❤️
-                        </span>
+                    <div class="attendance-history-header">
 
-                        <span>
-                            ${escapeHTML(songName)}
-                        </span>
+                        <div>
 
-                    </div>
+                            <span class="history-label">
+                                ATTENDANCE CYCLE
+                            </span>
 
-                `;
+                            <h3>
 
-            });
+                                <i class="fa-solid fa-calendar-check"></i>
 
-        }
-        else {
+                                ${escapeHTML(cycleName)}
 
-            slowList = `
+                            </h3>
 
-                <p class="history-empty">
-                    No slow songs
-                </p>
+                            <p class="cycle-date">
 
-            `;
+                                <i class="fa-regular fa-calendar"></i>
 
-        }
+                                ${escapeHTML(completedDate)}
 
-
-        // ==================================
-        // SUNDAY CARD
-        // ==================================
-
-        container.innerHTML += `
-
-            <div class="attendance-record-card history-card">
-
-                <div class="history-header">
-
-                    <div>
-
-                        <h3>
-                            ⛪ Sunday Worship
-                        </h3>
-
-                        <p>
-                            📅 ${escapeHTML(plan.date || "-")}
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="attendance-record history-song-section">
-
-                    <div>
-
-                        <h4>
-                            🔥 Fast Songs
-                        </h4>
-
-                        <div class="history-song-list">
-
-                            ${fastList}
+                            </p>
 
                         </div>
 
+
+                        <button
+                            class="delete-history-btn admin-only"
+                            onclick="requestDeleteAttendanceCycle(
+                                '${escapeHTML(cycle.key)}',
+                                '${escapeHTML(cycleName)}',
+                                '${escapeHTML(completedDate)}'
+                            )"
+                            title="Delete Attendance Cycle"
+                        >
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
                     </div>
 
-                </div>
+
+                    <div class="attendance-summary-grid">
 
 
-                <div class="attendance-record history-song-section">
+                        <div class="attendance-summary-box zoom-box">
 
-                    <div>
+                            <div class="attendance-icon">
 
-                        <h4>
-                            ❤️ Slow Songs
-                        </h4>
+                                <i class="fa-solid fa-video"></i>
 
-                        <div class="history-song-list">
+                            </div>
 
-                            ${slowList}
+                            <div>
+
+                                <span>
+                                    Zoom
+                                </span>
+
+                                <strong>
+                                    ${zoomCount}
+                                </strong>
+
+                            </div>
 
                         </div>
 
+
+                        <div class="attendance-summary-box saturday-box">
+
+                            <div class="attendance-icon">
+
+                                <i class="fa-solid fa-people-group"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Saturday
+                                </span>
+
+                                <strong>
+                                    ${saturdayCount}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="attendance-summary-box sunday-box">
+
+                            <div class="attendance-icon">
+
+                                <i class="fa-solid fa-church"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Sunday
+                                </span>
+
+                                <strong>
+                                    ${sundayCount}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="attendance-total">
+
+                        <span>
+                            Total Sessions
+                        </span>
+
+                        <strong>
+                            ${totalSessions}
+                        </strong>
+
                     </div>
 
                 </div>
 
+            `;
 
-                <div class="history-actions">
-
-                    <button
-                        class="btn-danger admin-only"
-                        onclick="
-                            deleteSundayHistory(
-                                '${plan.id}'
-                            )
-                        ">
-
-                        🗑 Delete
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-
-    applyAdminPermission();
+        }).join("");
 
 }
 
 
-// ==========================================
-// ESCAPE HTML
-// ==========================================
+// ===============================
+// DELETE ATTENDANCE CYCLE
+// ===============================
 
-function escapeHTML(value) {
+function requestDeleteAttendanceCycle(
+    cycleKey,
+    cycleName,
+    completedDate
+) {
 
-    return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    pendingDelete = {
+
+        type: "attendance",
+
+        key: cycleKey
+
+    };
+
+
+    openDeleteModal(
+
+        "Delete Attendance Cycle?",
+
+        "Are you sure you really want to delete",
+
+        `${cycleName} (${completedDate})`
+
+    );
 
 }
 
 
-// ==========================================
+// ===============================
+// SEARCH
+// ===============================
+
+function getSearchValue() {
+
+    const searchInput =
+        document.getElementById("historySearch");
+
+    if (!searchInput) return "";
+
+    return searchInput.value.trim();
+
+}
+
+
+function searchHistory() {
+
+    const value =
+        getSearchValue();
+
+
+    displaySundayHistory(value);
+
+    renderAttendanceCycles(value);
+
+}
+
+
+function clearHistorySearch() {
+
+    const searchInput =
+        document.getElementById("historySearch");
+
+    if (searchInput) {
+
+        searchInput.value = "";
+
+    }
+
+
+    displaySundayHistory("");
+
+    renderAttendanceCycles("");
+
+}
+
+
+// ===============================
 // ADMIN PERMISSION
-// ==========================================
+// ===============================
 
 function applyAdminPermission() {
 
-    if (
-        document.body.classList.contains(
-            "visitor"
-        )
-    ) {
+    const isVisitor =
+        document.body.classList.contains("visitor");
 
-        document
-            .querySelectorAll(
-                ".admin-only"
-            )
-            .forEach(element => {
 
-                element.style.display =
-                    "none";
+    if (!isVisitor) return;
 
-            });
 
-    }
+    document
+        .querySelectorAll(".admin-only")
+        .forEach(element => {
+
+            element.style.display = "none";
+
+        });
 
 }
 
 
-// ==========================================
-// DELETE SUNDAY HISTORY
-// ==========================================
+// ===============================
+// PAGE INITIALIZATION
+// ===============================
 
-async function deleteSundayHistory(id) {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to delete this Sunday history?"
-        );
-
-
-    if (!confirmed) return;
+        const searchInput =
+            document.getElementById("historySearch");
 
 
-    try {
-
-        await deleteHistory(id);
-
-
-        displaySundayHistory();
-
-    }
-    catch (error) {
-
-        console.error(
-            "Delete history error:",
-            error
-        );
+        const clearButton =
+            document.getElementById("clearHistorySearch");
 
 
-        alert(
-            "❌ Unable to delete history."
-        );
-
-    }
-
-}
+        const cancelButton =
+            document.getElementById("cancelDeleteBtn");
 
 
-// ==========================================
-// LOAD ATTENDANCE CYCLE HISTORY
-// ==========================================
-
-async function loadAttendanceCycleHistory() {
-
-    const container =
-        document.getElementById(
-            "attendanceCycleHistory"
-        );
+        const confirmButton =
+            document.getElementById("confirmDeleteBtn");
 
 
-    if (!container) return;
+        const modal =
+            document.getElementById("deleteModal");
 
 
-    try {
+        // Search
+        if (searchInput) {
 
-        const historyRef =
-            ref(
-                db,
-                "attendance/history"
+            searchInput.addEventListener(
+                "input",
+                searchHistory
             );
-
-
-        const snapshot =
-            await get(
-                historyRef
-            );
-
-
-        if (!snapshot.exists()) {
-
-            container.innerHTML = `
-
-                <div class="cycle-empty">
-
-                    <div style="font-size:35px;">
-                        📊
-                    </div>
-
-                    <h3>
-                        No Attendance Cycles
-                    </h3>
-
-                    <p>
-                        Completed attendance cycles will appear here.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
 
         }
 
 
-        const history =
-            snapshot.val();
-
-
-        const cycles =
-            Object.entries(history)
-                .map(
-                    ([key, cycle]) => ({
-
-                        key:
-                            key,
-
-                        ...cycle
-
-                    })
-                )
-                .sort(
-                    (
-                        a,
-                        b
-                    ) =>
-                        (
-                            b.cycleNumber || 0
-                        ) -
-                        (
-                            a.cycleNumber || 0
-                        )
-                );
-
-
-        container.innerHTML = "";
-
-
-        cycles.forEach(
-            cycle => {
-
-                const summary =
-                    cycle.summary || {};
-
-
-                const zoom =
-                    summary.zoom || {};
-
-
-                const saturday =
-                    summary.saturday || {};
-
-
-                const sunday =
-                    summary.sunday || {};
-
-
-                const overall =
-                    summary.overall || {};
-
-
-                const completedDate =
-                    cycle.completedAt
-                        ? new Date(
-                            cycle.completedAt
-                        ).toLocaleDateString()
-                        : "-";
-
-
-                container.innerHTML += `
-
-                    <div class="cycle-history-card">
-
-
-                        <!-- HEADER -->
-
-                        <div class="cycle-history-header">
-
-
-                            <div class="cycle-history-name">
-
-                                <div class="cycle-history-icon">
-
-                                    🔄
-
-                                </div>
-
-
-                                <div>
-
-                                    <h3>
-
-                                        ${escapeHTML(
-                                            cycle.cycleName ||
-                                            "Attendance Cycle"
-                                        )}
-
-                                    </h3>
-
-
-                                    <p>
-
-                                        Completed:
-                                        ${completedDate}
-
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- DELETE -->
-
-                            <button
-                                type="button"
-                                class="cycle-delete-btn admin-only"
-                                onclick="
-                                    deleteAttendanceCycle(
-                                        '${cycle.key}'
-                                    )
-                                ">
-
-                                🗑 Delete
-
-                            </button>
-
-                        </div>
-
-
-                        <!-- SUMMARY -->
-
-                        <div class="cycle-summary-grid">
-
-
-                            <!-- ZOOM -->
-
-                            <div class="cycle-summary-item">
-
-                                <span>
-                                    💻 Zoom
-                                </span>
-
-                                <strong>
-
-                                    ${
-                                        zoom.present || 0
-                                    }
-                                    /
-                                    ${
-                                        zoom.total || 0
-                                    }
-
-                                </strong>
-
-                            </div>
-
-
-                            <!-- SATURDAY -->
-
-                            <div class="cycle-summary-item">
-
-                                <span>
-                                    🎵 Saturday
-                                </span>
-
-                                <strong>
-
-                                    ${
-                                        saturday.present || 0
-                                    }
-                                    /
-                                    ${
-                                        saturday.total || 0
-                                    }
-
-                                </strong>
-
-                            </div>
-
-
-                            <!-- SUNDAY -->
-
-                            <div class="cycle-summary-item">
-
-                                <span>
-                                    ⛪ Sunday
-                                </span>
-
-                                <strong>
-
-                                    ${
-                                        sunday.present || 0
-                                    }
-                                    /
-                                    ${
-                                        sunday.total || 0
-                                    }
-
-                                </strong>
-
-                            </div>
-
-
-                            <!-- OVERALL -->
-
-                            <div class="cycle-summary-item cycle-overall">
-
-                                <span>
-                                    📊 Overall
-                                </span>
-
-                                <strong>
-
-                                    ${
-                                        overall.percentage || 0
-                                    }%
-
-                                </strong>
-
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
-                `;
-
-            }
-        );
-
-
-        applyAdminPermission();
-
-    }
-    catch (error) {
-
-        console.error(
-            "Attendance cycle history error:",
-            error
-        );
-
-
-        container.innerHTML = `
-
-            <div class="cycle-empty">
-
-                ❌ Unable to load attendance cycle history.
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-// ==========================================
-// DELETE ATTENDANCE CYCLE
-// ==========================================
-
-async function deleteAttendanceCycle(
-    cycleKey
-) {
-
-    const confirmed =
-        confirm(
-
-            "⚠️ Delete Attendance Cycle?\n\n" +
-
-            "This will permanently delete this completed cycle from Attendance History.\n\n" +
-
-            "This action cannot be undone."
-
-        );
-
-
-    if (!confirmed) return;
-
-
-    try {
-
-        const cycleRef =
-            ref(
-                db,
-                "attendance/history/" +
-                cycleKey
+        // Clear search
+        if (clearButton) {
+
+            clearButton.addEventListener(
+                "click",
+                clearHistorySearch
             );
 
-
-        await remove(
-            cycleRef
-        );
+        }
 
 
-        alert(
-            "✅ Attendance cycle deleted successfully."
-        );
+        // Cancel delete
+        if (cancelButton) {
+
+            cancelButton.addEventListener(
+                "click",
+                closeDeleteModal
+            );
+
+        }
 
 
-        await loadAttendanceCycleHistory();
+        // Confirm delete
+        if (confirmButton) {
 
-    }
-    catch (error) {
+            confirmButton.addEventListener(
+                "click",
+                confirmDelete
+            );
 
-        console.error(
-            "Delete attendance cycle error:",
-            error
-        );
-
-
-        alert(
-
-            "❌ Unable to delete attendance cycle.\n\n" +
-            error.message
-
-        );
-
-    }
-
-}
+        }
 
 
-// ==========================================
-// PAGE LOAD
-// ==========================================
+        // Close modal by clicking outside
+        if (modal) {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+            modal.addEventListener(
+                "click",
+                function (event) {
 
-        displaySundayHistory();
+                    if (
+                        event.target === modal
+                    ) {
 
-        await loadAttendanceCycleHistory();
+                        closeDeleteModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // Wait for Firebase/app data
+        waitForAppReady(() => {
+
+            displaySundayHistory();
+
+            applyAdminPermission();
+
+        });
+
+
+        // Attendance history
+        loadAttendanceCycleHistory();
 
     }
 );
 
 
-// ==========================================
+// ===============================
 // WINDOW FUNCTIONS
-// ==========================================
+// ===============================
 
 window.displaySundayHistory =
     displaySundayHistory;
 
+window.searchHistory =
+    searchHistory;
 
-window.deleteSundayHistory =
-    deleteSundayHistory;
+window.clearHistorySearch =
+    clearHistorySearch;
 
+window.requestDeleteSundayHistory =
+    requestDeleteSundayHistory;
+
+window.requestDeleteAttendanceCycle =
+    requestDeleteAttendanceCycle;
+
+window.closeDeleteModal =
+    closeDeleteModal;
+
+window.confirmDelete =
+    confirmDelete;
 
 window.loadAttendanceCycleHistory =
     loadAttendanceCycleHistory;
-
-
-window.deleteAttendanceCycle =
-    deleteAttendanceCycle;
-
-
-window.deleteHistory =
-    deleteHistory;
