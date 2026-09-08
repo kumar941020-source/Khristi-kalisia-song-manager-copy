@@ -338,7 +338,7 @@ function updateDashboard() {
 // DISPLAY SELECTED SONGS
 // ==========================================
 
-/*function displaySelectedSongs() {
+function displaySelectedSongs() {
 
     let box =
         document.getElementById(
@@ -415,7 +415,7 @@ function updateDashboard() {
 
     });
 
-}*/
+}
 
 
 // ==========================================

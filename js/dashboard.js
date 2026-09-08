@@ -1,5 +1,5 @@
 // ==========================================
-// DASHBOARD SONGS
+// DASHBOARD
 // ==========================================
 
 import {
@@ -8,54 +8,123 @@ import {
     get
 } from "../firebase.js";
 
+
+// ==========================================
+// DASHBOARD DATA
+// ==========================================
+
 let dashboardFastSongs = [];
 let dashboardSlowSongs = [];
+let dashboardHistory = [];
 
 
 // ==========================================
-// LOAD SONGS
+// LOAD DASHBOARD DATA
 // ==========================================
 
-async function loadDashboardSongs() {
+async function loadDashboardData() {
 
     try {
 
-        const fastSnapshot =
-            await get(ref(db, "fastSongs"));
+        // ======================================
+        // LOAD FAST SONGS
+        // ======================================
 
-        const slowSnapshot =
-            await get(ref(db, "slowSongs"));
+        const fastSnapshot =
+            await get(
+                ref(db, "fastSongs")
+            );
 
 
         dashboardFastSongs =
             fastSnapshot.exists()
-                ? Object.values(fastSnapshot.val())
+                ? Object.values(
+                    fastSnapshot.val()
+                )
                 : [];
+
+
+        // ======================================
+        // LOAD SLOW SONGS
+        // ======================================
+
+        const slowSnapshot =
+            await get(
+                ref(db, "slowSongs")
+            );
 
 
         dashboardSlowSongs =
             slowSnapshot.exists()
-                ? Object.values(slowSnapshot.val())
+                ? Object.values(
+                    slowSnapshot.val()
+                )
                 : [];
 
 
-        // Wait for script1.js to finish
-        // its own rendering first
-        setTimeout(() => {
+        // ======================================
+        // LOAD SUNDAY HISTORY
+        // ======================================
 
-            renderDashboardSongs();
+        const historySnapshot =
+            await get(
+                ref(db, "sundayHistory")
+            );
 
-        }, 300);
+
+        dashboardHistory =
+            historySnapshot.exists()
+                ? Object.values(
+                    historySnapshot.val()
+                )
+                : [];
+
+
+        // ======================================
+        // UPDATE HISTORY CARD
+        // ======================================
+
+        updateHistoryCount();
+
+
+        // ======================================
+        // RENDER SELECTED SONGS
+        // ======================================
+
+        renderDashboardSongs();
 
     }
     catch (error) {
 
         console.error(
-            "Dashboard songs error:",
+            "Dashboard data error:",
             error
         );
 
     }
+
+}
+
+
+// ==========================================
+// UPDATE HISTORY COUNT
+// ==========================================
+
+function updateHistoryCount() {
+
+    const historyCount =
+        document.getElementById(
+            "historyCount"
+        );
+
+
+    if (!historyCount) {
+        return;
+    }
+
+
+    historyCount.textContent =
+        dashboardHistory.length;
 
 }
 
@@ -71,38 +140,59 @@ function renderDashboardSongs() {
             "selectedSongs"
         );
 
-    if (!box) return;
 
+    if (!box) {
+        return;
+    }
+
+
+    // ======================================
+    // SELECTED FAST SONGS
+    // ======================================
 
     const selectedFast =
         dashboardFastSongs.filter(
-            song => song.selected === true
+            song =>
+                song.selected === true
         );
 
+
+    // ======================================
+    // SELECTED SLOW SONGS
+    // ======================================
 
     const selectedSlow =
         dashboardSlowSongs.filter(
-            song => song.selected === true
+            song =>
+                song.selected === true
         );
 
 
+    // ======================================
+    // COMBINE SONGS
+    // ======================================
+
     const songs = [
 
-        ...selectedFast.map(song => ({
-            ...song,
-            type: "Fast"
-        })),
+        ...selectedFast.map(
+            song => ({
+                ...song,
+                type: "Fast"
+            })
+        ),
 
-        ...selectedSlow.map(song => ({
-            ...song,
-            type: "Slow"
-        }))
+        ...selectedSlow.map(
+            song => ({
+                ...song,
+                type: "Slow"
+            })
+        )
 
     ];
 
 
     // ======================================
-    // EMPTY
+    // EMPTY STATE
     // ======================================
 
     if (songs.length === 0) {
@@ -135,6 +225,7 @@ function renderDashboardSongs() {
         `;
 
         return;
+
     }
 
 
@@ -146,7 +237,8 @@ function renderDashboardSongs() {
 
         <div class="selected-song-list">
 
-            ${songs.map((song, index) => `
+            ${songs.map(
+                (song, index) => `
 
                 <div
                     class="dashboard-song-item"
@@ -154,17 +246,24 @@ function renderDashboardSongs() {
                 >
 
                     <div class="song-number">
-                        ${String(index + 1).padStart(2, "0")}
+                        ${String(
+                            index + 1
+                        ).padStart(2, "0")}
                     </div>
 
 
                     <div class="song-info">
 
                         <h3>
-                            ${escapeHTML(song.name)}
+                            ${escapeHTML(
+                                song.name
+                            )}
                         </h3>
 
-                        <span class="song-type ${song.type.toLowerCase()}">
+
+                        <span
+                            class="song-type ${song.type.toLowerCase()}"
+                        >
                             ${song.type} Song
                         </span>
 
@@ -177,13 +276,16 @@ function renderDashboardSongs() {
                             View Lyrics
                         </span>
 
-                        <i class="fa-solid fa-chevron-right"></i>
+                        <i
+                            class="fa-solid fa-chevron-right"
+                        ></i>
 
                     </div>
 
                 </div>
 
-            `).join("")}
+            `
+            ).join("")}
 
         </div>
 
@@ -220,7 +322,13 @@ function renderDashboardSongs() {
 // OPEN LYRICS
 // ==========================================
 
-function openDashboardLyrics(songId) {
+function openDashboardLyrics(
+    songId
+) {
+
+    // ======================================
+    // SEARCH FAST SONG
+    // ======================================
 
     let song =
         dashboardFastSongs.find(
@@ -229,6 +337,10 @@ function openDashboardLyrics(songId) {
                 String(songId)
         );
 
+
+    // ======================================
+    // SEARCH SLOW SONG
+    // ======================================
 
     if (!song) {
 
@@ -242,18 +354,30 @@ function openDashboardLyrics(songId) {
     }
 
 
-    if (!song) return;
+    // ======================================
+    // SONG NOT FOUND
+    // ======================================
 
+    if (!song) {
+        return;
+    }
+
+
+    // ======================================
+    // GET MODAL ELEMENTS
+    // ======================================
 
     const modal =
         document.getElementById(
             "dashboardLyricsModal"
         );
 
+
     const title =
         document.getElementById(
             "dashboardLyricsSongName"
         );
+
 
     const lyrics =
         document.getElementById(
@@ -270,18 +394,34 @@ function openDashboardLyrics(songId) {
     }
 
 
+    // ======================================
+    // SET SONG NAME
+    // ======================================
+
     title.textContent =
         song.name;
 
 
+    // ======================================
+    // SET LYRICS
+    // ======================================
+
     lyrics.textContent =
         song.lyrics &&
-        String(song.lyrics).trim()
+        String(
+            song.lyrics
+        ).trim()
             ? song.lyrics
             : "Lyrics are not available for this song.";
 
 
-    modal.style.display = "flex";
+    // ======================================
+    // SHOW MODAL
+    // ======================================
+
+    modal.style.display =
+        "flex";
+
 
     document.body.style.overflow =
         "hidden";
@@ -290,23 +430,29 @@ function openDashboardLyrics(songId) {
 
 
 // ==========================================
-// CLOSE LYRICS
+// CLOSE LYRICS MODAL
 // ==========================================
 
 window.closeDashboardLyrics =
-function() {
+function () {
 
     const modal =
         document.getElementById(
             "dashboardLyricsModal"
         );
 
-    if (!modal) return;
+
+    if (!modal) {
+        return;
+    }
 
 
-    modal.style.display = "none";
+    modal.style.display =
+        "none";
 
-    document.body.style.overflow = "";
+
+    document.body.style.overflow =
+        "";
 
 };
 
@@ -315,34 +461,53 @@ function() {
 // ESCAPE HTML
 // ==========================================
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
 // ==========================================
-// INITIALIZE
+// INITIALIZE DASHBOARD
 // ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        loadDashboardSongs();
+        loadDashboardData();
 
     }
 );
 
 
 // ==========================================
-// CLOSE MODAL OUTSIDE
+// CLOSE MODAL BY OUTSIDE CLICK
 // ==========================================
 
 document.addEventListener(
@@ -369,7 +534,7 @@ document.addEventListener(
 
 
 // ==========================================
-// ESC
+// CLOSE MODAL BY ESC
 // ==========================================
 
 document.addEventListener(
