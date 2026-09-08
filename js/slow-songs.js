@@ -8,61 +8,112 @@ import {
     markSlowSongUsed,
     selectSlowSong,
     editSlowSong,
-    deleteSlowSong,
-    saveSlowSongLyrics
+    deleteSlowSong
 } from "../script1.js";
 
 
-let currentSongId = "";
+let pendingAction = null;
 
 
 // ==========================================
 // SORT SONGS
-// OLDEST LAST-SUNG FIRST
 // ==========================================
 
 function getSortedSongs(songs) {
 
     return [...songs].sort((a, b) => {
 
-        // Never sung songs first
         if (!a.lastSung && !b.lastSung) {
-            return 0;
+            return a.name.localeCompare(b.name);
         }
 
-        if (!a.lastSung) {
-            return -1;
-        }
+        if (!a.lastSung) return -1;
 
-        if (!b.lastSung) {
-            return 1;
-        }
+        if (!b.lastSung) return 1;
 
-
-        function parseDate(date) {
-
-            const parts =
-                date.split("/");
-
-            if (parts.length !== 3) {
-                return 0;
-            }
-
-            return new Date(
-                parts[2],
-                parts[1] - 1,
-                parts[0]
-            ).getTime();
-
-        }
-
-
-        return (
-            parseDate(a.lastSung) -
-            parseDate(b.lastSung)
-        );
+        return parseDate(a.lastSung) - parseDate(b.lastSung);
 
     });
+
+}
+
+
+// ==========================================
+// DATE PARSER
+// ==========================================
+
+function parseDate(date) {
+
+    const parts =
+        String(date || "").split("/");
+
+
+    if (parts.length !== 3) {
+        return 0;
+    }
+
+
+    return new Date(
+        Number(parts[2]),
+        Number(parts[1]) - 1,
+        Number(parts[0])
+    ).getTime();
+
+}
+
+
+// ==========================================
+// LOADER
+// ==========================================
+
+function showLoader() {
+
+    const loader =
+        document.getElementById(
+            "slowSongLoader"
+        );
+
+
+    const table =
+        document.getElementById(
+            "slowSongTable"
+        );
+
+
+    if (loader) {
+        loader.style.display = "flex";
+    }
+
+
+    if (table) {
+        table.style.display = "none";
+    }
+
+}
+
+
+function hideLoader() {
+
+    const loader =
+        document.getElementById(
+            "slowSongLoader"
+        );
+
+
+    const table =
+        document.getElementById(
+            "slowSongTable"
+        );
+
+
+    if (loader) {
+        loader.style.display = "none";
+    }
+
+
+    if (table) {
+        table.style.display = "grid";
+    }
 
 }
 
@@ -71,207 +122,370 @@ function getSortedSongs(songs) {
 // CREATE SONG CARD
 // ==========================================
 
-function createSongCard(song) {
+function createSongCard(song, index) {
 
     const card =
         document.createElement("div");
 
 
     card.className =
-        "attendance-record-card";
+        "fast-song-card";
 
 
-    // ======================================
-    // SONG HEADER
-    // ======================================
+    // --------------------------------------
+    // HEADER
+    // --------------------------------------
 
-    const songHeader =
+    const header =
         document.createElement("div");
 
 
-    songHeader.className =
-        "song-card-header";
+    header.className =
+        "fast-song-header";
 
 
-    songHeader.innerHTML = `
+    const selectedBadge =
+        song.selected
+            ? `<span class="selected-badge">SELECTED</span>`
+            : "";
 
-        <h3>
 
-            🎵 ${song.name}
+    header.innerHTML = `
 
-            ${song.selected ? " ⭐" : ""}
+        <div class="fast-song-title-area">
 
-        </h3>
+            <div class="fast-song-number">
+                ${index + 1}
+            </div>
 
-        <span class="song-arrow">
+
+            <div>
+
+                <h3 class="fast-song-title">
+                    ${escapeHTML(song.name)}
+                    ${selectedBadge}
+                </h3>
+
+
+                <div class="fast-song-meta">
+
+                    ${
+                        song.lastSung
+                            ? `Last sung ${escapeHTML(song.lastSung)}`
+                            : "Not sung yet"
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <span class="fast-arrow">
             ▼
         </span>
 
     `;
 
 
-    // ======================================
-    // INNER DETAILS
-    // ======================================
+    // --------------------------------------
+    // DETAILS
+    // --------------------------------------
 
     const details =
         document.createElement("div");
 
 
     details.className =
-        "song-card-details";
-
-
-    details.style.display =
-        "none";
+        "fast-song-details";
 
 
     details.innerHTML = `
 
-        <div class="attendance-record">
-
-            <div>
-
-                <p>
-
-                    📅 Last Sung:
-
-                    <b>
-                        ${song.lastSung || "-"}
-                    </b>
-
-                </p>
+        <div class="fast-details-grid">
 
 
-                <p>
+            <div class="fast-info-box">
 
-                    🎵 Times Sung:
+                <span class="fast-info-label">
+                    Last Sung
+                </span>
 
-                    <b>
-                        ${song.timesSung || 0}
-                    </b>
 
-                </p>
+                <span class="fast-info-value">
+
+                    ${
+                        escapeHTML(
+                            song.lastSung ||
+                            "Not sung yet"
+                        )
+                    }
+
+                </span>
 
             </div>
 
 
-            <div class="attendance-record-stats">
+
+            <div class="fast-info-box">
+
+                <span class="fast-info-label">
+                    Times Sung
+                </span>
 
 
-                <button
-                    class="btn-success admin-only"
-                    onclick="
-                        event.stopPropagation();
-                        markSlowSongUsed('${song.id}');
-                    ">
+                <span class="fast-info-value">
 
-                    ✔ Used
+                    ${song.timesSung || 0}
+                    times
 
-                </button>
-
-
-                <button
-                    class="btn-primary admin-only"
-                    onclick="
-                        event.stopPropagation();
-                        selectSlowSong('${song.id}');
-                    ">
-
-                    ⭐ Select
-
-                </button>
-
-
-                <button
-                    class="btn-primary"
-                    onclick="
-                        event.stopPropagation();
-                        openLyrics('${song.id}');
-                    ">
-
-                    📖 Lyrics
-
-                </button>
-
-
-                <button
-                    class="btn-primary admin-only"
-                    onclick="
-                        event.stopPropagation();
-                        editSlowSong('${song.id}');
-                    ">
-
-                    ✏ Edit
-
-                </button>
-
-
-                <button
-                    class="btn-danger admin-only"
-                    onclick="
-                        event.stopPropagation();
-                        deleteSlowSong('${song.id}');
-                    ">
-
-                    🗑 Delete
-
-                </button>
-
+                </span>
 
             </div>
+
+
+        </div>
+
+
+
+        <div class="fast-song-actions">
+
+
+            <button
+                type="button"
+                class="used-btn admin-only">
+
+                Used +1
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="select-btn admin-only">
+
+                ${
+                    song.selected
+                        ? "Unselect"
+                        : "Select"
+                }
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="lyrics-btn">
+
+                Lyrics
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="edit-btn admin-only">
+
+                Edit
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="delete-btn admin-only">
+
+                Delete
+
+            </button>
+
 
         </div>
 
     `;
 
 
-    // ======================================
-    // CLICK SONG TO OPEN/CLOSE
-    // ======================================
+    // --------------------------------------
+    // BUTTONS
+    // --------------------------------------
 
-    songHeader.addEventListener(
+    const usedBtn =
+        details.querySelector(
+            ".used-btn"
+        );
+
+
+    const selectBtn =
+        details.querySelector(
+            ".select-btn"
+        );
+
+
+    const lyricsBtn =
+        details.querySelector(
+            ".lyrics-btn"
+        );
+
+
+    const editBtn =
+        details.querySelector(
+            ".edit-btn"
+        );
+
+
+    const deleteBtn =
+        details.querySelector(
+            ".delete-btn"
+        );
+
+
+    // --------------------------------------
+    // USED
+    // --------------------------------------
+
+    usedBtn.addEventListener(
         "click",
-        function () {
+        event => {
+
+            event.stopPropagation();
+
+            confirmUsed(song);
+
+        }
+    );
+
+
+    // --------------------------------------
+    // SELECT
+    // --------------------------------------
+
+    selectBtn.addEventListener(
+        "click",
+        async event => {
+
+            event.stopPropagation();
+
+            await selectSlowSong(
+                song.id
+            );
+
+            displaySlowSongs(
+                document.getElementById(
+                    "slowSearchInput"
+                )?.value || ""
+            );
+
+        }
+    );
+
+
+    // --------------------------------------
+    // LYRICS
+    // --------------------------------------
+
+    lyricsBtn.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            openLyricsPage(
+                song.id
+            );
+
+        }
+    );
+
+
+    // --------------------------------------
+    // EDIT
+    // --------------------------------------
+
+    editBtn.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            confirmEdit(song);
+
+        }
+    );
+
+
+    // --------------------------------------
+    // DELETE
+    // --------------------------------------
+
+    deleteBtn.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            confirmDelete(song);
+
+        }
+    );
+
+
+    // --------------------------------------
+    // OPEN / CLOSE CARD
+    // --------------------------------------
+
+    header.addEventListener(
+        "click",
+        () => {
 
             const isOpen =
-                details.style.display !== "none";
-
-
-            // Close all other songs
-            document
-                .querySelectorAll(
-                    ".song-card-details"
-                )
-                .forEach(otherDetails => {
-
-                    otherDetails.style.display =
-                        "none";
-
-                });
+                card.classList.contains(
+                    "open"
+                );
 
 
             document
                 .querySelectorAll(
-                    ".song-arrow"
+                    ".fast-song-card.open"
                 )
-                .forEach(arrow => {
+                .forEach(
+                    otherCard => {
 
-                    arrow.innerText = "▼";
+                        otherCard.classList.remove(
+                            "open"
+                        );
 
-                });
+
+                        const arrow =
+                            otherCard.querySelector(
+                                ".fast-arrow"
+                            );
 
 
-            // Open clicked song
+                        if (arrow) {
+                            arrow.innerText = "▼";
+                        }
+
+                    }
+                );
+
+
             if (!isOpen) {
 
-                details.style.display =
-                    "block";
+                card.classList.add(
+                    "open"
+                );
+
 
                 const arrow =
-                    songHeader.querySelector(
-                        ".song-arrow"
+                    card.querySelector(
+                        ".fast-arrow"
                     );
+
 
                 if (arrow) {
                     arrow.innerText = "▲";
@@ -283,14 +497,9 @@ function createSongCard(song) {
     );
 
 
-    card.appendChild(
-        songHeader
-    );
+    card.appendChild(header);
 
-
-    card.appendChild(
-        details
-    );
+    card.appendChild(details);
 
 
     return card;
@@ -299,10 +508,12 @@ function createSongCard(song) {
 
 
 // ==========================================
-// DISPLAY SLOW SONGS
+// DISPLAY SONGS
 // ==========================================
 
-function displaySlowSongs() {
+function displaySlowSongs(
+    searchValue = ""
+) {
 
     const box =
         document.getElementById(
@@ -313,22 +524,124 @@ function displaySlowSongs() {
     if (!box) return;
 
 
-    box.innerHTML = "";
+    const search =
+        String(searchValue)
+            .trim()
+            .toLowerCase();
+
+
+    const filteredSongs =
+        slowSongs.filter(
+            song =>
+                String(
+                    song.name || ""
+                )
+                .toLowerCase()
+                .includes(search)
+        );
 
 
     const sortedSongs =
         getSortedSongs(
-            slowSongs
+            filteredSongs
         );
 
 
-    sortedSongs.forEach(song => {
+    box.innerHTML = "";
 
-        box.appendChild(
-            createSongCard(song)
+
+    // --------------------------------------
+    // TOTAL
+    // --------------------------------------
+
+    const total =
+        document.getElementById(
+            "slowTotalSongs"
         );
 
-    });
+
+    if (total) {
+
+        total.innerText =
+            slowSongs.length;
+
+    }
+
+
+    // --------------------------------------
+    // COUNT
+    // --------------------------------------
+
+    const listCount =
+        document.getElementById(
+            "slowListCount"
+        );
+
+
+    if (listCount) {
+
+        listCount.innerText =
+            `${sortedSongs.length} ${
+                sortedSongs.length === 1
+                    ? "Song"
+                    : "Songs"
+            }`;
+
+    }
+
+
+    // --------------------------------------
+    // EMPTY
+    // --------------------------------------
+
+    if (sortedSongs.length === 0) {
+
+        box.innerHTML = `
+
+            <div class="fast-empty">
+
+                <div style="font-size:40px;">
+                    ♪
+                </div>
+
+
+                <h3>
+                    No Slow Songs Found
+                </h3>
+
+
+                <p>
+                    Try another search or add a new song.
+                </p>
+
+            </div>
+
+        `;
+
+
+        applyAdminPermission();
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // CARDS
+    // --------------------------------------
+
+    sortedSongs.forEach(
+        (song, index) => {
+
+            box.appendChild(
+                createSongCard(
+                    song,
+                    index
+                )
+            );
+
+        }
+    );
 
 
     applyAdminPermission();
@@ -342,58 +655,31 @@ function displaySlowSongs() {
 
 function searchSlow(value) {
 
-    const box =
+    displaySlowSongs(value);
+
+}
+
+
+function clearSlowSearch() {
+
+    const input =
         document.getElementById(
-            "slowSongTable"
+            "slowSearchInput"
         );
 
 
-    if (!box) return;
+    if (input) {
+        input.value = "";
+    }
 
 
-    const search =
-        value
-            .toLowerCase()
-            .trim();
-
-
-    const filteredSongs =
-        slowSongs.filter(song => {
-
-            return (
-                song.name || ""
-            )
-            .toLowerCase()
-            .includes(search);
-
-        });
-
-
-    box.innerHTML = "";
-
-
-    const sortedSongs =
-        getSortedSongs(
-            filteredSongs
-        );
-
-
-    sortedSongs.forEach(song => {
-
-        box.appendChild(
-            createSongCard(song)
-        );
-
-    });
-
-
-    applyAdminPermission();
+    displaySlowSongs("");
 
 }
 
 
 // ==========================================
-// ADMIN / VISITOR PERMISSION
+// ADMIN PERMISSION
 // ==========================================
 
 function applyAdminPermission() {
@@ -408,12 +694,14 @@ function applyAdminPermission() {
             .querySelectorAll(
                 ".admin-only"
             )
-            .forEach(element => {
+            .forEach(
+                element => {
 
-                element.style.display =
-                    "none";
+                    element.style.display =
+                        "none";
 
-            });
+                }
+            );
 
     }
 
@@ -426,27 +714,30 @@ function applyAdminPermission() {
 
 async function addSlow() {
 
+    const nameInput =
+        document.getElementById(
+            "slowSongName"
+        );
+
+
+    const dateInput =
+        document.getElementById(
+            "slowSongDate"
+        );
+
+
     const name =
-        document
-            .getElementById(
-                "slowSongName"
-            )
-            .value
-            .trim();
+        nameInput?.value.trim();
 
 
     const date =
-        document
-            .getElementById(
-                "slowSongDate"
-            )
-            .value;
+        dateInput?.value;
 
 
     if (!name) {
 
-        alert(
-            "Enter song name"
+        showSimpleMessage(
+            "Please enter a song name."
         );
 
         return;
@@ -460,144 +751,414 @@ async function addSlow() {
     );
 
 
-    document
-        .getElementById(
-            "slowSongName"
-        )
-        .value = "";
+    if (nameInput) {
+        nameInput.value = "";
+    }
 
 
-    document
-        .getElementById(
-            "slowSongDate"
-        )
-        .value = "";
+    if (dateInput) {
+        dateInput.value = "";
+    }
 
 }
 
 
 // ==========================================
-// OPEN LYRICS
+// USED +1 CONFIRM
 // ==========================================
 
-function openLyrics(songId) {
+function confirmUsed(song) {
 
-    currentSongId =
-        songId;
+    openConfirmModal({
+
+        title:
+            "Mark Song as Used?",
 
 
-    const song =
-        slowSongs.find(
-            song =>
-                song.id === songId
+        message:
+            `Are you sure you want to mark <b>${escapeHTML(song.name)}</b> as used?`,
+
+
+        buttonText:
+            "Yes, Mark Used",
+
+
+        icon:
+            "✓",
+
+
+        action:
+            async () => {
+
+                await markSlowSongUsed(
+                    song.id
+                );
+
+            }
+
+    });
+
+}
+
+
+// ==========================================
+// EDIT CONFIRM
+// ==========================================
+
+function confirmEdit(song) {
+
+    openConfirmModal({
+
+        title:
+            "Edit Song?",
+
+
+        message:
+            `Do you want to edit <b>${escapeHTML(song.name)}</b>?`,
+
+
+        buttonText:
+            "Continue",
+
+
+        icon:
+            "✎",
+
+
+        action:
+            async () => {
+
+                await editSlowSong(
+                    song.id
+                );
+
+            }
+
+    });
+
+}
+
+
+// ==========================================
+// DELETE CONFIRM
+// ==========================================
+
+function confirmDelete(song) {
+
+    openConfirmModal({
+
+        title:
+            "Delete Song?",
+
+
+        message:
+            `Are you sure you want to permanently delete <b>${escapeHTML(song.name)}</b>?<br><br>This action cannot be undone.`,
+
+
+        buttonText:
+            "Delete",
+
+
+        icon:
+            "!",
+
+
+        action:
+            async () => {
+
+                await deleteSlowSong(
+                    song.id
+                );
+
+            }
+
+    });
+
+}
+
+
+// ==========================================
+// CONFIRM MODAL
+// ==========================================
+
+function openConfirmModal(options) {
+
+    const modal =
+        document.getElementById(
+            "slowActionConfirmModal"
         );
 
 
-    if (!song) return;
+    const title =
+        document.getElementById(
+            "slowConfirmTitle"
+        );
 
 
-    document
-        .getElementById(
-            "lyricsSongName"
-        )
-        .innerText =
-            song.name;
+    const message =
+        document.getElementById(
+            "slowConfirmMessage"
+        );
 
 
-    document
-        .getElementById(
-            "lyricsText"
-        )
-        .value =
-            song.lyrics || "";
+    const actionBtn =
+        document.getElementById(
+            "slowConfirmActionBtn"
+        );
 
 
-    document
-        .getElementById(
-            "lyricsModal"
-        )
-        .style.display =
-            "flex";
+    const icon =
+        document.getElementById(
+            "slowConfirmIcon"
+        );
+
+
+    if (!modal) return;
+
+
+    title.innerText =
+        options.title;
+
+
+    message.innerHTML =
+        options.message;
+
+
+    actionBtn.innerText =
+        options.buttonText;
+
+
+    icon.innerText =
+        options.icon;
+
+
+    pendingAction =
+        options.action;
+
+
+    actionBtn.onclick =
+        async () => {
+
+            const action =
+                pendingAction;
+
+
+            closeConfirmModal();
+
+
+            if (action) {
+                await action();
+            }
+
+        };
+
+
+    modal.style.display =
+        "flex";
 
 }
 
 
 // ==========================================
-// CLOSE LYRICS
+// CLOSE CONFIRM MODAL
 // ==========================================
 
-function closeLyrics() {
+function closeConfirmModal() {
 
-    document
-        .getElementById(
-            "lyricsModal"
-        )
-        .style.display =
+    const modal =
+        document.getElementById(
+            "slowActionConfirmModal"
+        );
+
+
+    if (modal) {
+        modal.style.display =
             "none";
+    }
+
+
+    pendingAction =
+        null;
 
 }
 
 
 // ==========================================
-// SAVE LYRICS
+// LYRICS PAGE
 // ==========================================
 
-async function saveLyrics() {
+function openLyricsPage(songId) {
 
-    const lyrics =
-        document
-            .getElementById(
-                "lyricsText"
-            )
-            .value;
-
-
-    await saveSlowSongLyrics(
-        currentSongId,
-        lyrics
-    );
-
-
-    alert(
-        "Lyrics Saved Successfully ✅"
-    );
-
-
-    closeLyrics();
+    window.location.href =
+        `lyrics.html?id=${encodeURIComponent(songId)}&type=slow`;
 
 }
 
 
 // ==========================================
-// WINDOW FUNCTIONS
+// SIMPLE MESSAGE
+// ==========================================
+
+function showSimpleMessage(message) {
+
+    alert(message);
+
+}
+
+
+// ==========================================
+// ESCAPE HTML
+// ==========================================
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+// ==========================================
+// DOM READY
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        // Show loader immediately
+        showLoader();
+
+
+        const modal =
+            document.getElementById(
+                "slowActionConfirmModal"
+            );
+
+
+        const cancelBtn =
+            document.getElementById(
+                "slowConfirmCancelBtn"
+            );
+
+
+        // ----------------------------------
+        // CANCEL BUTTON
+        // ----------------------------------
+
+        if (cancelBtn) {
+
+            cancelBtn.addEventListener(
+                "click",
+                closeConfirmModal
+            );
+
+        }
+
+
+        // ----------------------------------
+        // CLICK OUTSIDE MODAL
+        // ----------------------------------
+
+        if (modal) {
+
+            modal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        closeConfirmModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // ----------------------------------
+        // WAIT FOR FIREBASE
+        // ----------------------------------
+
+        const waitForApp =
+            setInterval(
+                () => {
+
+                    if (
+                        window.appReady === true
+                    ) {
+
+                        clearInterval(
+                            waitForApp
+                        );
+
+
+                        hideLoader();
+
+
+                        displaySlowSongs();
+
+                    }
+
+                },
+                100
+            );
+
+    }
+);
+
+
+// ==========================================
+// GLOBAL FUNCTIONS
 // ==========================================
 
 window.displaySlowSongs =
     displaySlowSongs;
 
+
 window.searchSlow =
     searchSlow;
+
+
+window.clearSlowSearch =
+    clearSlowSearch;
+
 
 window.addSlow =
     addSlow;
 
-window.openLyrics =
-    openLyrics;
 
-window.closeLyrics =
-    closeLyrics;
+window.openLyricsPage =
+    openLyricsPage;
 
-window.saveLyrics =
-    saveLyrics;
 
-window.markSlowSongUsed =
-    markSlowSongUsed;
-
-window.selectSlowSong =
-    selectSlowSong;
-
-window.editSlowSong =
-    editSlowSong;
-
-window.deleteSlowSong =
-    deleteSlowSong;
+window.closeConfirmModal =
+    closeConfirmModal;

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO title will also be updated by lyrics.js -->
+    <title>Lyrics | Khristi Kalisiya</title>
+
+    <meta
+        name="description"
+        id="metaDescription"
+        content="Worship song lyrics from Khristi Kalisiya."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/lyrics.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
+
+<div class="lyrics-page">
+
+
+    <!-- BACK BUTTON -->
+
+    <a
+        href="javascript:history.back()"
+        class="lyrics-back-btn">
+
+        ← Back
+
+    </a>
+
+
+    <!-- =================================================
+         HERO
+    ================================================= -->
+
+    <section class="lyrics-hero">
+
+        <div class="lyrics-hero-overlay"></div>
+
+        <div class="lyrics-hero-content">
+
+            <div class="cross-symbol">
+                ✝
+            </div>
+
+            <span class="lyrics-small-label">
+                KHRISTI KALISIYA
+            </span>
+
+            <h1 id="songTitle">
+                Loading Song...
+            </h1>
+
+            <div class="song-type-badge"
+                 id="songType">
+
+                WORSHIP SONG
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         TOOLBAR
+    ================================================= -->
+
+    <div class="lyrics-toolbar">
+
+        <button
+            type="button"
+            id="decreaseFont">
+
+            A−
+
+        </button>
+
+
+        <span>
+            Text Size
+        </span>
+
+
+        <button
+            type="button"
+            id="increaseFont">
+
+            A+
+
+        </button>
+
+
+        <button
+            type="button"
+            id="themeButton">
+
+            Reading Mode
+
+        </button>
+
+
+        <button
+            type="button"
+            id="fullscreenButton">
+
+            Full Screen
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         LYRICS CONTENT
+    ================================================= -->
+
+    <main class="lyrics-container">
+
+        <div class="lyrics-card">
+
+            <div class="lyrics-card-header">
+
+                <div>
+
+                    <span class="lyrics-label">
+                        SONG LYRICS
+                    </span>
+
+                    <h2 id="lyricsHeading">
+                        Loading...
+                    </h2>
+
+                </div>
+
+                <div
+                    class="lyrics-status"
+                    id="lyricsStatus">
+
+                    Loading
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="lyricsContent"
+                class="lyrics-content">
+
+                <div class="lyrics-loading">
+
+                    <div class="loading-circle"></div>
+
+                    <p>
+                        Loading lyrics...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SONG INFORMATION
+        ================================================= -->
+
+        <div class="song-information">
+
+            <div class="info-item">
+
+                <span>
+                    Last Sung
+                </span>
+
+                <strong id="lastSung">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>
+                    Times Sung
+                </span>
+
+                <strong id="timesSung">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span>
+                    Category
+                </span>
+
+                <strong id="category">
+                    Fast
+                </strong>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <footer class="lyrics-footer">
+
+        <div class="footer-cross">
+            ✝
+        </div>
+
+        <p>
+            Khristi Kalisiya Worship Song Manager
+        </p>
+
+        <span>
+            Worship • Praise • Faith
+        </span>
+
+    </footer>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script type="module"
+        src="../js/lyrics.js"></script>
+
+</body>
+
+</html>

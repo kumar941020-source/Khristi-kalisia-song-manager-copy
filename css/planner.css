@@ -50,3 +50,1047 @@
         font-size: 13px;
     }
 }
+/* =========================================
+   LYRICS POPUP - PREMIUM DESIGN
+========================================= */
+
+.lyrics-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 10000;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 15, 35, 0.92),
+            rgba(30, 10, 55, 0.92)
+        );
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+.lyrics-box {
+    width: 100%;
+    max-width: 720px;
+
+    max-height: 88vh;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #1e1b4b
+        );
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55);
+
+    animation: lyricsPopup 0.35s ease;
+}
+
+
+/* =========================================
+   SONG TITLE
+========================================= */
+
+#lyricsSongName {
+
+    margin: 0;
+
+    padding: 22px 25px;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.1);
+}
+
+
+/* =========================================
+   LYRICS TEXT
+========================================= */
+
+#lyricsText {
+
+    display: block;
+
+    width: calc(100% - 40px);
+
+    height: 430px;
+
+    margin: 20px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    resize: none;
+
+    outline: none;
+
+    border: none;
+
+    border-radius: 18px;
+
+    /* DARK LYRICS AREA */
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #ffffff;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 2;
+
+    letter-spacing: 0.3px;
+
+    text-align: center;
+
+    white-space: pre-wrap;
+
+    overflow-y: auto;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,0.18);
+}
+
+
+/* =========================================
+   TEXTAREA SCROLLBAR
+========================================= */
+
+#lyricsText::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+
+#lyricsText::-webkit-scrollbar-track {
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border-radius: 20px;
+}
+
+
+#lyricsText::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            #6366f1,
+            #a855f7
+        );
+
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.lyrics-box .btn-danger {
+
+    display: block;
+
+    margin:
+        0
+        20px
+        20px
+        auto;
+
+    padding:
+        10px
+        22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+    color: white;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+
+.lyrics-box .btn-danger:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(239,68,68,0.30);
+}
+
+
+/* =========================================
+   POPUP ANIMATION
+========================================= */
+
+@keyframes lyricsPopup {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.94)
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .lyrics-modal {
+
+        padding: 10px;
+    }
+
+
+    .lyrics-box {
+
+        max-height: 92vh;
+
+        border-radius: 20px;
+    }
+
+
+    #lyricsSongName {
+
+        padding: 19px 20px;
+
+        font-size: 19px;
+    }
+
+
+    #lyricsText {
+
+        width: calc(100% - 24px);
+
+        height: 55vh;
+
+        margin: 12px;
+
+        padding: 20px 15px;
+
+        font-size: 17px;
+
+        line-height: 1.9;
+
+        border-radius: 15px;
+    }
+
+
+    .lyrics-box .btn-danger {
+
+        margin:
+            0
+            12px
+            15px
+            auto;
+    }
+}
+/* =====================================================
+   LYRICS POPUP - FINAL OVERRIDE
+===================================================== */
+
+/* Popup background */
+#lyricsModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    background: rgba(5, 8, 25, 0.88) !important;
+
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+}
+
+
+/* Main popup */
+#lyricsModal .lyrics-box {
+    width: 100% !important;
+    max-width: 700px !important;
+
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border-radius: 24px !important;
+
+    background: #111827 !important;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.65) !important;
+
+    border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+
+/* Song title */
+#lyricsModal #lyricsSongName {
+    margin: 0 !important;
+
+    padding: 24px !important;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        ) !important;
+
+    font-size: 24px !important;
+
+    font-weight: 800 !important;
+
+    text-align: center !important;
+}
+
+
+/* =====================================================
+   LYRICS TEXTAREA
+===================================================== */
+
+#lyricsModal #lyricsText {
+
+    display: block !important;
+
+    width: calc(100% - 40px) !important;
+
+    height: 420px !important;
+
+    margin: 20px !important;
+
+    padding: 25px !important;
+
+    box-sizing: border-box !important;
+
+    resize: none !important;
+
+    outline: none !important;
+
+    border: 1px solid rgba(255,255,255,0.12) !important;
+
+    border-radius: 18px !important;
+
+
+    /* 🔥 WHITE BACKGROUND KO FORCEFULLY REMOVE */
+    background: #171f33 !important;
+
+
+    /* 🔥 WHITE LYRICS */
+    color: #ffffff !important;
+
+
+    font-family: "Poppins", sans-serif !important;
+
+    font-size: 20px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 2 !important;
+
+    text-align: center !important;
+
+    white-space: pre-wrap !important;
+
+    overflow-y: auto !important;
+
+
+    /* textarea browser appearance */
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+
+/* Textarea focus */
+#lyricsModal #lyricsText:focus {
+
+    background: #171f33 !important;
+
+    color: #ffffff !important;
+
+    border-color: #6366f1 !important;
+
+    box-shadow:
+        0 0 0 2px rgba(99,102,241,0.15) !important;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+#lyricsModal #lyricsText::-webkit-scrollbar {
+    width: 7px;
+}
+
+#lyricsModal #lyricsText::-webkit-scrollbar-track {
+    background: #0d1324 !important;
+}
+
+#lyricsModal #lyricsText::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            #6366f1,
+            #a855f7
+        ) !important;
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+#lyricsModal .btn-danger {
+
+    display: block !important;
+
+    margin:
+        0
+        20px
+        20px
+        auto !important;
+
+    padding:
+        10px
+        22px !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #lyricsModal {
+        padding: 10px !important;
+    }
+
+    #lyricsModal .lyrics-box {
+        border-radius: 20px !important;
+    }
+
+    #lyricsModal #lyricsSongName {
+        padding: 20px !important;
+        font-size: 19px !important;
+    }
+
+    #lyricsModal #lyricsText {
+
+        width: calc(100% - 24px) !important;
+
+        height: 55vh !important;
+
+        margin: 12px !important;
+
+        padding: 20px 15px !important;
+
+        font-size: 17px !important;
+
+        line-height: 1.9 !important;
+    }
+
+    #lyricsModal .btn-danger {
+        margin:
+            0
+            12px
+            15px
+            auto !important;
+    }
+}
+/* =====================================================
+   ✝ LYRICS POPUP - WORSHIP BACKGROUND DESIGN
+===================================================== */
+
+#lyricsModal {
+    overflow: hidden !important;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(59, 130, 246, 0.35),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(168, 85, 247, 0.35),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(236, 72, 153, 0.25),
+            transparent 30%
+        ),
+        #050816 !important;
+}
+
+
+/* -----------------------------------------------------
+   BIG GLOWING CIRCLE
+----------------------------------------------------- */
+
+#lyricsModal::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    left: -180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59, 130, 246, 0.45),
+            rgba(59, 130, 246, 0.05),
+            transparent 70%
+        );
+
+    filter: blur(8px);
+
+    pointer-events: none;
+
+    animation: lyricsGlowOne 7s ease-in-out infinite alternate;
+}
+
+
+/* -----------------------------------------------------
+   SECOND GLOW
+----------------------------------------------------- */
+
+#lyricsModal::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    right: -200px;
+    bottom: -220px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(147, 51, 234, 0.45),
+            rgba(236, 72, 153, 0.08),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
+
+    animation: lyricsGlowTwo 8s ease-in-out infinite alternate;
+}
+
+
+/* =====================================================
+   POPUP KE ANDAR DECORATIVE DESIGN
+===================================================== */
+
+#lyricsModal .lyrics-box {
+
+    position: relative;
+
+    isolation: isolate;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #171b3b 50%,
+            #21143d
+        ) !important;
+
+}
+
+
+/* Top decorative glow */
+
+#lyricsModal .lyrics-box::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    top: -150px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.30),
+            transparent 70%
+        );
+
+    filter: blur(8px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* Bottom decorative glow */
+
+#lyricsModal .lyrics-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    bottom: -130px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(236, 72, 153, 0.20),
+            transparent 70%
+        );
+
+    filter: blur(8px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =====================================================
+   TITLE - WORSHIP GRADIENT
+===================================================== */
+
+#lyricsModal #lyricsSongName {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #4f46e5,
+            #7e22ce,
+            #9333ea
+        ) !important;
+
+    box-shadow:
+        0 8px 30px rgba(79,70,229,0.25);
+
+}
+
+
+/* Small shine line */
+
+#lyricsModal #lyricsSongName::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10%;
+    right: 10%;
+
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.6),
+            transparent
+        );
+}
+
+
+/* =====================================================
+   LYRICS AREA
+===================================================== */
+
+#lyricsModal #lyricsText {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.065),
+            rgba(99,102,241,0.045),
+            rgba(168,85,247,0.06)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10) !important;
+
+    box-shadow:
+        inset 0 0 35px rgba(99,102,241,0.06),
+        0 10px 35px rgba(0,0,0,0.18) !important;
+
+}
+
+
+/* =====================================================
+   CROSS / WORSHIP SYMBOL
+===================================================== */
+
+#lyricsModal .lyrics-box {
+    --cross-color: rgba(255,255,255,0.035);
+}
+
+
+/* Decorative cross using background */
+
+#lyricsModal .lyrics-box {
+    background-image:
+        linear-gradient(
+            90deg,
+            transparent 48%,
+            var(--cross-color) 48%,
+            var(--cross-color) 52%,
+            transparent 52%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 43%,
+            var(--cross-color) 43%,
+            var(--cross-color) 47%,
+            transparent 47%
+        ),
+        linear-gradient(
+            145deg,
+            #111827,
+            #171b3b 50%,
+            #21143d
+        ) !important;
+
+    background-size:
+        220px 220px,
+        220px 220px,
+        auto;
+
+    background-position:
+        50% 55%,
+        50% 55%,
+        0 0;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes lyricsGlowOne {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(80px, 40px) scale(1.15);
+    }
+
+}
+
+
+@keyframes lyricsGlowTwo {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-60px, -50px) scale(1.12);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #lyricsModal::before {
+
+        width: 280px;
+        height: 280px;
+
+        top: -150px;
+        left: -130px;
+    }
+
+
+    #lyricsModal::after {
+
+        width: 300px;
+        height: 300px;
+
+        right: -150px;
+        bottom: -160px;
+    }
+
+}
+/* ==========================================
+   PLANNER LOADER
+========================================== */
+
+#plannerLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+#plannerLoader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.planner-loader-box {
+    width: min(360px, 90%);
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.12);
+
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+.planner-loader-spinner {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    border: 4px solid #e5e7eb;
+
+    border-top-color: #16a34a;
+
+    animation:
+        plannerSpin 0.8s linear infinite;
+}
+
+
+@keyframes plannerSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.planner-loader-title {
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #172033;
+
+    margin-bottom: 7px;
+}
+
+
+.planner-loader-text {
+    font-size: 14px;
+
+    color: #6b7280;
+}
+
+
+/* ==========================================
+   LYRICS BUTTON
+========================================== */
+
+.planner-lyrics-btn {
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .planner-loader-box {
+        padding: 30px 20px;
+    }
+
+
+    .planner-loader-title {
+        font-size: 18px;
+    }
+
+
+    .planner-loader-text {
+        font-size: 13px;
+    }
+
+}

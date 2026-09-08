@@ -1,0 +1,1789 @@
+/* =====================================================
+   FAST SONGS PAGE
+===================================================== */
+
+.fast-main {
+    background:
+        linear-gradient(
+            rgba(248,250,255,0.94),
+            rgba(248,250,255,0.94)
+        ),
+        url("../images/jesus2.jpeg")
+        center / cover fixed;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.fast-page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.page-label {
+
+    display: inline-block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #6875f5;
+
+    margin-bottom: 5px;
+
+}
+
+
+.fast-page-header h1 {
+
+    margin: 0;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+}
+
+
+.fast-page-header p {
+
+    margin: 5px 0 0;
+
+    color: #667085;
+
+}
+
+
+.fast-header-stat {
+
+    min-width: 120px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.85);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(31,41,55,0.08);
+
+}
+
+
+.fast-header-stat span {
+
+    display: block;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #4f46e5;
+
+}
+
+
+.fast-header-stat small {
+
+    color: #667085;
+
+}
+
+
+/* =====================================================
+   ADD SONG
+===================================================== */
+
+.add-song-section {
+
+    background: rgba(255,255,255,0.88);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 12px 35px rgba(31,41,55,0.08);
+
+}
+
+
+.section-mini-label {
+
+    font-size: 10px;
+
+    letter-spacing: 1.8px;
+
+    font-weight: 700;
+
+    color: #6875f5;
+
+}
+
+
+.section-title-row h2,
+.song-list-header h2 {
+
+    margin: 3px 0;
+
+}
+
+
+.add-song-form {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(200px, 1fr)
+        200px
+        auto;
+
+    gap: 15px;
+
+    align-items: end;
+
+    margin-top: 20px;
+
+}
+
+
+.input-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.input-group label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #475467;
+
+}
+
+
+.input-group input {
+
+    height: 48px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 12px;
+
+    padding: 0 14px;
+
+    font-family: Poppins, sans-serif;
+
+    outline: none;
+
+    background: white;
+
+}
+
+
+.input-group input:focus {
+
+    border-color: #6875f5;
+
+    box-shadow:
+        0 0 0 4px rgba(104,117,245,0.10);
+
+}
+
+
+.add-song-btn {
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 0 20px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-family: Poppins, sans-serif;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.add-song-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(79,70,229,0.25);
+
+}
+
+
+/* =====================================================
+   SONG LIST
+===================================================== */
+
+.fast-list-section {
+
+    background: rgba(255,255,255,0.88);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 12px 35px rgba(31,41,55,0.08);
+
+}
+
+
+.song-list-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.song-list-header p {
+
+    margin: 5px 0 0;
+
+    color: #667085;
+
+    font-size: 13px;
+
+}
+
+
+.song-count-badge {
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.fast-search-box {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.search-icon {
+
+    position: absolute;
+
+    left: 15px;
+
+}
+
+
+.fast-search-box input {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 14px;
+
+    padding:
+        0 45px
+        0 42px;
+
+    font-family: Poppins, sans-serif;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.95);
+
+}
+
+
+.fast-search-box input:focus {
+
+    border-color: #6875f5;
+
+}
+
+
+#clearFastSearch {
+
+    position: absolute;
+
+    right: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 22px;
+
+    color: #98a2b3;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   SONG GRID
+===================================================== */
+
+.fast-song-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+/* =====================================================
+   SONG CARD
+===================================================== */
+
+.fast-song-card {
+
+    background: white;
+
+    border: 1px solid #eaecf0;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition: 0.25s;
+
+}
+
+
+.fast-song-card:hover {
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 10px 28px rgba(31,41,55,0.08);
+
+}
+
+
+.fast-song-header {
+
+    min-height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 18px;
+
+    cursor: pointer;
+
+}
+
+
+.fast-song-title-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+
+}
+
+
+.fast-song-number {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+
+}
+
+
+.fast-song-title {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #1d2939;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.fast-song-meta {
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #98a2b3;
+
+}
+
+
+.fast-arrow {
+
+    font-size: 16px;
+
+    color: #667085;
+
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.fast-song-details {
+
+    display: none;
+
+    border-top: 1px solid #f2f4f7;
+
+    padding: 18px;
+
+    background: #fafbff;
+
+}
+
+
+.fast-song-card.open
+.fast-song-details {
+
+    display: block;
+
+}
+
+
+.fast-details-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.fast-info-box {
+
+    background: white;
+
+    border: 1px solid #eaecf0;
+
+    border-radius: 13px;
+
+    padding: 13px;
+
+}
+
+
+.fast-info-label {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #98a2b3;
+
+    margin-bottom: 3px;
+
+}
+
+
+.fast-info-value {
+
+    font-weight: 600;
+
+    color: #344054;
+
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.fast-song-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+}
+
+
+.fast-song-actions button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 9px 13px;
+
+    font-family: Poppins, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.fast-song-actions button:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+.used-btn {
+
+    background: #dcfae6;
+
+    color: #067647;
+
+}
+
+
+.select-btn {
+
+    background: #fff4cc;
+
+    color: #9a6700;
+
+}
+
+
+.lyrics-btn {
+
+    background: #e0f2fe;
+
+    color: #0369a1;
+
+}
+
+
+.edit-btn {
+
+    background: #eef2ff;
+
+    color: #4338ca;
+
+}
+
+
+.delete-btn {
+
+    background: #fee4e2;
+
+    color: #b42318;
+
+}
+
+
+/* =====================================================
+   SELECTED
+===================================================== */
+
+.selected-badge {
+
+    display: inline-block;
+
+    margin-left: 7px;
+
+    padding: 3px 7px;
+
+    border-radius: 8px;
+
+    background: #fff4cc;
+
+    color: #9a6700;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.fast-empty {
+
+    text-align: center;
+
+    padding: 55px 20px;
+
+    color: #667085;
+
+}
+
+
+.fast-empty h3 {
+
+    margin: 8px 0 4px;
+
+    color: #344054;
+
+}
+
+
+.fast-empty p {
+
+    margin: 0;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   CONFIRM MODAL
+===================================================== */
+
+.action-confirm-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(15,23,42,0.55);
+
+    backdrop-filter: blur(5px);
+
+}
+
+
+.action-confirm-box {
+
+    width: min(430px, 100%);
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.22);
+
+    animation: confirmPop 0.2s ease;
+
+}
+
+
+@keyframes confirmPop {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.94);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+.confirm-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fee4e2;
+
+    color: #b42318;
+
+    font-size: 25px;
+
+}
+
+
+.action-confirm-box h2 {
+
+    margin: 15px 0 7px;
+
+}
+
+
+.action-confirm-box p {
+
+    margin: 0;
+
+    color: #667085;
+
+    line-height: 1.6;
+
+}
+
+
+.confirm-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+}
+
+
+.confirm-buttons button {
+
+    flex: 1;
+
+    height: 45px;
+
+    border-radius: 11px;
+
+    font-family: Poppins, sans-serif;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.confirm-cancel-btn {
+
+    background: #f2f4f7;
+
+    border: none;
+
+    color: #344054;
+
+}
+
+
+.confirm-action-btn {
+
+    background: #d92d20;
+
+    border: none;
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .fast-page-header {
+
+        align-items: flex-start;
+
+    }
+
+
+    .fast-page-header h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .fast-header-stat {
+
+        min-width: 85px;
+
+        padding: 12px;
+
+    }
+
+
+    .fast-header-stat span {
+
+        font-size: 24px;
+
+    }
+
+
+    .add-song-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .song-list-header {
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+    }
+
+
+    .fast-details-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .fast-song-actions button {
+
+        flex: 1;
+
+        min-width: 110px;
+
+    }
+
+
+    .fast-song-title {
+
+        max-width: 190px;
+
+    }
+
+}
+/* ================================
+   COLORFUL SONG LIST
+================================ */
+
+.song-card {
+    background: linear-gradient(135deg, #ffffff, #f4f8ff);
+    border: 1px solid #e1e8f5;
+    border-left: 5px solid #4f46e5;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: 0.25s ease;
+}
+
+.song-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.10);
+}
+
+
+/* Song name */
+.song-card h3,
+.song-name {
+    color: #222b45;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 7px;
+
+    /* Long names ko properly wrap karega */
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+
+/* Song information */
+.song-card .song-info {
+    color: #667085;
+    font-size: 13px;
+}
+
+
+/* Buttons */
+.song-card button {
+    border: none;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .song-card {
+        padding: 10px 11px;
+        margin-bottom: 9px;
+        border-radius: 11px;
+        border-left-width: 4px;
+    }
+
+    .song-card h3,
+    .song-name {
+        font-size: 14px;
+        line-height: 1.3;
+
+        /* Maximum 2 lines */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+
+        /* Long word/song name break */
+        overflow-wrap: anywhere;
+    }
+
+    .song-card .song-info {
+        font-size: 11px;
+    }
+
+    .song-card button {
+        padding: 6px 7px;
+        font-size: 10px;
+        border-radius: 7px;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 380px) {
+
+    .song-card h3,
+    .song-name {
+        font-size: 13px;
+    }
+
+    .song-card .song-info {
+        font-size: 10px;
+    }
+
+    .song-card button {
+        padding: 5px 6px;
+        font-size: 9px;
+    }
+}
+.song-card:nth-child(4n + 1) {
+    border-left-color: #4f46e5;
+    background: linear-gradient(135deg, #ffffff, #eef2ff);
+}
+
+.song-card:nth-child(4n + 2) {
+    border-left-color: #16a34a;
+    background: linear-gradient(135deg, #ffffff, #ecfdf3);
+}
+
+.song-card:nth-child(4n + 3) {
+    border-left-color: #e11d48;
+    background: linear-gradient(135deg, #ffffff, #fff1f2);
+}
+
+.song-card:nth-child(4n + 4) {
+    border-left-color: #d97706;
+    background: linear-gradient(135deg, #ffffff, #fffbeb);
+}
+/* =====================================================
+   FAST SONG CARD - COLORFUL + MOBILE FRIENDLY
+===================================================== */
+
+.fast-song-card {
+    background: linear-gradient(135deg, #ffffff, #f5f7ff);
+    border: 1px solid #e3e7f0;
+    border-left: 5px solid #5b5bd6;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.fast-song-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+
+/* Different colors for cards */
+
+.fast-song-card:nth-child(4n + 1) {
+    border-left-color: #5b5bd6;
+    background: linear-gradient(135deg, #ffffff, #f1f2ff);
+}
+
+.fast-song-card:nth-child(4n + 2) {
+    border-left-color: #16a34a;
+    background: linear-gradient(135deg, #ffffff, #effcf3);
+}
+
+.fast-song-card:nth-child(4n + 3) {
+    border-left-color: #e11d48;
+    background: linear-gradient(135deg, #ffffff, #fff1f4);
+}
+
+.fast-song-card:nth-child(4n + 4) {
+    border-left-color: #f59e0b;
+    background: linear-gradient(135deg, #ffffff, #fff9e8);
+}
+
+
+/* =====================================================
+   SONG TITLE
+===================================================== */
+
+.fast-song-title {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #20243a;
+    margin: 0;
+
+    /* Long names break properly */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .fast-song-card {
+        border-radius: 10px;
+        border-left-width: 3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+
+    /* Song name small */
+    .fast-song-title {
+        font-size: 12px !important;
+        line-height: 1.3 !important;
+        font-weight: 700;
+
+        /*
+         * Maximum 2 lines
+         * Iske baad text automatically ...
+         */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+
+        margin: 0;
+    }
+
+
+    /* Number bhi chhota */
+    .fast-song-number {
+        width: 25px;
+        height: 25px;
+        min-width: 25px;
+
+        font-size: 10px;
+    }
+
+
+    /* Header compact */
+    .fast-song-header {
+        padding: 9px 10px !important;
+    }
+
+
+    /* Meta text */
+    .fast-song-meta {
+        font-size: 9px !important;
+        line-height: 1.3;
+    }
+
+
+    /* Arrow */
+    .fast-arrow {
+        font-size: 10px;
+    }
+
+
+    /* Details */
+    .fast-song-details {
+        padding: 9px !important;
+    }
+
+
+    /* Info boxes */
+    .fast-info-label {
+        font-size: 8px !important;
+    }
+
+    .fast-info-value {
+        font-size: 10px !important;
+    }
+
+
+    /* Buttons */
+    .fast-song-actions {
+        gap: 5px !important;
+    }
+
+    .fast-song-actions button {
+        padding: 5px 7px !important;
+        font-size: 9px !important;
+        border-radius: 6px !important;
+    }
+
+
+    /* Selected badge */
+    .selected-badge {
+        font-size: 7px !important;
+        padding: 2px 4px !important;
+        border-radius: 4px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .fast-song-title {
+        font-size: 11px !important;
+    }
+
+    .fast-song-meta {
+        font-size: 8px !important;
+    }
+
+    .fast-song-number {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        font-size: 9px;
+    }
+
+    .fast-song-header {
+        padding: 8px !important;
+    }
+
+    .fast-song-actions button {
+        padding: 4px 5px !important;
+        font-size: 8px !important;
+    }
+}
+/* =====================================================
+   SLOW SONG FIREBASE LOADER
+===================================================== */
+
+.slow-song-loader {
+    min-height: 280px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px 15px;
+    box-sizing: border-box;
+}
+
+
+/* Spinner */
+
+.slow-loader-spinner {
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid #e6e8f0;
+    border-top: 4px solid #5b5bd6;
+
+    border-radius: 50%;
+
+    animation: slowSongSpin 0.8s linear infinite;
+
+    margin-bottom: 15px;
+}
+
+
+@keyframes slowSongSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* Main text */
+
+.slow-loader-text {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #30344d;
+
+    margin-bottom: 5px;
+}
+
+
+/* Sub text */
+
+.slow-loader-subtext {
+    font-size: 11px;
+
+    color: #8a8fa3;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .slow-song-loader {
+        min-height: 220px;
+    }
+
+    .slow-loader-spinner {
+        width: 34px;
+        height: 34px;
+
+        border-width: 3px;
+    }
+
+    .slow-loader-text {
+        font-size: 13px;
+    }
+
+    .slow-loader-subtext {
+        font-size: 9px;
+    }
+
+}
+/* =====================================================
+   FAST / SLOW SONG ACTION BUTTONS
+   Dark Premium Desktop Design
+===================================================== */
+
+.fast-song-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-top: 14px;
+}
+
+
+/* Common Button */
+
+.fast-song-actions button {
+    height: 36px;
+    min-width: 72px;
+    padding: 0 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Icons */
+
+.fast-song-actions button i {
+    font-size: 12px;
+}
+
+
+/* Hover */
+
+.fast-song-actions button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   USED BUTTON
+===================================================== */
+
+.fast-song-actions .used-btn {
+    background: #263238;
+    color: #d7e0e3;
+    border-color: #37474f;
+}
+
+.fast-song-actions .used-btn:hover {
+    background: #37474f;
+    border-color: #455a64;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   SELECT BUTTON
+===================================================== */
+
+.fast-song-actions .select-btn {
+    background: #263238;
+    color: #b8d7c5;
+    border-color: #385244;
+}
+
+.fast-song-actions .select-btn:hover {
+    background: #30483b;
+    border-color: #4d735b;
+    box-shadow: 0 4px 12px rgba(27, 67, 48, 0.25);
+}
+
+
+/* Selected state */
+
+.fast-song-actions .select-btn.selected {
+    background: #31533f;
+    color: #e5f5eb;
+    border-color: #527961;
+}
+
+
+/* =====================================================
+   LYRICS BUTTON
+===================================================== */
+
+.fast-song-actions .lyrics-btn {
+    background: #292d38;
+    color: #d6d9e2;
+    border-color: #414653;
+}
+
+.fast-song-actions .lyrics-btn:hover {
+    background: #383d4a;
+    border-color: #555b69;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   EDIT BUTTON
+===================================================== */
+
+.fast-song-actions .edit-btn {
+    background: #302d26;
+    color: #ddd3b9;
+    border-color: #514a3b;
+}
+
+.fast-song-actions .edit-btn:hover {
+    background: #403a2d;
+    border-color: #665d49;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   DELETE BUTTON
+===================================================== */
+
+.fast-song-actions .delete-btn {
+    background: #342729;
+    color: #e0c5c8;
+    border-color: #53393d;
+}
+
+.fast-song-actions .delete-btn:hover {
+    background: #473033;
+    border-color: #70484e;
+    box-shadow: 0 4px 12px rgba(60, 20, 25, 0.30);
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 901px) {
+
+    .fast-song-actions {
+        gap: 9px;
+        margin-top: 16px;
+    }
+
+    .fast-song-actions button {
+        height: 38px;
+        min-width: 78px;
+        padding: 0 14px;
+
+        font-size: 12px;
+        border-radius: 9px;
+    }
+
+    .fast-song-actions button i {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1200px) {
+
+    .fast-song-actions {
+        gap: 10px;
+    }
+
+    .fast-song-actions button {
+        min-width: 82px;
+        height: 39px;
+        padding: 0 15px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .fast-song-actions {
+        justify-content: flex-start;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .fast-song-actions button {
+        height: 33px;
+        min-width: auto;
+        padding: 0 10px;
+
+        font-size: 10px;
+        border-radius: 7px;
+    }
+
+    .fast-song-actions button i {
+        font-size: 10px;
+    }
+}
+/* =====================================================
+   SONG ACTION BUTTONS — RICH DARK COLORS
+===================================================== */
+
+.fast-song-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+    flex-wrap: nowrap;
+}
+
+.fast-song-actions button {
+    height: 38px;
+    padding: 0 14px;
+    min-width: 78px;
+
+    border-radius: 9px;
+    border: 1px solid transparent;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.fast-song-actions button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ================= USED ================= */
+
+.fast-song-actions .used-btn {
+    background: #4f6370;
+    color: #ffffff;
+    border-color: #667b88;
+}
+
+.fast-song-actions .used-btn:hover {
+    background: #607784;
+    box-shadow: 0 5px 14px rgba(79, 99, 112, 0.30);
+}
+
+
+/* ================= SELECT ================= */
+
+.fast-song-actions .select-btn {
+    background: #3f7056;
+    color: #ffffff;
+    border-color: #56846a;
+}
+
+.fast-song-actions .select-btn:hover {
+    background: #4f8264;
+    box-shadow: 0 5px 14px rgba(63, 112, 86, 0.30);
+}
+
+
+/* Selected */
+
+.fast-song-actions .select-btn.selected {
+    background: #28784c;
+    color: #ffffff;
+    border-color: #4b9a6b;
+}
+
+
+/* ================= LYRICS ================= */
+
+.fast-song-actions .lyrics-btn {
+    background: #63548a;
+    color: #ffffff;
+    border-color: #7667a0;
+}
+
+.fast-song-actions .lyrics-btn:hover {
+    background: #7565a0;
+    box-shadow: 0 5px 14px rgba(99, 84, 138, 0.30);
+}
+
+
+/* ================= EDIT ================= */
+
+.fast-song-actions .edit-btn {
+    background: #806638;
+    color: #ffffff;
+    border-color: #96794a;
+}
+
+.fast-song-actions .edit-btn:hover {
+    background: #927548;
+    box-shadow: 0 5px 14px rgba(128, 102, 56, 0.30);
+}
+
+
+/* ================= DELETE ================= */
+
+.fast-song-actions .delete-btn {
+    background: #8a4d55;
+    color: #ffffff;
+    border-color: #a6636b;
+}
+
+.fast-song-actions .delete-btn:hover {
+    background: #9d5b63;
+    box-shadow: 0 5px 14px rgba(138, 77, 85, 0.30);
+}
+
+
+/* ================= ICONS ================= */
+
+.fast-song-actions button i {
+    font-size: 12px;
+}
+
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 901px) {
+
+    .fast-song-actions {
+        gap: 10px;
+        margin-top: 16px;
+    }
+
+    .fast-song-actions button {
+        min-width: 82px;
+        height: 39px;
+        padding: 0 15px;
+        font-size: 12px;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .fast-song-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .fast-song-actions button {
+        height: 33px;
+        min-width: auto;
+        padding: 0 10px;
+        font-size: 10px;
+        border-radius: 7px;
+    }
+
+    .fast-song-actions button i {
+        font-size: 10px;
+    }
+}

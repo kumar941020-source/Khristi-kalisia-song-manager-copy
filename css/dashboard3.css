@@ -1003,599 +1003,117 @@ body {
     color: #e2e8f0 !important;
 }
 /* ==========================================
-   THIS SUNDAY'S SONGS
+   DASHBOARD CHRISTIAN BACKGROUND
 ========================================== */
 
-.selected-song-list {
+.main {
+    position: relative;
+    min-height: 100vh;
 
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-
-    margin-top: 20px;
-
-}
-
-
-/* ==========================================
-   SONG ITEM
-========================================== */
-
-.dashboard-song-item {
-
-    display: flex;
-
-    align-items: center;
-
-    min-height: 76px;
-
-    padding: 12px 18px;
-
-    box-sizing: border-box;
-
+    /* Jesus background image */
     background:
-        rgba(255, 255, 255, 0.92);
+        linear-gradient(
+            rgba(255, 255, 255, 0.72),
+            rgba(248, 250, 252, 0.78)
+        ),
+        url("../images/jesus2.jpeg");
 
-    border:
-        1px solid rgba(99, 102, 241, 0.14);
-
-    border-radius: 17px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 18px rgba(15, 23, 42, 0.07);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-
-}
-
-
-.dashboard-song-item:hover {
-
-    transform:
-        translateX(5px);
-
-    border-color:
-        rgba(79, 70, 229, 0.40);
-
-    box-shadow:
-        0 10px 28px
-        rgba(79, 70, 229, 0.15);
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 
 /* ==========================================
-   NUMBER
+   SOFT OVERLAY
+   Keeps dashboard text readable
 ========================================== */
 
-.song-number {
+.main::before {
+    content: "";
 
-    width: 50px;
-
-    height: 50px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 14px;
+    position: fixed;
+    inset: 0;
 
     background:
         linear-gradient(
             135deg,
-            #eef2ff,
-            #e0e7ff
+            rgba(255,255,255,0.12),
+            rgba(219,234,254,0.10)
         );
 
-    color: #4338ca;
+    pointer-events: none;
 
-    font-size: 14px;
-
-    font-weight: 800;
-
+    z-index: 0;
 }
 
 
 /* ==========================================
-   SONG INFORMATION
+   KEEP DASHBOARD CONTENT ABOVE BACKGROUND
 ========================================== */
 
-.song-info {
-
-    flex: 1;
-
-    min-width: 0;
-
-    margin-left: 16px;
-
-}
-
-
-.song-info h3 {
-
-    margin: 0 0 5px;
-
-    color: #172554;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
+.main > * {
+    position: relative;
+    z-index: 1;
 }
 
 
 /* ==========================================
-   FAST / SLOW BADGE
+   TOP HEADER
 ========================================== */
 
-.song-type {
+.top-header {
+    background: rgba(255,255,255,0.88) !important;
 
-    display: inline-block;
-
-    padding:
-        3px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-}
-
-
-.song-type.fast {
-
-    color: #166534;
-
-    background: #dcfce7;
-
-}
-
-
-.song-type.slow {
-
-    color: #7c2d12;
-
-    background: #ffedd5;
-
-}
-
-
-/* ==========================================
-   VIEW LYRICS
-========================================== */
-
-.song-action {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    color: #6366f1;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    opacity: 0.85;
-
-}
-
-
-.song-action i {
-
-    font-size: 13px;
-
-    transition: 0.25s;
-
-}
-
-
-.dashboard-song-item:hover
-.song-action i {
-
-    transform:
-        translateX(4px);
-
-}
-
-
-/* ==========================================
-   EMPTY STATE
-========================================== */
-
-.empty-icon-new {
-
-    width: 58px;
-
-    height: 58px;
-
-    margin: 0 auto 14px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
+    backdrop-filter: blur(10px);
 
     border-radius: 18px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #eef2ff,
-            #e0e7ff
-        );
+    box-shadow:
+        0 8px 25px rgba(15,23,42,0.10);
 
-    color: #4f46e5;
-
-    font-size: 23px;
-
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
 
 /* ==========================================
-   LYRICS MODAL
+   DASHBOARD CARDS
 ========================================== */
 
-.dashboard-lyrics-modal {
+.stat-card,
+.dashboard-card,
+.summary-card,
+.action-card,
+.card {
+    background: rgba(255,255,255,0.90) !important;
 
-    display: none;
+    backdrop-filter: blur(10px);
 
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99999;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    box-sizing: border-box;
-
-    background:
-        rgba(15, 23, 42, 0.60);
-
-    backdrop-filter:
-        blur(7px);
-
-}
-
-
-/* ==========================================
-   LYRICS BOX
-========================================== */
-
-.dashboard-lyrics-box {
-
-    position: relative;
-
-    width: 100%;
-
-    max-width: 880px;
-
-    max-height: 92vh;
-
-    padding: 32px;
-
-    box-sizing: border-box;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #f5f3ff,
-            #eff6ff
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.75);
 
     box-shadow:
-        0 25px 80px
-        rgba(15,23,42,0.35);
+        0 8px 25px rgba(15,23,42,0.12);
 
-    animation:
-        dashboardLyricsOpen
-        0.25s ease;
-
-}
-
-
-@keyframes dashboardLyricsOpen {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.94)
-            translateY(15px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
+    border-radius: 18px;
 }
 
 
 /* ==========================================
-   CLOSE X
+   SECTIONS
 ========================================== */
 
-.dashboard-lyrics-close {
+.section {
+    background: rgba(255,255,255,0.84) !important;
 
-    position: absolute;
+    backdrop-filter: blur(10px);
 
-    top: 18px;
+    border-radius: 20px;
 
-    right: 18px;
-
-    width: 42px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #eef2ff;
-
-    color: #4338ca;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-
-}
-
-
-.dashboard-lyrics-close:hover {
-
-    background: #ef4444;
-
-    color: white;
-
-    transform:
-        rotate(90deg);
-
-}
-
-
-/* ==========================================
-   LYRICS HEADER
-========================================== */
-
-.dashboard-lyrics-header {
-
-    text-align: center;
-
-    padding:
-        5px 55px 22px;
-
-}
-
-
-.lyrics-label {
-
-    display: inline-block;
-
-    color: #6366f1;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-}
-
-
-.dashboard-lyrics-header h2 {
-
-    margin:
-        8px 0 0;
-
-    color: #172554;
-
-    font-size: 29px;
-
-    font-weight: 800;
-
-}
-
-
-/* ==========================================
-   LYRICS AREA
-========================================== */
-
-.dashboard-lyrics-content {
-
-    width: 100%;
-
-    height: 58vh;
-
-    min-height: 400px;
-
-    overflow-y: auto;
-
-    padding: 28px;
-
-    box-sizing: border-box;
-
-    border-radius: 21px;
-
-    background:
-        rgba(255,255,255,0.86);
-
-    border:
-        1px solid #dfe4ff;
+    border: 1px solid rgba(255,255,255,0.75);
 
     box-shadow:
-        inset 0 2px 12px
-        rgba(79,70,229,0.05);
-
-}
-
-
-/* ==========================================
-   LYRICS TEXT
-========================================== */
-
-.dashboard-lyrics-text {
-
-    white-space: pre-wrap;
-
-    text-align: center;
-
-    color: #1e293b;
-
-    font-family:
-        "Poppins",
-        sans-serif;
-
-    font-size: 20px;
-
-    font-weight: 650;
-
-    line-height: 2;
-
-}
-
-
-/* ==========================================
-   LYRICS SCROLLBAR
-========================================== */
-
-.dashboard-lyrics-content::-webkit-scrollbar {
-
-    width: 8px;
-
-}
-
-
-.dashboard-lyrics-content::-webkit-scrollbar-track {
-
-    background:
-        #eef2ff;
-
-    border-radius: 10px;
-
-}
-
-
-.dashboard-lyrics-content::-webkit-scrollbar-thumb {
-
-    background:
-        linear-gradient(
-            #6366f1,
-            #8b5cf6
-        );
-
-    border-radius: 10px;
-
-}
-
-
-/* ==========================================
-   FOOTER
-========================================== */
-
-.dashboard-lyrics-footer {
-
-    display: flex;
-
-    justify-content: center;
-
-    margin-top: 18px;
-
-}
-
-
-.dashboard-lyrics-close-btn {
-
-    border: none;
-
-    padding:
-        11px 30px;
-
-    border-radius: 12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4f46e5,
-            #7c3aed
-        );
-
-    color: white;
-
-    font-family:
-        "Poppins",
-        sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-
-}
-
-
-.dashboard-lyrics-close-btn:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 22px
-        rgba(79,70,229,0.30);
-
+        0 8px 25px rgba(15,23,42,0.10);
 }
 
 
@@ -1603,122 +1121,73 @@ body {
    MOBILE
 ========================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
-    .dashboard-song-item {
+    .main {
+        background:
+            linear-gradient(
+                rgba(255,255,255,0.80),
+                rgba(248,250,252,0.84)
+            ),
+            url("../images/jesus2.jpeg");
 
-        min-height: 70px;
+        background-size: cover;
 
-        padding:
-            10px 12px;
-
-        border-radius: 15px;
-
+        background-position: center;
     }
 
+}
+/* ==========================================
+   JESUS BACKGROUND - MORE VISIBILITY
+========================================== */
 
-    .song-number {
-
-        width: 42px;
-
-        height: 42px;
-
-        border-radius: 12px;
-
-    }
-
-
-    .song-info {
-
-        margin-left: 12px;
-
-    }
+.main {
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.45),
+            rgba(248, 250, 252, 0.50)
+        ),
+        url("../images/jesus2.jpeg") center center / cover no-repeat fixed !important;
+}
 
 
-    .song-info h3 {
+/* Keep cards readable but slightly transparent */
 
-        font-size: 14px;
+.stat-card,
+.dashboard-card,
+.summary-card,
+.action-card,
+.card,
+.section {
+    background: rgba(255, 255, 255, 0.82) !important;
 
-    }
+    backdrop-filter: blur(7px);
 
-
-    .song-action span {
-
-        display: none;
-
-    }
-
-
-    .song-action i {
-
-        font-size: 14px;
-
-    }
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.12);
+}
 
 
-    /* Modal */
+/* Header */
 
-    .dashboard-lyrics-modal {
+.top-header {
+    background: rgba(255, 255, 255, 0.84) !important;
 
-        padding: 8px;
-
-    }
-
-
-    .dashboard-lyrics-box {
-
-        width: 97%;
-
-        max-height: 96vh;
-
-        padding:
-            22px 14px;
-
-        border-radius: 23px;
-
-    }
+    backdrop-filter: blur(8px);
+}
 
 
-    .dashboard-lyrics-header {
+/* Mobile */
 
-        padding:
-            8px 38px 16px;
+@media (max-width: 768px) {
 
-    }
-
-
-    .dashboard-lyrics-header h2 {
-
-        font-size: 22px;
-
-    }
-
-
-    .dashboard-lyrics-content {
-
-        height: 68vh;
-
-        min-height: 430px;
-
-        padding:
-            20px 13px;
-
-    }
-
-
-    .dashboard-lyrics-text {
-
-        font-size: 18px;
-
-        line-height: 1.9;
-
-    }
-
-
-    .dashboard-lyrics-close-btn {
-
-        width: 120px;
-
+    .main {
+        background:
+            linear-gradient(
+                rgba(255, 255, 255, 0.52),
+                rgba(248, 250, 252, 0.56)
+            ),
+            url("../images/jesus2.jpeg") center center / cover no-repeat fixed !important;
     }
 
 }

@@ -1,0 +1,841 @@
+/* =====================================================
+   LYRICS PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family: "Poppins", sans-serif;
+
+    background: #f5f7fb;
+
+    color: #1d2939;
+
+}
+
+
+/* =====================================================
+   MAIN PAGE
+===================================================== */
+
+.lyrics-page {
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(248,250,255,0.92),
+            rgba(248,250,255,0.94)
+        ),
+        url("../images/jesus2.jpeg")
+        center / cover fixed;
+
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.lyrics-back-btn {
+
+    position: fixed;
+
+    top: 18px;
+
+    left: 20px;
+
+    z-index: 100;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 9px 15px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.88);
+
+    color: #344054;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.12);
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.2s;
+
+}
+
+
+.lyrics-back-btn:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.lyrics-hero {
+
+    position: relative;
+
+    min-height: 330px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        url("../images/jesus2.jpeg")
+        center / cover no-repeat;
+
+}
+
+
+.lyrics-hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22,25,45,0.80),
+            rgba(65,45,105,0.55),
+            rgba(20,40,75,0.72)
+        );
+
+}
+
+
+.lyrics-hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 60px 20px 40px;
+
+}
+
+
+.cross-symbol {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.14);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    font-size: 28px;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.lyrics-small-label {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+
+    opacity: 0.85;
+
+}
+
+
+.lyrics-hero h1 {
+
+    margin: 10px 0 15px;
+
+    font-size: clamp(28px, 5vw, 48px);
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+}
+
+
+.song-type-badge {
+
+    display: inline-block;
+
+    padding: 7px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.16);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.lyrics-toolbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 12px 15px;
+
+    background: rgba(255,255,255,0.92);
+
+    border-bottom: 1px solid #eaecf0;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.05);
+
+    backdrop-filter: blur(12px);
+
+}
+
+
+.lyrics-toolbar button {
+
+    height: 36px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 9px;
+
+    padding: 0 12px;
+
+    background: white;
+
+    color: #344054;
+
+    font-family: Poppins, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.lyrics-toolbar button:hover {
+
+    background: #f2f4ff;
+
+    border-color: #6875f5;
+
+}
+
+
+.lyrics-toolbar span {
+
+    font-size: 11px;
+
+    color: #667085;
+
+}
+
+
+/* =====================================================
+   LYRICS CONTAINER
+===================================================== */
+
+.lyrics-container {
+
+    width: min(1000px, calc(100% - 30px));
+
+    margin: 35px auto 60px;
+
+}
+
+
+/* =====================================================
+   LYRICS CARD
+===================================================== */
+
+.lyrics-card {
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    box-shadow:
+        0 20px 55px rgba(31,41,55,0.12);
+
+    border: 1px solid rgba(255,255,255,0.8);
+
+}
+
+
+.lyrics-card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px 30px;
+
+    border-bottom: 1px solid #eaecf0;
+
+}
+
+
+.lyrics-label {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #6875f5;
+
+    font-weight: 700;
+
+}
+
+
+.lyrics-card-header h2 {
+
+    margin: 4px 0 0;
+
+    font-size: 21px;
+
+}
+
+
+.lyrics-status {
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #ecfdf3;
+
+    color: #067647;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   LYRICS TEXT
+===================================================== */
+
+.lyrics-content {
+
+    padding: 45px 55px;
+
+    min-height: 400px;
+
+    font-size: 20px;
+
+    line-height: 2;
+
+    font-weight: 500;
+
+    color: #344054;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+}
+
+
+.lyrics-content.has-lyrics {
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.lyrics-loading {
+
+    min-height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #667085;
+
+}
+
+
+.loading-circle {
+
+    width: 35px;
+
+    height: 35px;
+
+    border: 4px solid #e4e7ec;
+
+    border-top-color: #6875f5;
+
+    border-radius: 50%;
+
+    animation:
+        lyricsSpin 0.8s linear infinite;
+
+}
+
+
+@keyframes lyricsSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   NO LYRICS
+===================================================== */
+
+.no-lyrics {
+
+    min-height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.no-lyrics-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.55;
+
+}
+
+
+.no-lyrics h3 {
+
+    margin: 0 0 5px;
+
+}
+
+
+.no-lyrics p {
+
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   SONG INFORMATION
+===================================================== */
+
+.song-information {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+
+}
+
+
+.info-item {
+
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(255,255,255,0.88);
+
+    box-shadow:
+        0 8px 25px rgba(31,41,55,0.06);
+
+    text-align: center;
+
+}
+
+
+.info-item span {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #98a2b3;
+
+    margin-bottom: 5px;
+
+}
+
+
+.info-item strong {
+
+    font-size: 14px;
+
+    color: #344054;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.lyrics-footer {
+
+    text-align: center;
+
+    padding: 35px 20px 45px;
+
+    color: #667085;
+
+}
+
+
+.footer-cross {
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+
+    color: #6875f5;
+
+}
+
+
+.lyrics-footer p {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.lyrics-footer span {
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   READING MODE
+===================================================== */
+
+body.reading-mode .lyrics-page {
+
+    background: #101828;
+
+}
+
+
+body.reading-mode .lyrics-toolbar {
+
+    background: rgba(16,24,40,0.95);
+
+    border-color: #344054;
+
+}
+
+
+body.reading-mode .lyrics-toolbar button {
+
+    background: #1d2939;
+
+    color: #f2f4f7;
+
+    border-color: #475467;
+
+}
+
+
+body.reading-mode .lyrics-toolbar span {
+
+    color: #98a2b3;
+
+}
+
+
+body.reading-mode .lyrics-card {
+
+    background: #1d2939;
+
+    border-color: #344054;
+
+}
+
+
+body.reading-mode .lyrics-card-header {
+
+    border-color: #344054;
+
+}
+
+
+body.reading-mode .lyrics-card-header h2 {
+
+    color: #f9fafb;
+
+}
+
+
+body.reading-mode .lyrics-content {
+
+    color: #f2f4f7;
+
+}
+
+
+body.reading-mode .info-item {
+
+    background: #1d2939;
+
+}
+
+
+body.reading-mode .info-item strong {
+
+    color: #f9fafb;
+
+}
+
+
+/* =====================================================
+   FULLSCREEN
+===================================================== */
+
+.lyrics-card.fullscreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    overflow-y: auto;
+
+    border-radius: 0;
+
+}
+
+
+.lyrics-card.fullscreen .lyrics-content {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .lyrics-hero {
+
+        min-height: 290px;
+
+    }
+
+
+    .lyrics-back-btn {
+
+        top: 12px;
+
+        left: 12px;
+
+        padding: 7px 11px;
+
+        font-size: 11px;
+
+    }
+
+
+    .lyrics-hero-content {
+
+        padding-top: 65px;
+
+    }
+
+
+    .lyrics-toolbar {
+
+        gap: 5px;
+
+    }
+
+
+    .lyrics-toolbar button {
+
+        height: 34px;
+
+        padding: 0 9px;
+
+        font-size: 10px;
+
+    }
+
+
+    .lyrics-toolbar span {
+
+        display: none;
+
+    }
+
+
+    .lyrics-container {
+
+        width: calc(100% - 18px);
+
+        margin-top: 18px;
+
+    }
+
+
+    .lyrics-card {
+
+        border-radius: 18px;
+
+    }
+
+
+    .lyrics-card-header {
+
+        padding: 18px;
+
+    }
+
+
+    .lyrics-card-header h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .lyrics-content {
+
+        padding: 30px 18px;
+
+        font-size: 17px;
+
+        line-height: 1.9;
+
+    }
+
+
+    .song-information {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

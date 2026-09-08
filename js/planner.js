@@ -8,8 +8,69 @@ import {
     selectFastSong,
     selectSlowSong,
     saveSundayPlan,
-    clearSelectedSongs
+    clearSelectedSongs,
+    markFastSongUsed,
+    markSlowSongUsed
 } from "../script1.js";
+
+
+// ==========================================
+// PLANNER LOADER
+// ==========================================
+
+function showPlannerLoader() {
+
+    let loader = document.getElementById("plannerLoader");
+
+    if (!loader) {
+
+        loader = document.createElement("div");
+
+        loader.id = "plannerLoader";
+
+        loader.innerHTML = `
+            <div class="planner-loader-box">
+
+                <div class="planner-loader-spinner"></div>
+
+                <div class="planner-loader-title">
+                    Loading Planner
+                </div>
+
+                <div class="planner-loader-text">
+                    Loading worship songs...
+                </div>
+
+            </div>
+        `;
+
+        document.body.appendChild(loader);
+    }
+
+    loader.style.display = "flex";
+}
+
+
+// ==========================================
+// HIDE PLANNER LOADER
+// ==========================================
+
+function hidePlannerLoader() {
+
+    const loader =
+        document.getElementById("plannerLoader");
+
+    if (!loader) return;
+
+    loader.classList.add("hide");
+
+    setTimeout(() => {
+
+        loader.style.display = "none";
+        loader.classList.remove("hide");
+
+    }, 250);
+}
 
 
 // ==========================================
@@ -62,25 +123,45 @@ function displaySelectedFastSongs() {
 
     selectedFast.forEach(song => {
 
-        box.innerHTML += `
+        const item =
+            document.createElement("div");
 
-            <div class="song-item">
+        item.className = "song-item";
 
-                <span>
-                    ⚡ ${escapeHTML(song.name)}
-                </span>
 
-                <button
-                    type="button"
-                    class="btn-primary"
-                    onclick="openLyrics('${song.id}', 'fast')"
-                >
-                    📖 Lyrics
-                </button>
+        item.innerHTML = `
 
-            </div>
+            <span>
+                ${escapeHTML(song.name)}
+            </span>
+
+            <button
+                type="button"
+                class="btn-primary planner-lyrics-btn"
+            >
+                Lyrics
+            </button>
 
         `;
+
+
+        const lyricsButton =
+            item.querySelector(
+                ".planner-lyrics-btn"
+            );
+
+
+        lyricsButton.addEventListener(
+            "click",
+            () => {
+
+                openLyrics(song.id, "fast");
+
+            }
+        );
+
+
+        box.appendChild(item);
 
     });
 
@@ -122,25 +203,45 @@ function displaySelectedSlowSongs() {
 
     selectedSlow.forEach(song => {
 
-        box.innerHTML += `
+        const item =
+            document.createElement("div");
 
-            <div class="song-item">
+        item.className = "song-item";
 
-                <span>
-                    ❤️ ${escapeHTML(song.name)}
-                </span>
 
-                <button
-                    type="button"
-                    class="btn-primary"
-                    onclick="openLyrics('${song.id}', 'slow')"
-                >
-                    📖 Lyrics
-                </button>
+        item.innerHTML = `
 
-            </div>
+            <span>
+                ${escapeHTML(song.name)}
+            </span>
+
+            <button
+                type="button"
+                class="btn-primary planner-lyrics-btn"
+            >
+                Lyrics
+            </button>
 
         `;
+
+
+        const lyricsButton =
+            item.querySelector(
+                ".planner-lyrics-btn"
+            );
+
+
+        lyricsButton.addEventListener(
+            "click",
+            () => {
+
+                openLyrics(song.id, "slow");
+
+            }
+        );
+
+
+        box.appendChild(item);
 
     });
 
@@ -278,7 +379,7 @@ function displayFastPopupSongs(
     const songs =
         fastSongs.filter(song => {
 
-            return song.name
+            return String(song.name || "")
                 .toLowerCase()
                 .includes(search);
 
@@ -322,7 +423,7 @@ function displayFastPopupSongs(
                 >
 
                 <span class="popup-song-name">
-                    ⚡ ${escapeHTML(song.name)}
+                    ${escapeHTML(song.name)}
                 </span>
 
             </div>
@@ -332,11 +433,11 @@ function displayFastPopupSongs(
                 type="button"
                 class="popup-select-btn"
             >
-
-                ${song.selected
-                    ? "✓ Selected"
-                    : "Select"}
-
+                ${
+                    song.selected
+                        ? "✓ Selected"
+                        : "Select"
+                }
             </button>
 
         `;
@@ -389,6 +490,8 @@ async function toggleFastSong(id) {
 
     await selectFastSong(id);
 
+    // Selection remains active.
+    // Nothing is cleared here.
 
     displayPlannerSongs();
 
@@ -508,7 +611,7 @@ function displaySlowPopupSongs(
     const songs =
         slowSongs.filter(song => {
 
-            return song.name
+            return String(song.name || "")
                 .toLowerCase()
                 .includes(search);
 
@@ -552,7 +655,7 @@ function displaySlowPopupSongs(
                 >
 
                 <span class="popup-song-name">
-                    ❤️ ${escapeHTML(song.name)}
+                    ${escapeHTML(song.name)}
                 </span>
 
             </div>
@@ -562,11 +665,11 @@ function displaySlowPopupSongs(
                 type="button"
                 class="popup-select-btn"
             >
-
-                ${song.selected
-                    ? "✓ Selected"
-                    : "Select"}
-
+                ${
+                    song.selected
+                        ? "✓ Selected"
+                        : "Select"
+                }
             </button>
 
         `;
@@ -619,6 +722,8 @@ async function toggleSlowSong(id) {
 
     await selectSlowSong(id);
 
+    // Selection remains active.
+    // Nothing is cleared here.
 
     displayPlannerSongs();
 
@@ -661,9 +766,103 @@ function searchSlowSongPopup() {
 
 async function savePlan() {
 
-    await saveSundayPlan();
+    // --------------------------------------
+    // FIRST: REMEMBER SELECTED SONG IDs
+    // --------------------------------------
 
-    displayPlannerSongs();
+    const selectedFastIds =
+        fastSongs
+            .filter(song => song.selected === true)
+            .map(song => song.id);
+
+
+    const selectedSlowIds =
+        slowSongs
+            .filter(song => song.selected === true)
+            .map(song => song.id);
+
+
+    // --------------------------------------
+    // CHECK
+    // --------------------------------------
+
+    if (
+        selectedFastIds.length === 0 &&
+        selectedSlowIds.length === 0
+    ) {
+
+        alert(
+            "Please select at least one song."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        // ----------------------------------
+        // SAVE SUNDAY PLAN
+        // ----------------------------------
+
+        await saveSundayPlan();
+
+
+        // ----------------------------------
+        // USED +1 FOR FAST SONGS
+        // ----------------------------------
+
+        for (
+            const songId of selectedFastIds
+        ) {
+
+            await markFastSongUsed(songId);
+
+        }
+
+
+        // ----------------------------------
+        // USED +1 FOR SLOW SONGS
+        // ----------------------------------
+
+        for (
+            const songId of selectedSlowIds
+        ) {
+
+            await markSlowSongUsed(songId);
+
+        }
+
+
+        // ----------------------------------
+        // REFRESH PLANNER
+        // ----------------------------------
+
+        displayPlannerSongs();
+
+
+        // ----------------------------------
+        // CLOSE POPUPS
+        // ----------------------------------
+
+        closeFastSongPopup();
+        closeSlowSongPopup();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "❌ Error saving Sunday Plan:",
+            error
+        );
+
+        alert(
+            "Unable to save Sunday Plan. Please try again."
+        );
+
+    }
 
 }
 
@@ -678,6 +877,10 @@ async function clearPlan() {
 
     displayPlannerSongs();
 
+
+    closeFastSongPopup();
+    closeSlowSongPopup();
+
 }
 
 
@@ -687,92 +890,20 @@ async function clearPlan() {
 
 function openLyrics(songId, type) {
 
-    let song;
+    if (!songId) return;
 
 
-    if (type === "fast") {
-
-        song =
-            fastSongs.find(
-                s => s.id === songId
-            );
-
-    } else {
-
-        song =
-            slowSongs.find(
-                s => s.id === songId
-            );
-
-    }
+    const safeType =
+        type === "slow"
+            ? "slow"
+            : "fast";
 
 
-    if (!song) return;
+    const url =
+        `lyrics.html?id=${encodeURIComponent(songId)}&type=${safeType}`;
 
 
-    const name =
-        document.getElementById(
-            "lyricsSongName"
-        );
-
-
-    const lyrics =
-        document.getElementById(
-            "lyricsText"
-        );
-
-
-    const modal =
-        document.getElementById(
-            "lyricsModal"
-        );
-
-
-    if (name) {
-
-        name.innerText =
-            song.name;
-
-    }
-
-
-    if (lyrics) {
-
-        lyrics.value =
-            song.lyrics ||
-            "Lyrics not available.";
-
-    }
-
-
-    if (modal) {
-
-        modal.style.display =
-            "flex";
-
-    }
-
-}
-
-
-// ==========================================
-// CLOSE LYRICS
-// ==========================================
-
-function closeLyrics() {
-
-    const modal =
-        document.getElementById(
-            "lyricsModal"
-        );
-
-
-    if (modal) {
-
-        modal.style.display =
-            "none";
-
-    }
+    window.location.href = url;
 
 }
 
@@ -806,6 +937,10 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        // Show loader immediately
+        showPlannerLoader();
+
+
         const waitForApp =
             setInterval(() => {
 
@@ -817,6 +952,16 @@ document.addEventListener(
 
 
                     displayPlannerSongs();
+
+
+                    // Small delay gives a smooth
+                    // transition instead of flashing.
+
+                    setTimeout(() => {
+
+                        hidePlannerLoader();
+
+                    }, 250);
 
                 }
 
@@ -904,6 +1049,3 @@ window.clearPlan =
 
 window.openLyrics =
     openLyrics;
-
-window.closeLyrics =
-    closeLyrics;

@@ -1,548 +1,424 @@
 /* ==========================================
-   FAST SONGS PAGE
+   FAST SONGS - LYRICS POPUP
 ========================================== */
 
-.main{
-    margin-left:250px;
-    padding:35px;
-    min-height:100vh;
-    background:#f3f7f5;
-}
+#lyricsModal {
+    display: none;
+    position: fixed;
+    inset: 0;
 
-.top-header{
-    background:linear-gradient(135deg,#2e8b57,#3cb371);
-    color:#fff;
-    padding:22px 30px;
-    border-radius:18px;
-    margin-bottom:30px;
-    box-shadow:0 10px 25px rgba(46,139,87,.25);
-}
+    z-index: 99999;
 
-.top-header h1{
-    margin:0;
-    font-size:30px;
-    font-weight:700;
-}
+    align-items: center;
+    justify-content: center;
 
-.section{
-    background:#fff;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.section:hover{
-    transform:translateY(-3px);
-}
-
-.section h2{
-    color:#2e8b57;
-    margin-bottom:20px;
-    font-size:24px;
-}
-/* ==========================================
-   FORM DESIGN
-========================================== */
-
-.section input[type="text"],
-.section input[type="date"]{
-
-    width:100%;
-    max-width:320px;
-
-    padding:14px 16px;
-
-    margin:10px 12px 15px 0;
-
-    border:2px solid #d7e8dc;
-
-    border-radius:12px;
-
-    background:#fff;
-
-    font-size:15px;
-
-    transition:.3s;
-
-}
-
-.section input[type="text"]:focus,
-.section input[type="date"]:focus{
-
-    outline:none;
-
-    border-color:#2e8b57;
-
-    box-shadow:0 0 12px rgba(46,139,87,.20);
-
-}
-
-
-
-/* ==========================================
-   SEARCH BOX
-========================================== */
-
-.section input[type="text"][placeholder="Search Song"]{
-
-    width:100%;
-
-    max-width:420px;
-
-    margin-bottom:20px;
-
-    background:#f8fffb;
-
-    border:2px solid #b8dfc5;
-
-    font-size:16px;
-
-}
-
-.section input[type="text"][placeholder="Search Song"]:focus{
-
-    border-color:#2e8b57;
-
-    background:#fff;
-
-}
-
-
-
-/* ==========================================
-   BUTTON DESIGN
-========================================== */
-
-.btn-primary,
-.btn-success,
-.btn-danger{
-
-    border:none;
-
-    border-radius:12px;
-
-    padding:12px 22px;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.btn-primary{
-
-    background:#2e8b57;
-
-    color:#fff;
-
-}
-
-.btn-primary:hover{
-
-    background:#267349;
-
-    transform:translateY(-2px);
-
-}
-
-.btn-success{
-
-    background:#16a34a;
-
-    color:#fff;
-
-}
-
-.btn-success:hover{
-
-    background:#15803d;
-
-}
-
-.btn-danger{
-
-    background:#dc2626;
-
-    color:#fff;
-
-}
-
-.btn-danger:hover{
-
-    background:#b91c1c;
-
-}
-/* ==========================================
-   TABLE DESIGN
-========================================== */
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    background:#fff;
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-    margin-top:15px;
-
-}
-
-thead{
-
-    background:linear-gradient(135deg,#2e8b57,#3cb371);
-
-    color:#fff;
-
-}
-
-th{
-
-    padding:16px;
-
-    text-align:left;
-
-    font-size:15px;
-
-    font-weight:600;
-
-}
-
-td{
-
-    padding:15px;
-
-    border-bottom:1px solid #e9ecef;
-
-    font-size:15px;
-
-}
-
-tbody tr{
-
-    transition:.3s;
-
-}
-
-tbody tr:nth-child(even){
-
-    background:#f8fcf9;
-
-}
-
-tbody tr:hover{
-
-    background:#e8f8ef;
-
-    transform:scale(1.01);
-
-}
-
-tbody tr:last-child td{
-
-    border-bottom:none;
-
-}
-
-
-
-/* ==========================================
-   ACTION BUTTONS
-========================================== */
-
-td button{
-
-    margin:3px;
-
-    padding:8px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-td button:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:0 5px 12px rgba(0,0,0,.15);
-
-}
-
-td button:active{
-
-    transform:scale(.95);
-
-}
-/* ==========================================
-   EMPTY TABLE MESSAGE
-========================================== */
-
-#fastSongTable:empty::before{
-
-    content:"🎵 No Fast Songs Available";
-
-    display:block;
-
-    text-align:center;
-
-    padding:30px;
-
-    color:#888;
-
-    font-size:18px;
-
-    font-weight:600;
-
-}
-
-
-
-/* ==========================================
-   CARD ANIMATION
-========================================== */
-
-.section{
-
-    animation:fadeUp .5s ease;
-
-}
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
-
-::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#eef5f0;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#2e8b57;
-
-    border-radius:20px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#246b45;
-
-}
-
-
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media(max-width:900px){
-
-.main{
-
-    margin-left:70px;
-
-    padding:20px;
-
-}
-
-.section input[type="text"],
-.section input[type="date"]{
-
-    max-width:100%;
-
-}
-
-table{
-
-    display:block;
-
-    overflow-x:auto;
-
-}
-
-}
-
-
-
-@media(max-width:600px){
-
-.top-header{
-
-    padding:18px;
-
-}
-
-.top-header h1{
-
-    font-size:24px;
-
-}
-
-.section{
-
-    padding:18px;
-
-}
-
-.section h2{
-
-    font-size:20px;
-
-}
-
-.btn-primary,
-.btn-success,
-.btn-danger{
-
-    width:100%;
-
-    margin-top:10px;
-
-}
-
-td button{
-
-    display:block;
-
-    width:100%;
-
-    margin:6px 0;
-
-}
-
-}
-/* ==========================================
-   FAST SONGS - SONG LIST
-========================================== */
-
-#fastSongTable {
-    width: 100%;
-}
-
-
-/* Each Song Outer Card */
-.attendance-record-card {
-    background: #ffffff;
-    border-radius: 14px;
-    margin-bottom: 18px;
+    padding: 20px;
     overflow: hidden;
-    border: 1px solid #e3e3e3;
+
+    /* Beautiful background */
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(37, 99, 235, 0.45),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(147, 51, 234, 0.45),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(236, 72, 153, 0.30),
+            transparent 35%
+        ),
+        #050816;
 }
 
 
-/* Song Name Section */
-.attendance-record-card > div:first-child {
-    padding: 18px 20px;
-    background: #f8f9fc;
+/* Background decorative glow */
+
+#lyricsModal::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    left: -120px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(59, 130, 246, 0.22);
+
+    filter: blur(70px);
+
+    pointer-events: none;
 }
 
 
-/* Song Name */
-.attendance-record-card h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: #222;
+#lyricsModal::after {
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    right: -150px;
+    bottom: -150px;
+
+    border-radius: 50%;
+
+    background: rgba(168, 85, 247, 0.22);
+
+    filter: blur(80px);
+
+    pointer-events: none;
 }
 
 
-/* Line between song name and details */
-.attendance-record-card > div:first-child {
-    border-bottom: 1px solid #dddddd;
+/* ==========================================
+   LYRICS BOX
+========================================== */
+
+#lyricsModal .lyrics-box {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 700px;
+
+    max-height: 90vh;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    /* Main colorful background */
+
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(59, 130, 246, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(168, 85, 247, 0.25),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #0f172a,
+            #171d3d,
+            #24143f
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(99, 102, 241, 0.18);
+
+    backdrop-filter: blur(18px);
+
+    animation: lyricsPopup 0.25s ease;
 }
 
 
-/* Inner Details Card */
-.attendance-record {
-    padding: 16px 20px;
-    background: #ffffff;
+/* Popup animation */
+
+@keyframes lyricsPopup {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
 }
 
 
-/* Last Sung / Times Sung */
-.attendance-record p {
-    margin: 6px 0;
-    font-size: 15px;
-    color: #555;
-    font-weight: 400;
-}
+/* ==========================================
+   CLOSE BUTTON
+========================================== */
 
+#lyricsModal .close-lyrics {
 
-/* Values */
-.attendance-record p b {
-    font-weight: 500;
-    color: #222;
-}
+    position: absolute;
 
+    right: 20px;
+    top: 15px;
 
-/* Buttons area */
-.attendance-record-stats {
+    width: 40px;
+    height: 40px;
+
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid #e2e2e2;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    z-index: 5;
 }
 
 
-/* Buttons */
-.attendance-record-stats button {
-    font-size: 13px;
-    padding: 8px 12px;
-    border-radius: 8px;
+#lyricsModal .close-lyrics:hover {
+
+    background: #ef4444;
+
+    transform: rotate(90deg) scale(1.08);
+
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+#lyricsModal .lyrics-box h2 {
+
+    margin: 0;
+
+    padding-right: 45px;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #a78bfa,
+            #f472b6
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+
+/* ==========================================
+   SONG NAME
+========================================== */
+
+#lyricsModal #lyricsSongName {
+
+    margin: 10px 0 20px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* ==========================================
+   LYRICS TEXTAREA
+========================================== */
+
+#lyricsModal #lyricsText {
+
+    width: 100%;
+
+    min-height: 330px;
+    max-height: 50vh;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+
+    resize: vertical;
+
+    border-radius: 18px;
+
+    outline: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(30, 27, 75, 0.92)
+        );
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1.8;
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 0, 0, 0.25);
+
+    transition: 0.25s;
+}
+
+
+#lyricsModal #lyricsText:focus {
+
+    border-color: rgba(129, 140, 248, 0.8);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12),
+        inset 0 0 25px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* Placeholder */
+
+#lyricsModal #lyricsText::placeholder {
+
+    color: rgba(255, 255, 255, 0.45);
+
+}
+
+
+/* Scrollbar */
+
+#lyricsModal #lyricsText::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+
+#lyricsModal #lyricsText::-webkit-scrollbar-track {
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-radius: 10px;
+
+}
+
+
+#lyricsModal #lyricsText::-webkit-scrollbar-thumb {
+
+    background: linear-gradient(
+        #6366f1,
+        #a855f7
+    );
+
+    border-radius: 10px;
+
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+#lyricsModal .lyrics-buttons {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+#lyricsModal .lyrics-buttons button {
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 11px 20px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+#lyricsModal .lyrics-buttons .btn-primary {
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+
+#lyricsModal .lyrics-buttons .btn-primary:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(79, 70, 229, 0.45);
+}
+
+
+#lyricsModal .lyrics-buttons .btn-danger {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+    color: white;
+}
+
+
+#lyricsModal .lyrics-buttons .btn-danger:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(239, 68, 68, 0.3);
 }
 
 
@@ -552,43 +428,386 @@ td button{
 
 @media (max-width: 600px) {
 
-    .attendance-record-card {
-        margin-bottom: 14px;
-        border-radius: 12px;
+    #lyricsModal {
+
+        padding: 12px;
+
     }
 
+    #lyricsModal .lyrics-box {
 
-    .attendance-record-card > div:first-child {
-        padding: 15px 16px;
+        padding: 22px;
+
+        border-radius: 22px;
+
+        max-height: 92vh;
+
     }
 
+    #lyricsModal .lyrics-box h2 {
 
-    .attendance-record-card h3 {
+        font-size: 22px;
+
+    }
+
+    #lyricsModal #lyricsSongName {
+
         font-size: 17px;
-        font-weight: 500;
+
     }
 
+    #lyricsModal #lyricsText {
 
-    .attendance-record {
-        padding: 14px 16px;
-    }
+        min-height: 300px;
 
-
-    .attendance-record p {
         font-size: 14px;
+
     }
 
+    #lyricsModal .lyrics-buttons {
 
-    .attendance-record-stats {
-        gap: 7px;
-        margin-top: 12px;
-        padding-top: 12px;
+        flex-direction: column;
+
     }
 
+    #lyricsModal .lyrics-buttons button {
 
-    .attendance-record-stats button {
-        font-size: 12px;
-        padding: 7px 10px;
+        width: 100%;
+
+    }
+
+}
+/* ==========================================
+   LYRICS TEXT - BIG & CENTER
+========================================== */
+
+#lyricsModal #lyricsText {
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    line-height: 2 !important;
+
+    text-align: center !important;
+
+    padding: 25px !important;
+
+    letter-spacing: 0.3px;
+
+    min-height: 360px;
+}
+
+/* Placeholder bhi center */
+#lyricsModal #lyricsText::placeholder {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Song name center */
+#lyricsModal #lyricsSongName {
+    text-align: center !important;
+    font-size: 23px !important;
+    font-weight: 800 !important;
+}
+
+/* Popup heading center */
+#lyricsModal .lyrics-box h2 {
+    text-align: center !important;
+    font-size: 30px !important;
+}
+/* ==========================================
+   MOBILE LYRICS POPUP - TALLER
+========================================== */
+
+@media (max-width: 600px) {
+
+    #lyricsModal {
+        padding: 10px !important;
+    }
+
+    #lyricsModal .lyrics-box {
+        width: 96% !important;
+        max-height: 96vh !important;
+        min-height: 85vh !important;
+
+        padding: 22px 18px !important;
+
+        border-radius: 22px !important;
+    }
+
+    #lyricsModal #lyricsText {
+        min-height: 58vh !important;
+        max-height: 65vh !important;
+
+        font-size: 17px !important;
+        line-height: 1.9 !important;
+
+        text-align: center !important;
+
+        padding: 22px 15px !important;
+    }
+
+    #lyricsModal .lyrics-box h2 {
+        font-size: 24px !important;
+        margin-bottom: 8px !important;
+    }
+
+    #lyricsModal #lyricsSongName {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+
+    #lyricsModal .lyrics-buttons {
+        margin-top: 15px !important;
+    }
+
+}
+/* ==========================================
+   JESUS BACKGROUND LYRICS POPUP
+========================================== */
+
+#lyricsModal {
+    background: rgba(0, 0, 0, 0.65) !important;
+}
+
+
+/* POPUP BIGGER */
+
+#lyricsModal .lyrics-box {
+    width: 92% !important;
+    max-width: 850px !important;
+
+    min-height: 650px !important;
+
+    padding: 35px !important;
+
+    border-radius: 28px !important;
+
+    /* Jesus background */
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.82),
+            rgba(245,247,255,0.88)
+        ),
+        url("../images/jesus1.jpeg") center center / cover no-repeat !important;
+
+    position: relative;
+}
+
+
+/* HEADING */
+
+#lyricsModal .lyrics-box h2 {
+    text-align: center !important;
+
+    font-size: 32px !important;
+    font-weight: 800 !important;
+
+    color: #312e81 !important;
+}
+
+
+/* SONG NAME */
+
+#lyricsModal #lyricsSongName {
+    text-align: center !important;
+
+    font-size: 25px !important;
+    font-weight: 800 !important;
+
+    color: #1e3a8a !important;
+}
+
+
+/* ==========================================
+   LYRICS BOX - BIGGER
+========================================== */
+
+#lyricsModal #lyricsText {
+
+    width: 100% !important;
+
+    min-height: 450px !important;
+
+    max-height: 60vh !important;
+
+    padding: 28px !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 20px !important;
+
+    /* Light transparent area */
+    background: rgba(255,255,255,0.88) !important;
+
+    border: 2px solid rgba(79,70,229,0.25) !important;
+
+    color: #172554 !important;
+
+    font-size: 20px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 2 !important;
+
+    text-align: center !important;
+
+    resize: vertical !important;
+}
+
+
+/* BUTTONS */
+
+#lyricsModal .lyrics-buttons {
+    justify-content: center !important;
+
+    margin-top: 22px !important;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #lyricsModal {
+        padding: 8px !important;
+    }
+
+    #lyricsModal .lyrics-box {
+
+        width: 97% !important;
+
+        min-height: 90vh !important;
+
+        max-height: 96vh !important;
+
+        padding: 22px 15px !important;
+
+        border-radius: 22px !important;
+    }
+
+    #lyricsModal .lyrics-box h2 {
+        font-size: 25px !important;
+    }
+
+    #lyricsModal #lyricsSongName {
+        font-size: 21px !important;
+    }
+
+    #lyricsModal #lyricsText {
+
+        min-height: 62vh !important;
+
+        max-height: 68vh !important;
+
+        font-size: 18px !important;
+
+        line-height: 1.9 !important;
+
+        padding: 20px 12px !important;
+    }
+
+}
+/* ==========================================
+   JESUS IMAGE - MORE VISIBLE
+========================================== */
+
+#lyricsModal .lyrics-box {
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.55),
+            rgba(245,247,255,0.62)
+        ),
+        url("../images/jesus1.jpeg") center center / cover no-repeat !important;
+
+    width: 94% !important;
+    max-width: 900px !important;
+
+    min-height: 700px !important;
+
+    padding: 35px !important;
+
+    border-radius: 28px !important;
+}
+
+
+/* LYRICS AREA */
+
+#lyricsModal #lyricsText {
+    min-height: 500px !important;
+    max-height: 65vh !important;
+
+    background: rgba(255,255,255,0.72) !important;
+
+    color: #172554 !important;
+
+    font-size: 20px !important;
+    font-weight: 700 !important;
+
+    line-height: 2 !important;
+
+    text-align: center !important;
+
+    border: 2px solid rgba(79,70,229,0.25) !important;
+
+    border-radius: 20px !important;
+}
+
+
+/* SONG NAME */
+
+#lyricsModal #lyricsSongName {
+    text-align: center !important;
+
+    font-size: 25px !important;
+    font-weight: 800 !important;
+
+    color: #1e3a8a !important;
+}
+
+
+/* HEADING */
+
+#lyricsModal .lyrics-box h2 {
+    text-align: center !important;
+
+    font-size: 31px !important;
+    font-weight: 800 !important;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #lyricsModal .lyrics-box {
+        width: 97% !important;
+
+        min-height: 90vh !important;
+
+        padding: 22px 14px !important;
+
+        background:
+            linear-gradient(
+                rgba(255,255,255,0.48),
+                rgba(245,247,255,0.55)
+            ),
+            url("../images/jesus1.jpeg") center center / cover no-repeat !important;
+    }
+
+    #lyricsModal #lyricsText {
+        min-height: 62vh !important;
+
+        max-height: 68vh !important;
+
+        background: rgba(255,255,255,0.70) !important;
+
+        font-size: 18px !important;
+
+        line-height: 1.9 !important;
     }
 
 }

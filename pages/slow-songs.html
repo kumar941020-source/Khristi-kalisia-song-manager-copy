@@ -4,119 +4,346 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Slow Songs | Khristi Kalisiya</title>
 
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../css/dashboard.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- SAME CSS AS FAST SONGS -->
+<link rel="stylesheet" href="../css/fast-songs1.css">
+<link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 <div class="sidebar">
 
-    <h2>✝ Khristi Kalisiya</h2>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
+
 
     <a href="../index.html">
+
+        <i class="fa-solid fa-house"></i>
+
         Dashboard
+
     </a>
 
-    <a href="fast-songs.html">
+
+    <a href="songs.html">
+
+        <i class="fa-solid fa-music"></i>
+
         Songs
+
     </a>
 
-    <a href="planner.html">
+
+    <a
+        href="planner.html"
+        class="active"
+    >
+
+        <i class="fa-solid fa-calendar"></i>
+
         Sunday Planner
+
     </a>
+
 
     <a href="history.html">
+
+        <i class="fa-solid fa-clock"></i>
+
         History
+
     </a>
+
 
     <a href="choir.html">
-        🎤 Choir
-    </a>
-<div class="admin-only">
-    <a href="reports.html">
-        Reports
-    </a>
-</div>
 
+                <i class="fa-solid fa-users"></i>
+ Choir
+
+    </a>
+
+
+    <div class="admin-only">
+
+        <a href="reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Reports
+
+        </a>
+
+    </div>
     <a href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+
         Settings
+
     </a>
 
 </div>
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-<div class="main">
+<div class="main fast-main">
 
-    <div class="top-header">
 
-        <h1>
-            Slow Songs
-        </h1>
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div class="fast-page-header">
+
+        <div>
+
+            <span class="page-label">
+                WORSHIP LIBRARY
+            </span>
+
+
+            <h1>
+                Slow Songs
+            </h1>
+
+
+            <p>
+                Manage peaceful worship songs, usage and lyrics.
+            </p>
+
+        </div>
+
+
+        <div class="fast-header-stat">
+
+            <span id="slowTotalSongs">
+                0
+            </span>
+
+            <small>
+                Total Songs
+            </small>
+
+        </div>
 
     </div>
 
 
-    <!-- ==================================
+
+    <!-- =================================================
          ADD SONG
-    ================================== -->
+    ================================================== -->
 
-    <div class="section admin-only">
+    <div class="section add-song-section admin-only">
 
-        <h2>
-            Add New Slow Song
-        </h2>
+        <div class="section-title-row">
 
-        <input
-            type="text"
-            id="slowSongName"
-            placeholder="Enter song name"
-        >
+            <div>
 
-        <input
-            type="date"
-            id="slowSongDate"
-        >
+                <span class="section-mini-label">
+                    SONG LIBRARY
+                </span>
 
-        <button
-            class="btn-primary admin-only"
-            onclick="addSlow()">
 
-            Add Song
+                <h2>
+                    Add New Slow Song
+                </h2>
 
-        </button>
+            </div>
+
+        </div>
+
+
+
+        <div class="add-song-form">
+
+
+            <div class="input-group">
+
+                <label>
+                    Song Name
+                </label>
+
+
+                <input
+                    type="text"
+                    id="slowSongName"
+                    placeholder="Enter song name"
+                >
+
+            </div>
+
+
+
+            <div class="input-group">
+
+                <label>
+                    Last Sung Date
+                </label>
+
+
+                <input
+                    type="date"
+                    id="slowSongDate"
+                >
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="add-song-btn"
+                onclick="addSlow()">
+
+                <span>
+                    +
+                </span>
+
+                Add Slow Song
+
+            </button>
+
+        </div>
 
     </div>
 
 
-    <!-- ==================================
+
+    <!-- =================================================
          SONG LIST
-    ================================== -->
+    ================================================== -->
 
-    <div class="section">
-
-        <h2>
-            Slow Song List
-        </h2>
+    <div class="section fast-list-section">
 
 
-        <input
-            type="text"
-            placeholder="Search Song"
-            oninput="searchSlow(this.value)"
-        >
+        <div class="song-list-header">
+
+            <div>
+
+                <span class="section-mini-label">
+                    WORSHIP SONGS
+                </span>
 
 
-        <div id="slowSongTable">
+                <h2>
+                    Slow Song Collection
+                </h2>
 
-            <!-- Songs will appear here -->
+
+                <p>
+                    Click a song to view its details.
+                </p>
+
+            </div>
+
+
+            <div
+                class="song-count-badge"
+                id="slowListCount">
+
+                0 Songs
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <div class="fast-search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+
+            <input
+                type="text"
+                id="slowSearchInput"
+                placeholder="Search slow songs..."
+                oninput="searchSlow(this.value)"
+            >
+
+
+            <button
+                type="button"
+                id="clearSlowSearch"
+                onclick="clearSlowSearch()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOADER
+        ================================================== -->
+
+        <div
+            id="slowSongLoader"
+            class="slow-song-loader">
+
+            <div class="slow-loader-spinner"></div>
+
+            <div class="slow-loader-text">
+                Loading slow songs...
+            </div>
+
+            <div class="slow-loader-subtext">
+                Please wait while songs are loading
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SONG CARDS
+        ================================================== -->
+
+        <div
+            id="slowSongTable"
+            class="fast-song-grid"
+            style="display:none;">
 
         </div>
 
@@ -125,56 +352,56 @@
 </div>
 
 
-<!-- ==========================================
-     LYRICS MODAL
-========================================== -->
 
-<div id="lyricsModal" class="lyrics-modal">
+<!-- =====================================================
+     CONFIRMATION MODAL
+===================================================== -->
 
-    <div class="lyrics-box">
+<div
+    id="slowActionConfirmModal"
+    class="action-confirm-modal">
 
-        <span
-            class="close-lyrics"
-            onclick="closeLyrics()">
-
-            &times;
-
-        </span>
+    <div class="action-confirm-box">
 
 
-        <h2>
-            🎵 Song Lyrics
+        <div
+            id="slowConfirmIcon"
+            class="confirm-icon">
+
+            ⚠
+
+        </div>
+
+
+        <h2 id="slowConfirmTitle">
+            Confirm Action
         </h2>
 
 
-        <h3 id="lyricsSongName">
-            Song Name
-        </h3>
+        <p id="slowConfirmMessage">
+            Are you sure?
+        </p>
 
 
-        <textarea
-            id="lyricsText"
-            rows="15"
-            placeholder="Write song lyrics here...">
-        </textarea>
+        <div class="confirm-buttons">
 
-
-        <div class="lyrics-buttons">
 
             <button
-                class="btn-primary admin-only"
-                onclick="saveLyrics()">
+                type="button"
+                id="slowConfirmCancelBtn"
+                class="confirm-cancel-btn">
 
-                💾 Save Lyrics
+                Cancel
 
             </button>
 
 
             <button
-                class="btn-danger"
-                onclick="closeLyrics()">
+                type="button"
+                id="slowConfirmActionBtn"
+                class="confirm-action-btn">
 
-                Close
+                Confirm
 
             </button>
 
@@ -184,21 +411,29 @@
 
 </div>
 
+
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
 
 <script
     type="module"
     src="../script1.js">
 </script>
 
+
 <script
     type="module"
     src="../js/slow-songs.js">
 </script>
 
+
 <script
     type="module"
     src="../js/admin.js">
 </script>
+
 
 </body>
 

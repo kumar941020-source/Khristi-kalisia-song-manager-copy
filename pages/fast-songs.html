@@ -4,179 +4,347 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Fast Songs | Khristi Kalisiya
-</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Fast Songs | Khristi Kalisiya</title>
 
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../css/dashboard.css">
-
+<link rel="stylesheet" href="../css/fast-songs1.css">
 
 <link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
 </head>
 
 <body>
 
+<!-- ================= SIDEBAR ================= -->
+
 <div class="sidebar">
 
-<h2>
-✝ Khristi Kalisiya
-</h2>
-
-<a href="../index.html">
-Dashboard
-</a>
-
-<a href="fast-songs.html">
-Fast Songs
-</a>
-
-<a href="slow-songs.html">
-Slow Songs
-</a>
-
-<a href="planner.html">
-Sunday Planner
-</a>
-
-<a href="history.html">
-History
-</a>
-
-<a href="choir.html">
-🎤 Choir
-</a>
-<div class="admin-only">
-<a href="reports.html">
-Reports
-</a>
-</div>
-
-<a href="settings.html">
-Settings
-</a>
-
-</div>
+    <h2>
+        ✝ Khristi Kalisiya
+    </h2>
 
 
-<div class="main">
+    <a
+        href="../index.html"
+        class="active"
+    >
 
-<div class="top-header">
+        <i class="fa-solid fa-house"></i>
 
-<h1>
-Fast Songs
-</h1>
-
-</div>
-
-
-<!-- ==========================================
-     ADD SONG
-========================================== -->
-
-<div class="section admin-only">
-
-<h2>
-Add New Fast Song
-</h2>
-
-<input
-type="text"
-id="fastSongName"
-placeholder="Enter song name"
->
-
-<input
-type="date"
-id="fastSongDate"
->
-
-<button
-class="btn-primary admin-only"
-onclick="addFast()">
-
-Add Song
-
-</button>
-
-</div>
-
-
-<!-- ==========================================
-     SONG LIST
-========================================== -->
-
-<div class="section">
-
-<h2>
-Fast Song List
-</h2>
-
-<input
-type="text"
-placeholder="Search Song"
-onkeyup="searchFast(this.value)"
->
-
-<!-- Songs yahan cards ke form me aayenge -->
-
-<div id="fastSongTable"></div>
-
-</div>
-
-</div>
-
-
-<!-- ==========================================
-     LYRICS MODAL
-========================================== -->
-
-<div id="lyricsModal" class="lyrics-modal">
-
-    <div class="lyrics-box">
-
-        <span
-        class="close-lyrics"
-        onclick="closeLyrics()">
-
-        &times;
-
+        <span>
+            Dashboard
         </span>
 
-        <h2>
-        🎵 Song Lyrics
-        </h2>
+    </a>
 
-        <h3 id="lyricsSongName">
-        Song Name
-        </h3>
 
-        <textarea
-        id="lyricsText"
-        rows="15"
-        placeholder="Write song lyrics here...">
-        </textarea>
+    <a href="songs.html">
 
-        <div class="lyrics-buttons">
+        <i class="fa-solid fa-music"></i>
+
+        <span>
+            Songs
+        </span>
+
+    </a>
+
+
+    <a href="planner.html">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        <span>
+            Sunday Planner
+        </span>
+
+    </a>
+
+
+    <a href="history.html">
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        <span>
+            History
+        </span>
+
+    </a>
+
+
+    <a href="choir.html">
+
+        <i class="fa-solid fa-users"></i>
+
+        <span>
+            Choir
+        </span>
+
+    </a>
+
+
+    <div class="admin-only">
+
+        <a href="reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>
+                Reports
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <a href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+
+        <span>
+            Settings
+        </span>
+
+    </a>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main fast-main">
+
+    <!-- HEADER -->
+
+    <div class="fast-page-header">
+
+        <div>
+
+            <span class="page-label">
+                WORSHIP LIBRARY
+            </span>
+
+            <h1>
+                Fast Songs
+            </h1>
+
+            <p>
+                Manage energetic worship songs, usage and lyrics.
+            </p>
+
+        </div>
+
+        <div class="fast-header-stat">
+
+            <span id="fastTotalSongs">
+                0
+            </span>
+
+            <small>
+                Total Songs
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ADD SONG ================= -->
+
+    <div class="section add-song-section admin-only">
+
+        <div class="section-title-row">
+
+            <div>
+
+                <span class="section-mini-label">
+                    SONG LIBRARY
+                </span>
+
+                <h2>
+                    Add New Fast Song
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="add-song-form">
+
+            <div class="input-group">
+
+                <label>
+                    Song Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fastSongName"
+                    placeholder="Enter song name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Last Sung Date
+                </label>
+
+                <input
+                    type="date"
+                    id="fastSongDate"
+                >
+
+            </div>
+
 
             <button
-            class="btn-primary admin-only"
-            onclick="saveLyrics()">
+                type="button"
+                class="add-song-btn"
+                onclick="addFast()">
 
-            💾 Save Lyrics
+                <span>+</span>
+                Add Fast Song
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SONG LIST ================= -->
+
+    <div class="section fast-list-section">
+
+        <div class="song-list-header">
+
+            <div>
+
+                <span class="section-mini-label">
+                    WORSHIP SONGS
+                </span>
+
+                <h2>
+                    Fast Song Collection
+                </h2>
+
+                <p>
+                    Click a song to view its details.
+                </p>
+
+            </div>
+
+            <div class="song-count-badge"
+                 id="fastListCount">
+
+                0 Songs
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="fast-search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="fastSearchInput"
+                placeholder="Search fast songs..."
+                oninput="searchFast(this.value)"
+            >
+
+            <button
+                type="button"
+                id="clearFastSearch"
+                onclick="clearFastSearch()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <!-- SONG CARDS -->
+
+        <div id="fastSongTable"
+             class="fast-song-grid">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONFIRMATION MODAL
+===================================================== -->
+
+<div id="actionConfirmModal"
+     class="action-confirm-modal">
+
+    <div class="action-confirm-box">
+
+        <div id="confirmIcon"
+             class="confirm-icon">
+
+            ⚠
+
+        </div>
+
+        <h2 id="confirmTitle">
+            Confirm Action
+        </h2>
+
+        <p id="confirmMessage">
+            Are you sure?
+        </p>
+
+        <div class="confirm-buttons">
+
+            <button
+                type="button"
+                id="confirmCancelBtn"
+                class="confirm-cancel-btn">
+
+                Cancel
 
             </button>
 
             <button
-            class="btn-danger"
-            onclick="closeLyrics()">
+                type="button"
+                id="confirmActionBtn"
+                class="confirm-action-btn">
 
-            Close
+                Confirm
 
             </button>
 
@@ -187,15 +355,15 @@ onkeyup="searchFast(this.value)"
 </div>
 
 
-<!-- ==========================================
-     SCRIPTS
-========================================== -->
+<!-- ================= SCRIPTS ================= -->
 
 <script type="module" src="../script1.js"></script>
 
-<script type="module" src="../js/fast-songs.js"></script>
+<script type="module"
+        src="../js/fast-songs.js"></script>
 
-<script type="module" src="../js/admin.js"></script>
+<script type="module"
+        src="../js/admin.js"></script>
 
 </body>
 
