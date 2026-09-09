@@ -1,107 +1,129 @@
-/* =====================================================
-   LYRICS PAGE
-===================================================== */
+/* =========================================================
+   KHRISTI KALISIYA — LYRICS PAGE
+   PREMIUM WORSHIP UI
+========================================================= */
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-
-    margin: 0;
-
     font-family: "Poppins", sans-serif;
-
-    background: #f5f7fb;
-
-    color: #1d2939;
-
+    background: #f5f7ff;
+    color: #172033;
+    overflow-x: hidden;
 }
 
 
-/* =====================================================
+/* =========================================================
    MAIN PAGE
-===================================================== */
+========================================================= */
 
 .lyrics-page {
-
     min-height: 100vh;
+    position: relative;
 
     background:
         linear-gradient(
-            rgba(248,250,255,0.92),
-            rgba(248,250,255,0.94)
+            135deg,
+            rgba(247, 248, 255, 0.94),
+            rgba(242, 244, 255, 0.91)
         ),
         url("../images/jesus2.jpeg")
-        center / cover fixed;
-
+        center / cover fixed no-repeat;
 }
 
 
-/* =====================================================
+/* subtle page glow */
+
+.lyrics-page::before {
+    content: "";
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    top: 15%;
+    left: -220px;
+
+    background: rgba(104, 117, 245, 0.12);
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
    BACK BUTTON
-===================================================== */
+========================================================= */
 
 .lyrics-back-btn {
-
     position: fixed;
 
-    top: 18px;
+    top: 20px;
+    left: 22px;
 
-    left: 20px;
-
-    z-index: 100;
+    z-index: 500;
 
     display: inline-flex;
-
     align-items: center;
+    gap: 7px;
 
-    padding: 9px 15px;
+    padding: 10px 16px;
 
-    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.7);
 
-    background: rgba(255,255,255,0.88);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.82);
 
     color: #344054;
 
     text-decoration: none;
 
-    font-size: 13px;
-
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,0.12);
+        0 10px 30px rgba(31, 41, 55, 0.13);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
-    transition: 0.2s;
-
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
-
 
 .lyrics-back-btn:hover {
+    transform: translateY(-3px);
 
-    transform: translateY(-2px);
+    background: rgba(255,255,255,0.96);
 
+    box-shadow:
+        0 15px 35px rgba(31, 41, 55, 0.18);
 }
 
 
-/* =====================================================
+/* =========================================================
    HERO
-===================================================== */
+========================================================= */
 
 .lyrics-hero {
-
     position: relative;
 
-    min-height: 330px;
+    min-height: 390px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
@@ -109,357 +131,536 @@ body {
     background:
         url("../images/jesus2.jpeg")
         center / cover no-repeat;
-
 }
 
 
+/* dark cinematic overlay */
+
 .lyrics-hero-overlay {
-
     position: absolute;
-
     inset: 0;
 
     background:
         linear-gradient(
             135deg,
-            rgba(22,25,45,0.80),
-            rgba(65,45,105,0.55),
-            rgba(20,40,75,0.72)
+            rgba(10, 16, 42, 0.91),
+            rgba(45, 34, 92, 0.72),
+            rgba(24, 51, 94, 0.78)
         );
-
 }
 
 
-.lyrics-hero-content {
+/* decorative glow */
 
+.lyrics-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -240px;
+    right: -120px;
+
+    background:
+        rgba(130, 145, 255, 0.22);
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+}
+
+
+/* bottom fade */
+
+.lyrics-hero::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 100px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(245,247,255,0.25)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.lyrics-hero-content {
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
+
+    width: min(900px, calc(100% - 35px));
 
     text-align: center;
 
     color: white;
 
-    padding: 60px 20px 40px;
+    padding: 70px 20px 55px;
+
+    animation: heroAppear 0.7s ease both;
+}
+
+@keyframes heroAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
 }
 
 
+/* =========================================================
+   CROSS
+========================================================= */
+
 .cross-symbol {
-
-    width: 60px;
-
-    height: 60px;
+    width: 70px;
+    height: 70px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    margin: 0 auto 15px;
+    margin: 0 auto 18px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.14);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.20),
+            rgba(255,255,255,0.07)
+        );
 
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.30);
 
-    font-size: 28px;
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.20);
 
-    backdrop-filter: blur(10px);
+    font-size: 31px;
 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 
+/* =========================================================
+   SMALL LABEL
+========================================================= */
+
 .lyrics-small-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
 
     font-size: 10px;
 
-    letter-spacing: 3px;
-
-    font-weight: 600;
-
-    opacity: 0.85;
-
-}
-
-
-.lyrics-hero h1 {
-
-    margin: 10px 0 15px;
-
-    font-size: clamp(28px, 5vw, 48px);
-
-    line-height: 1.2;
+    letter-spacing: 4px;
 
     font-weight: 700;
 
+    color: rgba(255,255,255,0.78);
 }
 
+
+/* =========================================================
+   SONG TITLE
+========================================================= */
+
+.lyrics-hero h1 {
+    margin: 8px auto 18px;
+
+    max-width: 850px;
+
+    font-size: clamp(30px, 5vw, 54px);
+
+    line-height: 1.14;
+
+    font-weight: 700;
+
+    letter-spacing: -1.2px;
+
+    text-shadow:
+        0 8px 35px rgba(0,0,0,0.30);
+}
+
+
+/* =========================================================
+   SONG TYPE
+========================================================= */
 
 .song-type-badge {
+    display: inline-flex;
 
-    display: inline-block;
+    align-items: center;
+    justify-content: center;
 
-    padding: 7px 15px;
+    padding: 8px 17px;
 
-    border-radius: 30px;
+    border-radius: 50px;
 
-    background: rgba(255,255,255,0.16);
+    background:
+        rgba(255,255,255,0.13);
 
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.27);
 
-    font-size: 11px;
+    color: rgba(255,255,255,0.95);
 
-    font-weight: 600;
+    font-size: 10px;
 
-    letter-spacing: 1px;
+    font-weight: 700;
 
-    backdrop-filter: blur(10px);
+    letter-spacing: 1.5px;
 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
 }
 
 
-/* =====================================================
+/* =========================================================
    TOOLBAR
-===================================================== */
+========================================================= */
 
 .lyrics-toolbar {
-
     position: sticky;
 
     top: 0;
 
-    z-index: 50;
+    z-index: 200;
+
+    min-height: 66px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     flex-wrap: wrap;
 
     gap: 8px;
 
-    padding: 12px 15px;
+    padding: 12px 18px;
 
-    background: rgba(255,255,255,0.92);
+    background:
+        rgba(255,255,255,0.82);
 
-    border-bottom: 1px solid #eaecf0;
+    border-bottom:
+        1px solid rgba(208,213,221,0.75);
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,0.05);
+        0 8px 30px rgba(31,41,55,0.07);
 
-    backdrop-filter: blur(12px);
-
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 
+/* toolbar buttons */
+
 .lyrics-toolbar button {
+    min-width: 40px;
+    height: 38px;
 
-    height: 36px;
+    display: inline-flex;
 
-    border: 1px solid #d0d5dd;
+    align-items: center;
+    justify-content: center;
 
-    border-radius: 9px;
+    gap: 6px;
 
-    padding: 0 12px;
+    padding: 0 13px;
 
-    background: white;
+    border: 1px solid #d9deea;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,0.88);
 
     color: #344054;
 
-    font-family: Poppins, sans-serif;
+    font-family: "Poppins", sans-serif;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    box-shadow:
+        0 4px 12px rgba(31,41,55,0.04);
 
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
 .lyrics-toolbar button:hover {
+    transform: translateY(-2px);
 
-    background: #f2f4ff;
+    background:
+        linear-gradient(
+            135deg,
+            #f2f3ff,
+            #ffffff
+        );
 
-    border-color: #6875f5;
+    border-color: #8a94ff;
 
+    box-shadow:
+        0 8px 20px rgba(104,117,245,0.13);
+}
+
+
+.lyrics-toolbar button:active {
+    transform: scale(0.96);
 }
 
 
 .lyrics-toolbar span {
+    padding: 0 3px;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    color: #667085;
+    font-weight: 600;
 
+    color: #8a94a6;
 }
 
 
-/* =====================================================
+/* =========================================================
    LYRICS CONTAINER
-===================================================== */
+========================================================= */
 
 .lyrics-container {
+    position: relative;
 
-    width: min(1000px, calc(100% - 30px));
+    width: min(1080px, calc(100% - 32px));
 
-    margin: 35px auto 60px;
-
+    margin: 42px auto 70px;
 }
 
 
-/* =====================================================
+/* =========================================================
    LYRICS CARD
-===================================================== */
+========================================================= */
 
 .lyrics-card {
+    position: relative;
 
     overflow: hidden;
 
-    border-radius: 25px;
+    border-radius: 28px;
 
     background:
         rgba(255,255,255,0.94);
 
+    border:
+        1px solid rgba(255,255,255,0.85);
+
     box-shadow:
-        0 20px 55px rgba(31,41,55,0.12);
+        0 25px 75px rgba(31,41,55,0.13);
 
-    border: 1px solid rgba(255,255,255,0.8);
-
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 
-.lyrics-card-header {
+/* top accent */
 
+.lyrics-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6875f5,
+            #8b5cf6,
+            #4f46e5
+        );
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.lyrics-card-header {
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
+    justify-content: space-between;
 
     gap: 20px;
 
-    padding: 25px 30px;
+    padding: 28px 32px;
 
-    border-bottom: 1px solid #eaecf0;
-
+    border-bottom:
+        1px solid #edf0f5;
 }
 
 
 .lyrics-label {
+    display: block;
 
-    font-size: 10px;
-
-    letter-spacing: 2px;
+    margin-bottom: 4px;
 
     color: #6875f5;
 
-    font-weight: 700;
+    font-size: 10px;
 
+    letter-spacing: 2.5px;
+
+    font-weight: 800;
 }
 
 
 .lyrics-card-header h2 {
+    color: #172033;
 
-    margin: 4px 0 0;
+    font-size: 22px;
 
-    font-size: 21px;
+    line-height: 1.35;
 
+    font-weight: 700;
 }
 
 
 .lyrics-status {
+    flex-shrink: 0;
 
-    padding: 7px 12px;
+    display: inline-flex;
 
-    border-radius: 20px;
+    align-items: center;
+
+    padding: 8px 13px;
+
+    border-radius: 50px;
 
     background: #ecfdf3;
 
+    border: 1px solid #d1fadf;
+
     color: #067647;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 600;
+    font-weight: 700;
 
+    box-shadow:
+        0 5px 15px rgba(6,118,71,0.07);
 }
 
 
-/* =====================================================
-   LYRICS TEXT
-===================================================== */
+/* =========================================================
+   LYRICS CONTENT
+========================================================= */
 
 .lyrics-content {
+    position: relative;
 
-    padding: 45px 55px;
+    min-height: 430px;
 
-    min-height: 400px;
+    padding: 55px 70px;
+
+    color: #344054;
 
     font-size: 20px;
 
-    line-height: 2;
+    line-height: 2.15;
 
     font-weight: 500;
 
-    color: #344054;
+    letter-spacing: 0.1px;
 
     white-space: pre-wrap;
 
     word-break: break-word;
 
+    text-align: left;
 }
 
+
+/* nice reading width */
 
 .lyrics-content.has-lyrics {
+    max-width: 950px;
+
+    margin: auto;
 
     text-align: center;
-
 }
 
 
-/* =====================================================
+/* =========================================================
    LOADING
-===================================================== */
+========================================================= */
 
 .lyrics-loading {
-
-    min-height: 300px;
+    min-height: 320px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     flex-direction: column;
 
-    color: #667085;
+    gap: 15px;
 
+    color: #8a94a6;
 }
 
 
 .loading-circle {
+    width: 42px;
+    height: 42px;
 
-    width: 35px;
-
-    height: 35px;
-
-    border: 4px solid #e4e7ec;
+    border: 4px solid #e5e7eb;
 
     border-top-color: #6875f5;
+
+    border-right-color: #8b5cf6;
 
     border-radius: 50%;
 
     animation:
         lyricsSpin 0.8s linear infinite;
-
 }
 
 
@@ -472,370 +673,1155 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    NO LYRICS
-===================================================== */
+========================================================= */
 
 .no-lyrics {
-
-    min-height: 300px;
+    min-height: 330px;
 
     display: flex;
 
-    flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
 
-    text-align: center;
+    flex-direction: column;
 
+    text-align: center;
 }
 
 
 .no-lyrics-icon {
+    width: 70px;
+    height: 70px;
 
-    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 
-    opacity: 0.55;
+    border-radius: 50%;
 
+    background:
+        linear-gradient(
+            135deg,
+            #f0f1ff,
+            #f7f4ff
+        );
+
+    color: #6875f5;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 12px 30px rgba(104,117,245,0.12);
 }
 
 
 .no-lyrics h3 {
+    margin-bottom: 7px;
 
-    margin: 0 0 5px;
+    color: #344054;
 
+    font-size: 19px;
 }
 
 
 .no-lyrics p {
+    max-width: 420px;
 
-    margin: 0;
+    color: #98a2b3;
 
-    color: #667085;
+    font-size: 12px;
 
-    font-size: 13px;
-
+    line-height: 1.7;
 }
 
 
-/* =====================================================
+/* =========================================================
    SONG INFORMATION
-===================================================== */
+========================================================= */
 
 .song-information {
-
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 15px;
+    gap: 16px;
 
-    margin-top: 18px;
-
+    margin-top: 20px;
 }
 
 
 .info-item {
+    position: relative;
 
-    padding: 18px;
+    overflow: hidden;
 
-    border-radius: 17px;
+    padding: 21px 18px;
+
+    border:
+        1px solid rgba(255,255,255,0.9);
+
+    border-radius: 18px;
 
     background:
         rgba(255,255,255,0.88);
 
-    box-shadow:
-        0 8px 25px rgba(31,41,55,0.06);
-
     text-align: center;
 
+    box-shadow:
+        0 10px 30px rgba(31,41,55,0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.info-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 16px 35px rgba(31,41,55,0.11);
+}
+
+
+.info-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6875f5,
+            #8b5cf6
+        );
+
+    opacity: 0.7;
 }
 
 
 .info-item span {
-
     display: block;
 
-    font-size: 11px;
+    margin-bottom: 6px;
 
     color: #98a2b3;
 
-    margin-bottom: 5px;
+    font-size: 10px;
 
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
 }
 
 
 .info-item strong {
-
-    font-size: 14px;
-
     color: #344054;
 
+    font-size: 15px;
+
+    font-weight: 700;
 }
 
 
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 .lyrics-footer {
+    position: relative;
 
     text-align: center;
 
-    padding: 35px 20px 45px;
+    padding: 40px 20px 55px;
 
     color: #667085;
-
 }
 
 
 .footer-cross {
-
-    font-size: 25px;
-
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     color: #6875f5;
 
+    font-size: 28px;
+
+    text-shadow:
+        0 5px 20px rgba(104,117,245,0.20);
 }
 
 
 .lyrics-footer p {
+    margin-bottom: 3px;
 
-    margin: 0;
+    color: #475467;
 
     font-size: 13px;
 
-    font-weight: 600;
-
+    font-weight: 700;
 }
 
 
 .lyrics-footer span {
+    color: #98a2b3;
 
-    font-size: 11px;
+    font-size: 10px;
 
+    letter-spacing: 1px;
+}
+/* =========================================================
+   READING MODE
+========================================================= */
+
+body.reading-mode {
+    background: #0b1020;
 }
 
 
-/* =====================================================
-   READING MODE
-===================================================== */
-
 body.reading-mode .lyrics-page {
-
-    background: #101828;
-
+    background:
+        radial-gradient(
+            circle at top,
+            #1d2542,
+            #0b1020 70%
+        );
 }
 
 
 body.reading-mode .lyrics-toolbar {
+    background:
+        rgba(11,16,32,0.91);
 
-    background: rgba(16,24,40,0.95);
+    border-color:
+        rgba(71,84,103,0.65);
 
-    border-color: #344054;
-
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.30);
 }
 
 
 body.reading-mode .lyrics-toolbar button {
+    background:
+        rgba(29,41,57,0.95);
 
-    background: #1d2939;
+    border-color:
+        #475467;
 
-    color: #f2f4f7;
+    color:
+        #f2f4f7;
+}
 
-    border-color: #475467;
 
+body.reading-mode .lyrics-toolbar button:hover {
+    background:
+        #25314a;
+
+    border-color:
+        #6875f5;
 }
 
 
 body.reading-mode .lyrics-toolbar span {
-
     color: #98a2b3;
-
 }
 
 
 body.reading-mode .lyrics-card {
+    background:
+        rgba(29,41,57,0.97);
 
-    background: #1d2939;
+    border-color:
+        #344054;
 
-    border-color: #344054;
-
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.35);
 }
 
 
 body.reading-mode .lyrics-card-header {
+    border-color:
+        #344054;
+}
 
-    border-color: #344054;
 
+body.reading-mode .lyrics-label {
+    color: #9aa5ff;
 }
 
 
 body.reading-mode .lyrics-card-header h2 {
-
     color: #f9fafb;
-
 }
 
 
 body.reading-mode .lyrics-content {
-
     color: #f2f4f7;
-
 }
 
 
 body.reading-mode .info-item {
+    background:
+        #1d2939;
 
-    background: #1d2939;
-
+    border-color:
+        #344054;
 }
 
 
 body.reading-mode .info-item strong {
-
     color: #f9fafb;
-
 }
 
 
-/* =====================================================
+body.reading-mode .info-item span {
+    color: #98a2b3;
+}
+
+
+body.reading-mode .lyrics-footer {
+    color: #98a2b3;
+}
+
+
+body.reading-mode .lyrics-footer p {
+    color: #d0d5dd;
+}
+
+
+/* =========================================================
    FULLSCREEN
-===================================================== */
+========================================================= */
 
 .lyrics-card.fullscreen {
-
     position: fixed;
 
     inset: 0;
 
     z-index: 9999;
 
+    width: 100vw;
+    height: 100vh;
+
     overflow-y: auto;
 
     border-radius: 0;
+
+    margin: 0;
+
+    box-shadow: none;
+
+    animation:
+        fullscreenOpen 0.25s ease;
+}
+
+
+@keyframes fullscreenOpen {
+
+    from {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 
 }
 
 
 .lyrics-card.fullscreen .lyrics-content {
-
-    max-width: 1000px;
+    width: min(1000px, 100%);
 
     margin: auto;
+
+    padding-top: 70px;
+}
+
+
+/* =========================================================
+   UPDATE LYRICS BUTTON
+========================================================= */
+
+/* hidden for visitor */
+
+.admin-only {
+    display: none;
+}
+
+
+/* admin body */
+
+body.admin .admin-only {
+    display: inline-flex;
+}
+
+
+/* Update button special style */
+
+#updateLyricsButton {
+    background:
+        linear-gradient(
+            135deg,
+            #6875f5,
+            #7c3aed
+        ) !important;
+
+    border-color:
+        transparent !important;
+
+    color: white !important;
+
+    box-shadow:
+        0 8px 20px rgba(104,117,245,0.25);
+}
+
+
+#updateLyricsButton:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #5966eb,
+            #6d28d9
+        ) !important;
+
+    box-shadow:
+        0 12px 28px rgba(104,117,245,0.34);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   LYRICS EDITOR MODAL
+========================================================= */
+
+.lyrics-editor-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10,15,35,0.72);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    animation:
+        modalFadeIn 0.22s ease;
+}
+
+
+@keyframes modalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   EDITOR BOX
+========================================================= */
+
+.lyrics-editor-box {
+    position: relative;
+
+    width: min(720px, 100%);
+
+    max-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,0.98);
+
+    border:
+        1px solid rgba(255,255,255,0.9);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.35);
+
+    animation:
+        editorAppear 0.25s ease;
+}
+
+
+@keyframes editorAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* top accent */
+
+.lyrics-editor-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6875f5,
+            #8b5cf6,
+            #4f46e5
+        );
+}
+
+
+/* =========================================================
+   EDITOR HEADER
+========================================================= */
+
+.lyrics-editor-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 25px 28px 20px;
+
+    border-bottom:
+        1px solid #eaecf0;
+}
+
+
+.lyrics-editor-header span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #6875f5;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.lyrics-editor-header h2 {
+    color: #172033;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+/* close */
+
+.lyrics-editor-close {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: #f2f4f7;
+
+    color: #667085;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.lyrics-editor-close:hover {
+    background: #fee4e2;
+
+    color: #d92d20;
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================================================
+   EDITOR BODY
+========================================================= */
+
+.lyrics-editor-body {
+    padding: 23px 28px;
+
+    overflow-y: auto;
+}
+
+
+.lyrics-editor-song {
+    margin-bottom: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f6ff,
+            #faf8ff
+        );
+
+    color: #475467;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.lyrics-editor-body label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #344054;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.lyrics-editor-textarea {
+    width: 100%;
+
+    min-height: 330px;
+
+    resize: vertical;
+
+    padding: 17px;
+
+    border:
+        1px solid #d0d5dd;
+
+    border-radius: 15px;
+
+    outline: none;
+
+    background:
+        #fcfcfd;
+
+    color: #344054;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.lyrics-editor-textarea:focus {
+    border-color:
+        #6875f5;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(104,117,245,0.10);
+}
+
+
+.lyrics-editor-textarea::placeholder {
+    color: #98a2b3;
+}
+
+
+/* =========================================================
+   EDITOR FOOTER
+========================================================= */
+
+.lyrics-editor-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 18px 28px;
+
+    border-top:
+        1px solid #eaecf0;
+
+    background:
+        #fafbfc;
+}
+
+
+/* common editor buttons */
+
+.lyrics-editor-cancel,
+.lyrics-editor-save {
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 11px;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+/* cancel */
+
+.lyrics-editor-cancel {
+    border:
+        1px solid #d0d5dd;
+
+    background:
+        white;
+
+    color:
+        #475467;
+}
+
+
+.lyrics-editor-cancel:hover {
+    background:
+        #f2f4f7;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* save */
+
+.lyrics-editor-save {
+    border:
+        1px solid transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6875f5,
+            #7c3aed
+        );
+
+    color:
+        white;
+
+    box-shadow:
+        0 8px 20px rgba(104,117,245,0.25);
+}
+
+
+.lyrics-editor-save:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(104,117,245,0.35);
+}
+
+
+.lyrics-editor-save:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media (max-width: 700px) {
 
-    .lyrics-hero {
-
-        min-height: 290px;
-
+    .lyrics-page {
+        background:
+            linear-gradient(
+                rgba(247,248,255,0.95),
+                rgba(242,244,255,0.94)
+            ),
+            url("../images/jesus2.jpeg")
+            center / cover fixed no-repeat;
     }
 
 
+    /* back */
+
     .lyrics-back-btn {
+        top: 11px;
+        left: 11px;
 
-        top: 12px;
+        padding: 8px 12px;
 
-        left: 12px;
+        border-radius: 11px;
 
-        padding: 7px 11px;
+        font-size: 10px;
+    }
 
-        font-size: 11px;
 
+    /* hero */
+
+    .lyrics-hero {
+        min-height: 310px;
     }
 
 
     .lyrics-hero-content {
+        width: 100%;
 
-        padding-top: 65px;
-
+        padding:
+            65px 18px 42px;
     }
 
 
+    .cross-symbol {
+        width: 58px;
+        height: 58px;
+
+        margin-bottom: 13px;
+
+        font-size: 25px;
+    }
+
+
+    .lyrics-small-label {
+        font-size: 8px;
+
+        letter-spacing: 2.8px;
+    }
+
+
+    .lyrics-hero h1 {
+        margin-top: 8px;
+
+        font-size: 29px;
+
+        letter-spacing: -0.5px;
+    }
+
+
+    .song-type-badge {
+        padding: 7px 13px;
+
+        font-size: 9px;
+    }
+
+
+    /* toolbar */
+
     .lyrics-toolbar {
+        min-height: 60px;
+
+        padding: 9px 8px;
 
         gap: 5px;
-
     }
 
 
     .lyrics-toolbar button {
-
         height: 34px;
 
         padding: 0 9px;
 
-        font-size: 10px;
+        border-radius: 9px;
 
+        font-size: 9px;
     }
 
 
     .lyrics-toolbar span {
-
         display: none;
-
     }
 
+
+    /* container */
 
     .lyrics-container {
+        width:
+            calc(100% - 16px);
 
-        width: calc(100% - 18px);
-
-        margin-top: 18px;
-
+        margin:
+            20px auto 40px;
     }
 
 
+    /* card */
+
     .lyrics-card {
-
-        border-radius: 18px;
-
+        border-radius: 20px;
     }
 
 
     .lyrics-card-header {
+        align-items: flex-start;
 
-        padding: 18px;
+        padding: 19px 17px;
 
+        gap: 10px;
+    }
+
+
+    .lyrics-label {
+        font-size: 8px;
+
+        letter-spacing: 2px;
     }
 
 
     .lyrics-card-header h2 {
+        max-width: 210px;
+
+        font-size: 16px;
+    }
+
+
+    .lyrics-status {
+        padding: 6px 9px;
+
+        font-size: 8px;
+    }
+
+
+    /* lyrics */
+
+    .lyrics-content {
+        min-height: 350px;
+
+        padding:
+            32px 17px;
 
         font-size: 17px;
 
+        line-height: 1.95;
+    }
+
+
+    /* information */
+
+    .song-information {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        margin-top: 12px;
+    }
+
+
+    .info-item {
+        padding: 16px;
+
+        border-radius: 15px;
+    }
+
+
+    /* footer */
+
+    .lyrics-footer {
+        padding:
+            30px 15px 40px;
+    }
+
+
+    /* modal */
+
+    .lyrics-editor-modal {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+
+    .lyrics-editor-box {
+        width: 100%;
+
+        max-height: 94vh;
+
+        border-radius:
+            22px 22px 0 0;
+    }
+
+
+    .lyrics-editor-header {
+        padding:
+            20px 18px 17px;
+    }
+
+
+    .lyrics-editor-header h2 {
+        font-size: 18px;
+    }
+
+
+    .lyrics-editor-body {
+        padding:
+            18px;
+    }
+
+
+    .lyrics-editor-textarea {
+        min-height: 280px;
+
+        font-size: 13px;
+    }
+
+
+    .lyrics-editor-footer {
+        padding:
+            14px 18px;
+
+        gap: 8px;
+    }
+
+
+    .lyrics-editor-cancel,
+    .lyrics-editor-save {
+        flex: 1;
+
+        min-height: 42px;
+
+        padding: 0 10px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .lyrics-hero h1 {
+        font-size: 25px;
+    }
+
+
+    .lyrics-toolbar button {
+        padding: 0 7px;
+
+        font-size: 8px;
     }
 
 
     .lyrics-content {
+        font-size: 16px;
 
-        padding: 30px 18px;
-
-        font-size: 17px;
-
-        line-height: 1.9;
-
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
 
-    .song-information {
+    .lyrics-card-header h2 {
+        font-size: 15px;
+    }
 
-        grid-template-columns: 1fr;
+}
 
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 
 }

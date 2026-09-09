@@ -8,7 +8,6 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO title will also be updated by lyrics.js -->
     <title>Lyrics | Khristi Kalisiya</title>
 
     <meta
@@ -41,10 +40,6 @@
 
 
 <body>
-
-<!-- =====================================================
-     PAGE
-===================================================== -->
 
 <div class="lyrics-page">
 
@@ -82,8 +77,9 @@
                 Loading Song...
             </h1>
 
-            <div class="song-type-badge"
-                 id="songType">
+            <div
+                class="song-type-badge"
+                id="songType">
 
                 WORSHIP SONG
 
@@ -99,6 +95,7 @@
     ================================================= -->
 
     <div class="lyrics-toolbar">
+
 
         <button
             type="button"
@@ -140,6 +137,21 @@
 
         </button>
 
+
+        <!-- =================================================
+             ADMIN ONLY
+        ================================================= -->
+
+        <button
+            type="button"
+            id="updateLyricsButton"
+            class="admin-only">
+
+            ✏️ Update Lyrics
+
+        </button>
+
+
     </div>
 
 
@@ -149,7 +161,9 @@
 
     <main class="lyrics-container">
 
+
         <div class="lyrics-card">
+
 
             <div class="lyrics-card-header">
 
@@ -165,6 +179,7 @@
 
                 </div>
 
+
                 <div
                     class="lyrics-status"
                     id="lyricsStatus">
@@ -175,6 +190,8 @@
 
             </div>
 
+
+            <!-- LYRICS -->
 
             <div
                 id="lyricsContent"
@@ -192,6 +209,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -200,6 +218,7 @@
         ================================================= -->
 
         <div class="song-information">
+
 
             <div class="info-item">
 
@@ -239,7 +258,9 @@
 
             </div>
 
+
         </div>
+
 
     </main>
 
@@ -264,15 +285,31 @@
 
     </footer>
 
+
 </div>
 
 
 <!-- =====================================================
      JAVASCRIPT
+
+     IMPORTANT:
+     admin.js first
+     lyrics.js second
 ===================================================== -->
 
-<script type="module"
-        src="../js/lyrics.js"></script>
+<script
+    type="module"
+    src="../js/admin.js">
+</script>
+
+<script
+    type="module"
+    src="../js/lyrics.js">
+</script>
+
+
+
+
 
 </body>
 
